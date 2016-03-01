@@ -34,3 +34,7 @@ ReactDOM.render(
 |    offline   |  boolean |                 false                |
 |   textButton |  string  |             Login with Google        |
 |   cssClass   |  string  |                   -                  |
+
+
+### Modeled after @keppelen [React Facebook Login](https://github.com/keppelen/react-facebook-login). 
+
