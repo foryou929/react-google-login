@@ -1,6 +1,5 @@
 import React, { PropTypes, Component } from 'react';
 
-
 class GoogleLogin extends Component {
 
   static propTypes = {
@@ -9,13 +8,15 @@ class GoogleLogin extends Component {
     textButton: PropTypes.string,
     offline: PropTypes.bool,
     scope: PropTypes.string,
-    cssClass: PropTypes.string
+    cssClass: PropTypes.string,
+    redirectUri: PropTypes.string 
   };
 
 
   static defaultProps = {
     textButton: 'Login with Google',
     scope: 'profile email',
+    redirectUri: 'postmessage'
   };
 
   constructor(props) {
@@ -51,29 +52,33 @@ class GoogleLogin extends Component {
     if (this.props.offline) {
       let options = {
         'scope': this.props.scope,
-        'redirect_uri': 'postmessage'
+        'redirect_uri': this.props.redirectUri
       }
       auth2.grantOfflineAccess(options).then((data) => {
         this.props.callback(data)
       });
 
     } else {
+      let options = {
+        'scope': this.props.scope
+      }
       auth2.signIn()
         .then(() => {
-            if (auth2.isSignedIn.get()) {
+            if (auth2.isSignedIn.get(options)) {
               var profile = auth2.currentUser.get().getBasicProfile();
               this.props.callback(profile);
             }
-          }
-
-        );
+        });
     }
   }
 
   render() {
     return (
       <div>
-        <button className={this.props.cssClass} onClick={this.onBtnClick.bind(this)}>
+        <button 
+          className={this.props.cssClass} 
+          onClick={this.onBtnClick.bind(this)}
+        >
           {this.props.buttonText}
         </button>
     </div>

@@ -23,6 +23,13 @@ ReactDOM.render(
   document.getElementById('googleButton')
 );
 ```
+## Callback
+
+If offline is false callback will return the information set in scope.
+
+If offline is true callback will return the offline token for use on your server. 
+
+
 
 ## Parameters
 
@@ -34,6 +41,7 @@ ReactDOM.render(
 |    offline   |  boolean |                 false                |
 |   textButton |  string  |             Login with Google        |
 |   cssClass   |  string  |                   -                  |
+| redirectUri  |  string  |              postmessage             |
 
 
 ### Modeled after @keppelen [React Facebook Login](https://github.com/keppelen/react-facebook-login). 
