@@ -28,9 +28,6 @@ class GoogleLogin extends Component {
       const element = d.getElementsByTagName(s)[0];
       const fjs = element;
       let js = element;
-      if (d.getElementById(id)) {
-        return;
-      }
       js = d.createElement(s);
       js.id = id;
       js.src = '//apis.google.com/js/platform.js';
@@ -79,7 +76,7 @@ class GoogleLogin extends Component {
           className={this.props.cssClass} 
           onClick={this.onBtnClick.bind(this)}
         >
-          {this.props.buttonText}
+          {this.props.textButton}
         </button>
     </div>
     );

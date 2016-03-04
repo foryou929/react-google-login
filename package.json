@@ -4,7 +4,7 @@
   "description": "A Component React for Google Login",
   "main": "dist/google-login.js",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.config.js --host $IP --port $PORT",
+    "start": "webpack-dev-server --config webpack.config.js --host $IP --port $PORT --hot",
     "bundle": "webpack -p --config webpack.config.dist.js"
   },
   "repository": {
