@@ -4,6 +4,7 @@
   "description": "A Component React for Google Login",
   "main": "dist/google-login.js",
   "scripts": {
+    "start": "webpack-dev-server --config webpack.config.js --host $IP --port $PORT",
     "bundle": "webpack -p --config webpack.config.dist.js"
   },
   "repository": {
@@ -47,5 +48,8 @@
   },
   "peerDependencies": {
     "react": "^0.14.x"
+  },
+  "dependencies": {
+    "webpack-dev-server": "^1.14.1"
   }
 }

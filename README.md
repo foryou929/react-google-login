@@ -44,5 +44,7 @@ If offline is true callback will return the offline token for use on your server
 | redirectUri  |  string  |              postmessage             |
 
 
-### Modeled after @keppelen [React Facebook Login](https://github.com/keppelen/react-facebook-login). 
 
+##### Modeled after @keppelen [React Facebook Login](https://github.com/keppelen/react-facebook-login) 
+
+### Follow me on Twitter: [@anthonyjgrove](https://twitter.com/anthonyjgrove)
