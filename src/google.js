@@ -70,11 +70,26 @@ class GoogleLogin extends Component {
   }
 
   render() {
+    let style = {
+      display: 'inline-block',
+      background: '#d14836',
+      color: '#fff',
+      width: 190,
+      paddingTop: 10,
+      paddingBottom: 10,
+      borderRadius: 2,
+      border: '1px solid transparent',
+      fontSize: 16,
+      fontWeight: 'bold',
+      fontFamily: 'Roboto'
+    }
+    
     return (
       <div>
         <button 
           className={this.props.cssClass} 
           onClick={this.onBtnClick.bind(this)}
+          style={this.props.cssClass ? {} : style} 
         >
           {this.props.textButton}
         </button>
