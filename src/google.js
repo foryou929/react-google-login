@@ -5,7 +5,7 @@ class GoogleLogin extends Component {
   static propTypes = {
     callback: PropTypes.func.isRequired,
     clientId: PropTypes.string.isRequired,
-    textButton: PropTypes.string,
+    buttonText: PropTypes.string,
     offline: PropTypes.bool,
     scope: PropTypes.string,
     cssClass: PropTypes.string,
@@ -14,7 +14,7 @@ class GoogleLogin extends Component {
 
 
   static defaultProps = {
-    textButton: 'Login with Google',
+    buttonText: 'Login with Google',
     scope: 'profile email',
     redirectUri: 'postmessage'
   };
@@ -62,8 +62,8 @@ class GoogleLogin extends Component {
       auth2.signIn()
         .then(() => {
             if (auth2.isSignedIn.get(options)) {
-              var profile = auth2.currentUser.get().getBasicProfile();
-              this.props.callback(profile);
+              var currentUser = auth2.currentUser.get();
+              this.props.callback(currentUser);
             }
         });
     }
@@ -91,7 +91,7 @@ class GoogleLogin extends Component {
           onClick={this.onBtnClick.bind(this)}
           style={this.props.cssClass ? {} : style} 
         >
-          {this.props.textButton}
+          {this.props.buttonText}
         </button>
     </div>
     );
