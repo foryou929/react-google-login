@@ -9,14 +9,16 @@ class GoogleLogin extends Component {
     offline: PropTypes.bool,
     scope: PropTypes.string,
     cssClass: PropTypes.string,
-    redirectUri: PropTypes.string 
+    redirectUri: PropTypes.string,
+    cookiePolicy: PropTypes.string
   };
 
 
   static defaultProps = {
     buttonText: 'Login with Google',
     scope: 'profile email',
-    redirectUri: 'postmessage'
+    redirectUri: 'postmessage',
+    cookiePolicy: 'single_host_origin'
   };
 
   constructor(props) {
@@ -36,7 +38,7 @@ class GoogleLogin extends Component {
     }(document, 'script', 'google-login', () => {
       const params = {
         client_id: this.props.clientId,
-        cookiepolicy: 'single_host_origin'
+        cookiepolicy: this.props.cookiePolicy
       }
       window.gapi.load('auth2', () => {
         gapi.auth2.init(params);

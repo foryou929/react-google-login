@@ -29,8 +29,6 @@ If offline is false callback will return the currentUser object.
 
 If offline is true callback will return the offline token for use on your server. 
 
-
-
 ## Parameters
 
 |    params    |   value  |             default value            |
