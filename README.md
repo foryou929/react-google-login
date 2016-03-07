@@ -1,9 +1,14 @@
 # React Google Login
 
-> An Component React for Google Login
+> An Component React for Google oAUth Sign-in / Log-in
 
+
+## Install
+```
+npm install react-google-login
+
+```
 ## How to use
-
 ```js
 'use strict';
 
@@ -41,17 +46,16 @@ If offline is true callback will return the offline token for use on your server
 |   cssClass   |  string  |                   -                  |
 | redirectUri  |  string  |              postmessage             |
 
-## Test Server
 
+## Test Server
 ```
 npm run start
 
 ```
 ## Production Bundle
-
 ```
 npm run bundle
 ```
-##### Modeled after @keppelen [React Facebook Login](https://github.com/keppelen/react-facebook-login) 
+##### Modeled after keppelen's [React Facebook Login](https://github.com/keppelen/react-facebook-login) 
 
 ### Follow me on Twitter: [@anthonyjgrove](https://twitter.com/anthonyjgrove)
