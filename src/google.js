@@ -1,7 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 
 class GoogleLogin extends Component {
-
   static propTypes = {
     callback: PropTypes.func.isRequired,
     clientId: PropTypes.string.isRequired,
@@ -12,7 +11,6 @@ class GoogleLogin extends Component {
     redirectUri: PropTypes.string,
     cookiePolicy: PropTypes.string
   };
-
 
   static defaultProps = {
     buttonText: 'Login with Google',
@@ -48,22 +46,25 @@ class GoogleLogin extends Component {
 
   onBtnClick() {
     const auth2 = window.gapi.auth2.getAuthInstance();
-    if (this.props.offline) {
+    const {
+      offline, scope, redirectUri, callback
+    } = this.props;
+    if (offline) {
       let options = {
-        'scope': this.props.scope,
-        'redirect_uri': this.props.redirectUri
+        'scope': scope,
+        'redirect_uri': redirectUri
       }
-      auth2.grantOfflineAccess(options).then((data) => {
-        this.props.callback(data)
-      });
-
+      auth2.grantOfflineAccess(options)
+        .then((data) => {
+          callback(data)
+        });
     } else {
       let options = {
-        'scope': this.props.scope
+        'scope': scope
       }
       auth2.signIn(options)
         .then((response) => {
-          this.props.callback(response);
+          callback(response);
         });
     }
   }
@@ -82,15 +83,17 @@ class GoogleLogin extends Component {
       fontWeight: 'bold',
       fontFamily: 'Roboto'
     }
-    
+    const {
+      cssClass, buttonText
+    } = this.props;
     return (
       <div>
         <button 
-          className={this.props.cssClass} 
+          className={cssClass} 
           onClick={this.onBtnClick.bind(this)}
-          style={this.props.cssClass ? {} : style} 
+          style={cssClass ? {} : style} 
         >
-          {this.props.buttonText}
+          {buttonText}
         </button>
     </div>
     );
