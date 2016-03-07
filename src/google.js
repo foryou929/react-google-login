@@ -61,12 +61,9 @@ class GoogleLogin extends Component {
       let options = {
         'scope': this.props.scope
       }
-      auth2.signIn()
-        .then(() => {
-            if (auth2.isSignedIn.get(options)) {
-              var currentUser = auth2.currentUser.get();
-              this.props.callback(currentUser);
-            }
+      auth2.signIn(options)
+        .then((response) => {
+          this.props.callback(response);
         });
     }
   }
