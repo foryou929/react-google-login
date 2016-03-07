@@ -1,6 +1,6 @@
 {
   "name": "react-google-login",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A Component React for Google Login",
   "main": "dist/google-login.js",
   "scripts": {
