@@ -10,7 +10,11 @@ module.exports = {
 
   module: {
     loaders: [
-      { test: /\.js$/, loader: 'babel?stage=0&loose=all', exclude: /node_modules/ }
+      { 
+        test: /\.js$/, 
+        loader: 'babel', 
+        exclude: /node_modules/ 
+      }
     ]
   },
 

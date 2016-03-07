@@ -18,18 +18,16 @@ const responseGoogle = (response) => {
 ReactDOM.render(
   <GoogleLogin
     clientId="1088597931155576"
-    offline={false}
+    buttonText="Login"
     callback={responseGoogle} />,
   document.getElementById('googleButton')
 );
 ```
 ## Callback
 
-If offline is false callback will return the information set in scope.
+If offline is false callback will return the currentUser object.
 
 If offline is true callback will return the offline token for use on your server. 
-
-
 
 ## Parameters
 
@@ -39,10 +37,21 @@ If offline is true callback will return the offline token for use on your server
 |     scope    |  string  |             profile email            |
 |   callback   | function |               REQUIRED               |
 |    offline   |  boolean |                 false                |
-|   textButton |  string  |             Login with Google        |
+|   buttonText |  string  |             Login with Google        |
 |   cssClass   |  string  |                   -                  |
 | redirectUri  |  string  |              postmessage             |
 
+## Test Server
 
-### Modeled after @keppelen [React Facebook Login](https://github.com/keppelen/react-facebook-login). 
+```
+npm run start
 
+```
+## Production Bundle
+
+```
+npm run bundle
+```
+##### Modeled after @keppelen [React Facebook Login](https://github.com/keppelen/react-facebook-login) 
+
+### Follow me on Twitter: [@anthonyjgrove](https://twitter.com/anthonyjgrove)
