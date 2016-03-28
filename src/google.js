@@ -50,7 +50,7 @@ class GoogleLogin extends Component {
     const auth2 = window.gapi.auth2.getAuthInstance();
     const { offline, redirectUri, callback } = this.props;
     if (offline) {
-      let options = {
+      const options = {
         'redirect_uri': redirectUri
       };
       auth2.grantOfflineAccess(options)
@@ -66,7 +66,7 @@ class GoogleLogin extends Component {
   }
 
   render() {
-    let style = {
+    const style = {
       display: 'inline-block',
       background: '#d14836',
       color: '#fff',
