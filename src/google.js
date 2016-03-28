@@ -24,6 +24,7 @@ class GoogleLogin extends Component {
   }
 
   componentDidMount() {
+    const { clientId, scope, cookiePolicy } = this.props;
     (function(d, s, id, cb) {
       const element = d.getElementsByTagName(s)[0];
       const fjs = element;
@@ -35,34 +36,29 @@ class GoogleLogin extends Component {
       js.onload = cb;
     }(document, 'script', 'google-login', () => {
       const params = {
-        client_id: this.props.clientId,
-        cookiepolicy: this.props.cookiePolicy
-      }
+        client_id: clientId,
+        cookiepolicy: cookiePolicy,
+        scope: scope
+      };
       window.gapi.load('auth2', () => {
-        gapi.auth2.init(params);
+        window.gapi.auth2.init(params);
       });
     }));
   }
 
   onBtnClick() {
     const auth2 = window.gapi.auth2.getAuthInstance();
-    const {
-      offline, scope, redirectUri, callback
-    } = this.props;
+    const { offline, redirectUri, callback } = this.props;
     if (offline) {
       let options = {
-        'scope': scope,
         'redirect_uri': redirectUri
-      }
+      };
       auth2.grantOfflineAccess(options)
         .then((data) => {
-          callback(data)
+          callback(data);
         });
     } else {
-      let options = {
-        'scope': scope
-      }
-      auth2.signIn(options)
+      auth2.signIn()
         .then((response) => {
           callback(response);
         });
@@ -82,20 +78,16 @@ class GoogleLogin extends Component {
       fontSize: 16,
       fontWeight: 'bold',
       fontFamily: 'Roboto'
-    }
-    const {
-      cssClass, buttonText
-    } = this.props;
+    };
+    const { cssClass, buttonText } = this.props;
     return (
-      <div>
-        <button 
-          className={cssClass} 
-          onClick={this.onBtnClick.bind(this)}
-          style={cssClass ? {} : style} 
-        >
-          {buttonText}
-        </button>
-    </div>
+      <button 
+        className={cssClass} 
+        onClick={this.onBtnClick.bind(this)}
+        style={cssClass ? {} : style} 
+      >
+        {buttonText}
+      </button>
     );
   }
 }

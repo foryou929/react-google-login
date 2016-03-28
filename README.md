@@ -30,7 +30,7 @@ ReactDOM.render(
 ```
 ## Callback
 
-If offline is false callback will return the currentUser object.
+If offline is false callback will return the GoogleAuth object.
 
 If offline is true callback will return the offline token for use on your server. 
 
@@ -46,6 +46,8 @@ If offline is true callback will return the offline token for use on your server
 |   cssClass   |  string  |                   -                  |
 | redirectUri  |  string  |              postmessage             |
 
+
+Google Scopes List: https://developers.google.com/identity/protocols/googlescopes
 
 ## Test Server
 ```
