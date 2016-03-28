@@ -1,6 +1,6 @@
 # React Google Login
 
-> An Component React for Google oAUth Sign-in / Log-in
+> A React Component for Google oAUth Sign-in / Log-in
 
 
 ## Install
