@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react';
+import React, {PropTypes, Component} from 'react';
 
 class GoogleLogin extends Component {
   static propTypes = {
@@ -24,8 +24,9 @@ class GoogleLogin extends Component {
   }
 
   componentDidMount() {
-    const { clientId, scope, cookiePolicy } = this.props;
-    (function(d, s, id, cb) {
+    const {clientId, scope, cookiePolicy} = this.props;
+
+    ((d, s, id, cb) => {
       const element = d.getElementsByTagName(s)[0];
       const fjs = element;
       let js = element;
@@ -34,21 +35,21 @@ class GoogleLogin extends Component {
       js.src = '//apis.google.com/js/platform.js';
       fjs.parentNode.insertBefore(js, fjs);
       js.onload = cb;
-    }(document, 'script', 'google-login', () => {
+    })(document, 'script', 'google-login', () => {
       const params = {
         client_id: clientId,
         cookiepolicy: cookiePolicy,
-        scope: scope
+        scope
       };
       window.gapi.load('auth2', () => {
         window.gapi.auth2.init(params);
       });
-    }));
+    });
   }
 
   onBtnClick() {
     const auth2 = window.gapi.auth2.getAuthInstance();
-    const { offline, redirectUri, callback } = this.props;
+    const {offline, redirectUri, callback} = this.props;
     if (offline) {
       const options = {
         'redirect_uri': redirectUri
@@ -79,7 +80,7 @@ class GoogleLogin extends Component {
       fontWeight: 'bold',
       fontFamily: 'Roboto'
     };
-    const { cssClass, buttonText } = this.props;
+    const {cssClass, buttonText} = this.props;
     return (
       <button 
         className={cssClass} 

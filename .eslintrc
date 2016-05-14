@@ -12,6 +12,5 @@
     "react"
   ],
   "globals": {
-    "FB": false
   }
 }
