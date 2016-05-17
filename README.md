@@ -22,7 +22,7 @@ const responseGoogle = (response) => {
 
 ReactDOM.render(
   <GoogleLogin
-    clientId="1088597931155576"
+    clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
     buttonText="Login"
     callback={responseGoogle} />,
   document.getElementById('googleButton')
@@ -48,6 +48,22 @@ If offline is true callback will return the offline token for use on your server
 
 
 Google Scopes List: https://developers.google.com/identity/protocols/googlescopes
+
+You can now also pass child components such as icons into the button component.
+```js
+  <GoogleLogin
+        clientId={'658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'}
+        callback={responseGoogle}
+        offline={false}
+  >
+    <FontAwesome
+      name='google'
+    />
+    <span> Login with Google</span>
+  </GoogleLogin>
+
+```
+
 
 ## Test Server
 ```

@@ -80,14 +80,14 @@ class GoogleLogin extends Component {
       fontWeight: 'bold',
       fontFamily: 'Roboto'
     };
-    const {cssClass, buttonText} = this.props;
+    const {cssClass, buttonText, children} = this.props;
     return (
       <button 
         className={cssClass} 
         onClick={this.onBtnClick.bind(this)}
         style={cssClass ? {} : style} 
       >
-        {buttonText}
+        {children ? children : buttonText}
       </button>
     );
   }
