@@ -1,11 +1,13 @@
 {
   "name": "react-google-login",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A Google Login Component for React",
   "main": "dist/google-login.js",
   "scripts": {
     "start": "webpack-dev-server --config webpack.config.js --host $IP --port $PORT --hot",
-    "bundle": "webpack -p --config webpack.config.dist.js"
+    "bundle": "webpack -p --config webpack.config.dist.js",
+    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
+    "test:watch": "npm run test -- --watch"
   },
   "repository": {
     "type": "git",
@@ -40,14 +42,21 @@
     "eslint": "^1.10.3",
     "eslint-config-airbnb": "^2.0.0",
     "eslint-plugin-react": "^3.11.3",
-    "react": "^15.0.2",
-    "react-dom": "^15.0.2",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0",
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1",
-    "react-fontawesome": "^1.1.0"
+    "react-fontawesome": "^1.1.0",
+    "chai": "^3.5.0",
+    "chai-jquery": "^2.0.0",
+    "jquery": "^2.2.4",
+    "jsdom": "^9.2.0",
+    "mocha": "^2.5.2",
+    "react": "^15.1.0",
+    "react-addons-test-utils": "^15.1.0"
   },
   "peerDependencies": {
-    "react": "^15.0.2"
+    "react": "^15.1.0"
   },
   "babel": {
     "presets": [
