@@ -1,4 +1,4 @@
-import React, {PropTypes, Component} from 'react';
+import React, { PropTypes, Component } from 'react';
 
 class GoogleLogin extends Component {
   static propTypes = {
@@ -9,14 +9,15 @@ class GoogleLogin extends Component {
     scope: PropTypes.string,
     cssClass: PropTypes.string,
     redirectUri: PropTypes.string,
-    cookiePolicy: PropTypes.string
+    cookiePolicy: PropTypes.string,
+    children: React.PropTypes.node,
   };
 
   static defaultProps = {
     buttonText: 'Login with Google',
     scope: 'profile email',
     redirectUri: 'postmessage',
-    cookiePolicy: 'single_host_origin'
+    cookiePolicy: 'single_host_origin',
   };
 
   constructor(props) {
@@ -24,8 +25,7 @@ class GoogleLogin extends Component {
   }
 
   componentDidMount() {
-    const {clientId, scope, cookiePolicy} = this.props;
-
+    const { clientId, scope, cookiePolicy } = this.props;
     ((d, s, id, cb) => {
       const element = d.getElementsByTagName(s)[0];
       const fjs = element;
@@ -39,7 +39,7 @@ class GoogleLogin extends Component {
       const params = {
         client_id: clientId,
         cookiepolicy: cookiePolicy,
-        scope
+        scope,
       };
       window.gapi.load('auth2', () => {
         window.gapi.auth2.init(params);
@@ -49,10 +49,10 @@ class GoogleLogin extends Component {
 
   onBtnClick() {
     const auth2 = window.gapi.auth2.getAuthInstance();
-    const {offline, redirectUri, callback} = this.props;
+    const { offline, redirectUri, callback } = this.props;
     if (offline) {
       const options = {
-        'redirect_uri': redirectUri
+        'redirect_uri': redirectUri,
       };
       auth2.grantOfflineAccess(options)
         .then((data) => {
@@ -78,16 +78,16 @@ class GoogleLogin extends Component {
       border: '1px solid transparent',
       fontSize: 16,
       fontWeight: 'bold',
-      fontFamily: 'Roboto'
+      fontFamily: 'Roboto',
     };
-    const {cssClass, buttonText, children} = this.props;
+    const { cssClass, buttonText, children } = this.props;
     return (
       <button 
-        className={cssClass} 
-        onClick={this.onBtnClick.bind(this)}
-        style={cssClass ? {} : style} 
+        className={ cssClass } 
+        onClick={ this.onBtnClick.bind(this) }
+        style={ cssClass ? {} : style } 
       >
-        {children ? children : buttonText}
+        { children ? children : buttonText }
       </button>
     );
   }

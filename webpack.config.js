@@ -1,39 +1,37 @@
 'use strict';
 
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
-
-    devtool: 'eval',
-
-    entry: {
-      demo: [
-        'webpack/hot/dev-server', 
-        './demo/index.js'
-      ]
+  devtool: 'eval',
+  entry: {
+    demo: [
+      'webpack/hot/dev-server', 
+      './demo/index.js',
+    ],
   },
-
+  output: {
+    path: path.join(__dirname, 'demo'),
+    filename: 'bundle.js',
+    publicPath: '/',
+  },
   module: {
     loaders: [{
       test: /\.js$/,
       loader: 'babel',
-      exclude: /node_modules/
-    }]
-  },
-
-  output: {
-    filename: 'demo/bundle.js'
+      exclude: /node_modules/,
+    }],
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
   ],
-
   resolve: {
     extensions: ['', '.js'],
   },
-
   devServer: {
-    contentBase: './demo'
-  }
+    contentBase: './demo',
+    historyApiFallback: true,
+    compress: false,
+  },
 };

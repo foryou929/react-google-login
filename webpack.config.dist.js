@@ -1,40 +1,36 @@
 'use strict';
 
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
+  devtool: 'eval',
   entry: {
-    demo: ['./src/index.js']
+    demo: ['./src/index.js'],
   },
-
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: 'google-login.js',
+    libraryTarget: 'umd',
+    library: 'GoogleLogin',
+  },
   module: {
-    loaders: [
-      { 
-        test: /\.js$/, 
-        loader: 'babel', 
-        exclude: /node_modules/ 
-      }
-    ]
+    loaders: [{
+      test: /\.js$/,
+      loader: 'babel',
+      exclude: /node_modules/,
+    }]
   },
-
   externals: {
     'react': 'react',
     'react-dom': 'ReactDOM',
   },
-
-  output: {
-    filename: 'dist/google-login.js',
-    libraryTarget: 'umd',
-    library: 'GoogleLogin'
-  },
-
-
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['', '.js'],
   },
-
   plugins: [
-    new webpack.optimize.DedupePlugin()
-  ]
+    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+  ],
 };

@@ -1,11 +1,11 @@
 {
   "name": "react-google-login",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A Google Login Component for React",
   "main": "dist/google-login.js",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.config.js --host $IP --port $PORT --hot",
-    "bundle": "webpack -p --config webpack.config.dist.js",
+    "start": "set NODE_ENV=development&& webpack-dev-server --config webpack.config.js --host $IP --port $PORT",
+    "bundle": "set NODE_ENV=production&& webpack -p --config webpack.config.dist.js",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
     "test:watch": "npm run test -- --watch"
   },

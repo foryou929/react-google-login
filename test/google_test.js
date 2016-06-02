@@ -2,9 +2,9 @@ import {renderComponent, expect} from './test_helper';
 import GoogleLogin from '../src/google';
 
 describe('Google Login', () => {
+    const defaultText = 'Login with Google';
     let component;
     let propsObj;
-    let defaultText = 'Login with Google';
 
     describe('With default props', () => {
 

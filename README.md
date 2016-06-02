@@ -65,15 +65,22 @@ You can now also pass child components such as icons into the button component.
 ```
 
 
-## Test Server
+## Dev Server
 ```
 npm run start
 
 ```
+## Run Tests
+```
+npm run test:watch
+
+```
+
 ## Production Bundle
 ```
 npm run bundle
 ```
-##### Modeled after keppelen's [React Facebook Login](https://github.com/keppelen/react-facebook-login) 
+
+##### Checkout keppelen's [React Facebook Login](https://github.com/keppelen/react-facebook-login) 
 
 ### Follow me on Twitter: [@anthonyjgrove](https://twitter.com/anthonyjgrove)
