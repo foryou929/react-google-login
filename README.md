@@ -44,6 +44,7 @@ If offline is true callback will return the offline token for use on your server
 |    offline   |  boolean |                 false                |
 |   buttonText |  string  |             Login with Google        |
 |   cssClass   |  string  |                   -                  |
+|   loginHint  |  string  |                   -                  |
 | redirectUri  |  string  |              postmessage             |
 
 

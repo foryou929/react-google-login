@@ -10,6 +10,7 @@ class GoogleLogin extends Component {
     cssClass: PropTypes.string,
     redirectUri: PropTypes.string,
     cookiePolicy: PropTypes.string,
+    loginHint: PropTypes.string,
     children: React.PropTypes.node,
   };
 
@@ -22,10 +23,11 @@ class GoogleLogin extends Component {
 
   constructor(props) {
     super(props);
+    this.onBtnClick = this.onBtnClick.bind(this);
   }
 
   componentDidMount() {
-    const { clientId, scope, cookiePolicy } = this.props;
+    const { clientId, scope, cookiePolicy, loginHint } = this.props;
     ((d, s, id, cb) => {
       const element = d.getElementsByTagName(s)[0];
       const fjs = element;
@@ -39,6 +41,7 @@ class GoogleLogin extends Component {
       const params = {
         client_id: clientId,
         cookiepolicy: cookiePolicy,
+        login_hint: loginHint,
         scope,
       };
       window.gapi.load('auth2', () => {
@@ -82,10 +85,10 @@ class GoogleLogin extends Component {
     };
     const { cssClass, buttonText, children } = this.props;
     return (
-      <button 
-        className={ cssClass } 
-        onClick={ this.onBtnClick.bind(this) }
-        style={ cssClass ? {} : style } 
+      <button
+        className={ cssClass }
+        onClick={ this.onBtnClick }
+        style={ cssClass ? {} : style }
       >
         { children ? children : buttonText }
       </button>
