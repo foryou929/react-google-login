@@ -11,6 +11,7 @@ class GoogleLogin extends Component {
     redirectUri: PropTypes.string,
     cookiePolicy: PropTypes.string,
     loginHint: PropTypes.string,
+    hostedDomain: PropTypes.string,
     children: React.PropTypes.node,
   };
 
@@ -27,7 +28,7 @@ class GoogleLogin extends Component {
   }
 
   componentDidMount() {
-    const { clientId, scope, cookiePolicy, loginHint } = this.props;
+    const { clientId, scope, cookiePolicy, loginHint, hostedDomain } = this.props;
     ((d, s, id, cb) => {
       const element = d.getElementsByTagName(s)[0];
       const fjs = element;
@@ -42,6 +43,7 @@ class GoogleLogin extends Component {
         client_id: clientId,
         cookiepolicy: cookiePolicy,
         login_hint: loginHint,
+        hosted_domain: hostedDomain,
         scope,
       };
       window.gapi.load('auth2', () => {
