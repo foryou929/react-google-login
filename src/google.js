@@ -45,7 +45,9 @@ class GoogleLogin extends Component {
         scope,
       };
       window.gapi.load('auth2', () => {
-        window.gapi.auth2.init(params);
+        if (!window.gapi.auth2.getAuthInstance()) {
+          window.gapi.auth2.init(params);
+        }
       });
     });
   }
@@ -58,8 +60,8 @@ class GoogleLogin extends Component {
         'redirect_uri': redirectUri,
       };
       auth2.grantOfflineAccess(options)
-        .then((data) => {
-          callback(data);
+        .then((response) => {
+          callback(response);
         });
     } else {
       auth2.signIn()
