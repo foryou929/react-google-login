@@ -25,6 +25,9 @@ class GoogleLogin extends Component {
   constructor(props) {
     super(props);
     this.onBtnClick = this.onBtnClick.bind(this);
+    this.state = {
+      disabled: 'disabled',
+    };
   }
 
   componentDidMount() {
@@ -47,6 +50,9 @@ class GoogleLogin extends Component {
         scope,
       };
       window.gapi.load('auth2', () => {
+        this.setState({
+          disabled: '',
+        });
         if (!window.gapi.auth2.getAuthInstance()) {
           window.gapi.auth2.init(params);
         }
@@ -93,6 +99,7 @@ class GoogleLogin extends Component {
         className={ cssClass }
         onClick={ this.onBtnClick }
         style={ cssClass ? {} : style }
+        disabled={ this.state.disabled }
       >
         { children ? children : buttonText }
       </button>
