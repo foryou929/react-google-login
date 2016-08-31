@@ -74,7 +74,12 @@ class GoogleLogin extends Component {
     } else {
       auth2.signIn()
         .then((response) => {
-          callback(response);
+          const resObj = {
+            el: response.El,
+            hg: response.Zi,
+            wc: response.w3,
+          };
+          callback(resObj);
         });
     }
   }
