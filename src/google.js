@@ -74,12 +74,24 @@ class GoogleLogin extends Component {
     } else {
       auth2.signIn()
         .then((response) => {
-          const resObj = {
-            el: response.El,
-            hg: response.Zi,
-            wc: response.w3,
+          /*
+            offer renamed response keys to names that match use
+          */
+          const basicProfile = response.getBasicProfile();
+          const authResponse = response.getAuthResponse();
+          response.googleId = basicProfile.getId();
+          response.tokenObj = authResponse;
+          response.tokenId = authResponse.id_token;
+          response.accessToken = authResponse.access_token;
+          response.profileObj = {
+            googleId: basicProfile.getId(),
+            imageUrl: basicProfile.getImageUrl(),
+            email: basicProfile.getEmail(),
+            name: basicProfile.getName(),
+            givenName: basicProfile.getGivenName(),
+            familyName: basicProfile.getFamilyName(),
           };
-          callback(resObj);
+          callback(response);
         });
     }
   }

@@ -59,11 +59,18 @@ Google Scopes List: https://developers.google.com/identity/protocols/googlescope
 
 ## Successful callback ( w/ offline false)
 
+Callback returns a GoogleUser object which provides access 
+to all of the GoogleUser methods listed here: https://developers.google.com/identity/sign-in/web/reference#users .
+
+You can also access the returned values via the following properties on the returned object.
+
 | property name |  value   |             definition               |
 |:-------------:|:--------:|:------------------------------------:|
-|      el       |  string  |           Google user ID             |
-|      hg       |  object  |           Token details              |
-|      wc       |  object  |          Profile details             |
+|   googleId    |  string  |           Google user ID             |
+|   tokenId     |  string  |              Token Id                |
+|  accessToken  |  string  |            Access Token              |
+|   tokenObj    |  object  |        Token details object          |
+|  profileObj   |  object  |        Profile details object        |
 
 ## Successful callback ( w/ offline true)
 
@@ -102,6 +109,8 @@ npm run test:watch
 ```
 npm run bundle
 ```
+
+##### Checkout my other login: [React Instagram Login](https://github.com/anthonyjgrove/react-instagram-login)
 
 ##### Checkout keppelen's [React Facebook Login](https://github.com/keppelen/react-facebook-login)
 
