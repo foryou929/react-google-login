@@ -6,14 +6,19 @@ import FontAwesome from 'react-fontawesome';
 import GoogleLogin from '../src/google';
 // import GoogleLogin from '../dist/google-login';
 
-const responseGoogle = (response) => {
+const success = (response) => {
   console.log(response);
+};
+
+const error = (response) => {
+  console.error(response);
 };
 
 ReactDOM.render(
   <GoogleLogin
     clientId={'658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'}
-    callback={responseGoogle}
+    onSuccess={success}
+    onFailure={error}
     offline={false}
   >
     <FontAwesome

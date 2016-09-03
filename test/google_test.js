@@ -10,7 +10,8 @@ describe('Google Login', () => {
 
         beforeEach(() => {
             propsObj = {
-                callback(response) {},
+                onSuccess(response) {},
+                onFailure(response) {},
                 clientId: '658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'
             };
             component = renderComponent(GoogleLogin, propsObj);
@@ -40,7 +41,8 @@ describe('Google Login', () => {
         
         beforeEach(() => {
             propsObj = {
-                callback(response) {},
+                onSuccess(response) {},
+                onFailure(response) {},
                 clientId: '658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com',
                 buttonText
             };
@@ -67,13 +69,14 @@ describe('Google Login', () => {
 
     describe('With custom class and default props', () => {
         
-        let cssClass ='test-class'; 
+        let className ='test-class'; 
         
         beforeEach(() => {
             propsObj = {
-                callback(response) {},
+                onSuccess(response) {},
+                onFailure(response) {},
                 clientId: '658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com',
-                cssClass
+                className
             };
             component = renderComponent(GoogleLogin, propsObj);
         });
@@ -87,7 +90,7 @@ describe('Google Login', () => {
         });
 
         it('has a class attr with custom class', () => {
-            expect(component).to.have.attr('class', cssClass);
+            expect(component).to.have.attr('class', className);
         });
         
         it('does not have inline styles', () => {
@@ -103,7 +106,8 @@ describe('Google Login', () => {
 
         beforeEach(() => {
             propsObj = {
-                callback(response) {},
+                onSuccess(response) {},
+                onFailure(response) {},
                 clientId: '658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com',
                 buttonText
             };

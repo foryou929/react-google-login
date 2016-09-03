@@ -24,12 +24,13 @@ ReactDOM.render(
   <GoogleLogin
     clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
     buttonText="Login"
-    callback={responseGoogle}
+    onSuccess={responseGoogle}
+    onFailure={responseGoogle}
   />,
   document.getElementById('googleButton')
 );
 ```
-## Callback
+## onSuccess callback
 
 If offline is false callback will return the GoogleAuth object.
 
@@ -48,18 +49,19 @@ If you use the hostedDomain param, make sure to validate the id_token (a JSON we
 |    clientId  |  string  |               REQUIRED               |
 | hostedDomain |  string  |                   -                  |
 |     scope    |  string  |             profile email            |
-|   callback   | function |               REQUIRED               |
+|   onSuccess  | function |               REQUIRED               |
+|   onFailure  | function |               REQUIRED               |
 |    offline   |  boolean |                 false                |
 |   buttonText |  string  |             Login with Google        |
-|   cssClass   |  string  |                   -                  |
+|   className  |  string  |                   -                  |
 |   loginHint  |  string  |                   -                  |
 | redirectUri  |  string  |              postmessage             |
 
 Google Scopes List: https://developers.google.com/identity/protocols/googlescopes
 
-## Successful callback ( w/ offline false)
+## onSuccess callback ( w/ offline false)
 
-Callback returns a GoogleUser object which provides access 
+onSuccess callback returns a GoogleUser object which provides access 
 to all of the GoogleUser methods listed here: https://developers.google.com/identity/sign-in/web/reference#users .
 
 You can also access the returned values via the following properties on the returned object.
@@ -72,7 +74,7 @@ You can also access the returned values via the following properties on the retu
 |   tokenObj    |  object  |        Token details object          |
 |  profileObj   |  object  |        Profile details object        |
 
-## Successful callback ( w/ offline true)
+## onSuccess callback ( w/ offline true)
 
 | property name |  value   |             definition               |
 |:-------------:|:--------:|:------------------------------------:|
@@ -81,9 +83,10 @@ You can also access the returned values via the following properties on the retu
 You can now also pass child components such as icons into the button component.
 ```js
   <GoogleLogin
-        clientId={'658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'}
-        callback={responseGoogle}
-        offline={false}
+    clientId={'658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'}
+    onSuccess={responseGoogle}
+    onFailure={responseGoogle}
+    offline={false}
   >
     <FontAwesome
       name='google'

@@ -2,12 +2,13 @@ import React, { PropTypes, Component } from 'react';
 
 class GoogleLogin extends Component {
   static propTypes = {
-    callback: PropTypes.func.isRequired,
+    onSuccess: PropTypes.func.isRequired,
+    onFailure: PropTypes.func.isRequired,
     clientId: PropTypes.string.isRequired,
     buttonText: PropTypes.string,
     offline: PropTypes.bool,
     scope: PropTypes.string,
-    cssClass: PropTypes.string,
+    className: PropTypes.string,
     redirectUri: PropTypes.string,
     cookiePolicy: PropTypes.string,
     loginHint: PropTypes.string,
@@ -62,28 +63,30 @@ class GoogleLogin extends Component {
 
   onBtnClick() {
     const auth2 = window.gapi.auth2.getAuthInstance();
-    const { offline, redirectUri, callback } = this.props;
+    const { offline, redirectUri, onSuccess, onFailure } = this.props;
     if (offline) {
       const options = {
-        'redirect_uri': redirectUri,
+        redirect_uri: redirectUri,
       };
       auth2.grantOfflineAccess(options)
-        .then((response) => {
-          callback(response);
+        .then(res => {
+          onSuccess(res);
+        }, err => {
+          onFailure(err);
         });
     } else {
       auth2.signIn()
-        .then((response) => {
+        .then(res => {
           /*
             offer renamed response keys to names that match use
           */
-          const basicProfile = response.getBasicProfile();
-          const authResponse = response.getAuthResponse();
-          response.googleId = basicProfile.getId();
-          response.tokenObj = authResponse;
-          response.tokenId = authResponse.id_token;
-          response.accessToken = authResponse.access_token;
-          response.profileObj = {
+          const basicProfile = res.getBasicProfile();
+          const authResponse = res.getAuthResponse();
+          res.googleId = basicProfile.getId();
+          res.tokenObj = authResponse;
+          res.tokenId = authResponse.id_token;
+          res.accessToken = authResponse.access_token;
+          res.profileObj = {
             googleId: basicProfile.getId(),
             imageUrl: basicProfile.getImageUrl(),
             email: basicProfile.getEmail(),
@@ -91,7 +94,9 @@ class GoogleLogin extends Component {
             givenName: basicProfile.getGivenName(),
             familyName: basicProfile.getFamilyName(),
           };
-          callback(response);
+          onSuccess(res);
+        }, err => {
+          onFailure(err);
         });
     }
   }
@@ -110,12 +115,12 @@ class GoogleLogin extends Component {
       fontWeight: 'bold',
       fontFamily: 'Roboto',
     };
-    const { cssClass, buttonText, children } = this.props;
+    const { className, buttonText, children } = this.props;
     return (
       <button
-        className={ cssClass }
+        className={ className }
         onClick={ this.onBtnClick }
-        style={ cssClass ? {} : style }
+        style={ className ? {} : style }
         disabled={ this.state.disabled }
       >
         { children ? children : buttonText }
