@@ -39,7 +39,7 @@ class GoogleLogin extends Component {
       let js = element;
       js = d.createElement(s);
       js.id = id;
-      js.src = '//apis.google.com/js/platform.js';
+      js.src = '//apis.google.com/js/client:platform.js';
       fjs.parentNode.insertBefore(js, fjs);
       js.onload = cb;
     })(document, 'script', 'google-login', () => {
