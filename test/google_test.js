@@ -140,4 +140,35 @@ describe('Google Login', () => {
         
     });
 
+    describe('With style and default props', () => {
+
+        let style = {
+          'padding':'10px',
+          'fontSize':'20px'
+        };
+        
+        beforeEach(() => {
+            propsObj = {
+                onSuccess(response) {},
+                onFailure(response) {},
+                clientId: '658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com',
+                style
+            };
+            component = renderComponent(GoogleLogin, propsObj);
+        });
+
+        it('shows the button', () => {
+            expect(component).to.exist;
+        });
+
+        it('displays correct button text', () => {
+            expect(component).to.have.text(defaultText);
+        });
+
+        it('has a style with custom class', () => {
+            expect(component).to.have.attr('style', 'padding: 10px; font-size: 20px;');
+        });
+
+    });
+
 });

@@ -54,6 +54,7 @@ If you use the hostedDomain param, make sure to validate the id_token (a JSON we
 |    offline   |  boolean |                 false                |
 |   buttonText |  string  |             Login with Google        |
 |   className  |  string  |                   -                  |
+|    style     |  object  |                   -                  |
 |   loginHint  |  string  |                   -                  |
 | redirectUri  |  string  |              postmessage             |
 

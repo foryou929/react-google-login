@@ -14,6 +14,7 @@ class GoogleLogin extends Component {
     loginHint: PropTypes.string,
     hostedDomain: PropTypes.string,
     children: React.PropTypes.node,
+    style: React.PropTypes.object,
   };
 
   static defaultProps = {
@@ -102,7 +103,7 @@ class GoogleLogin extends Component {
   }
 
   render() {
-    const style = {
+    const defaultStyle = {
       display: 'inline-block',
       background: '#d14836',
       color: '#fff',
@@ -115,12 +116,12 @@ class GoogleLogin extends Component {
       fontWeight: 'bold',
       fontFamily: 'Roboto',
     };
-    const { className, buttonText, children } = this.props;
+    const { style, className, buttonText, children } = this.props;
     return (
       <button
         className={ className }
         onClick={ this.onBtnClick }
-        style={ className ? {} : style }
+        style={ className ? {} : style || defaultStyle }
         disabled={ this.state.disabled }
       >
         { children ? children : buttonText }
