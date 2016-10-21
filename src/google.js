@@ -15,6 +15,7 @@ class GoogleLogin extends Component {
     hostedDomain: PropTypes.string,
     children: React.PropTypes.node,
     style: React.PropTypes.object,
+    approvalPrompt: PropTypes.string,
   };
 
   static defaultProps = {
@@ -64,10 +65,11 @@ class GoogleLogin extends Component {
 
   onBtnClick() {
     const auth2 = window.gapi.auth2.getAuthInstance();
-    const { offline, redirectUri, onSuccess, onFailure } = this.props;
+    const { offline, redirectUri, onSuccess, onFailure, approvalPrompt } = this.props;
     if (offline) {
       const options = {
         redirect_uri: redirectUri,
+        approval_prompt: approvalPrompt,
       };
       auth2.grantOfflineAccess(options)
         .then(res => {

@@ -57,6 +57,8 @@ If you use the hostedDomain param, make sure to validate the id_token (a JSON we
 |    style     |  object  |                   -                  |
 |   loginHint  |  string  |                   -                  |
 | redirectUri  |  string  |              postmessage             |
+|approvalPrompt|  string  |                   -                  |
+
 
 Google Scopes List: https://developers.google.com/identity/protocols/googlescopes
 
@@ -80,6 +82,9 @@ You can also access the returned values via the following properties on the retu
 | property name |  value   |             definition               |
 |:-------------:|:--------:|:------------------------------------:|
 |    code       |  object  |           offline token              |
+
+If `approvalPrompt` is set to `"force"`, refresh token will always be returned while exchanging auth code for tokens. 
+Otherwise, refresh token will only be returned for the first time user gives permission to the app.
 
 You can now also pass child components such as icons into the button component.
 ```js
