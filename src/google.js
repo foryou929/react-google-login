@@ -19,6 +19,7 @@ class GoogleLogin extends Component {
   };
 
   static defaultProps = {
+    tag: 'button',
     buttonText: 'Login with Google',
     scope: 'profile email',
     redirectUri: 'postmessage',
@@ -118,17 +119,19 @@ class GoogleLogin extends Component {
       fontWeight: 'bold',
       fontFamily: 'Roboto',
     };
-    const { style, className, buttonText, children } = this.props;
-    return (
-      <button
-        className={ className }
-        onClick={ this.onBtnClick }
-        style={ className ? {} : style || defaultStyle }
-        disabled={ this.state.disabled }
-      >
-        { children ? children : buttonText }
-      </button>
-    );
+    const { tag, style, className, buttonText, children } = this.props;
+    const googleLoginButton = React.createElement(
+      tag,
+      {
+        className: className,
+        onClick: this.onBtnClick,
+        style: className ? {} : style || defaultStyle,
+        disabled: this.state.disabled
+      },
+      children ? children : buttonText
+    )
+
+    return googleLoginButton;
   }
 }
 
