@@ -14,11 +14,16 @@ const error = (response) => {
   console.error(response);
 };
 
+const loading = () => {
+  console.log('loading');
+};
+
 ReactDOM.render(
   <GoogleLogin
     clientId='658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'
     onSuccess={success}
     onFailure={error}
+    onRequest={loading}
     offline={false}
     tag='btn'
   >

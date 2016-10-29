@@ -51,6 +51,7 @@ If you use the hostedDomain param, make sure to validate the id_token (a JSON we
 |     scope    |  string  |             profile email            |
 |   onSuccess  | function |               REQUIRED               |
 |   onFailure  | function |               REQUIRED               |
+|   onRequest  | function |                   -                  |
 |    offline   |  boolean |                 false                |
 |   buttonText |  string  |             Login with Google        |
 |   className  |  string  |                   -                  |
