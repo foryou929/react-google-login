@@ -11,16 +11,11 @@ global.window = global.document.defaultView;
 
 const $ = jquery(global.window);
 
-function renderComponent(ComponentClass, props, children) {
+function renderComponent(ComponentClass, props) {
   
   const component =  ((children) => {
-    
-    if(children){ 
-      return <ComponentClass {...props}>{children}</ComponentClass>;
-    }
       return <ComponentClass {...props}/>;
-    
-  })(children);
+  })();
   
   const componentInstance = TestUtils.renderIntoDocument(component);
   
@@ -29,10 +24,8 @@ function renderComponent(ComponentClass, props, children) {
 
 
 $.fn.simulate = function (eventName, value) {
-  
   if(value) this.val(value);
   TestUtils.Simulate[eventName](this[0]);
-  
 };
 
 

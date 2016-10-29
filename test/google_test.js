@@ -33,6 +33,9 @@ describe('Google Login', () => {
             expect(component).to.have.attr('style');
         });
         
+        it('displays a button element when tag prop is not set', () => {
+            expect(component.get(0).tagName).to.equal('BUTTON');
+        });
     });
 
     describe('With custom text and default props', () => {
@@ -109,9 +112,10 @@ describe('Google Login', () => {
                 onSuccess(response) {},
                 onFailure(response) {},
                 clientId: '658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com',
-                buttonText
+                children,
+                buttonText,
             };
-            component = renderComponent(GoogleLogin, propsObj, children);
+            component = renderComponent(GoogleLogin, propsObj);
         });
         
         it('shows the button', () => {
@@ -168,7 +172,24 @@ describe('Google Login', () => {
         it('has a style with custom class', () => {
             expect(component).to.have.attr('style', 'padding: 10px; font-size: 20px;');
         });
-
     });
+   describe('With handles custom tag prop', () => {
+        beforeEach(() => {
+            propsObj = {
+                onSuccess(response) {},
+                onFailure(response) {},
+                tag: 'div',
+                clientId: '658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com',
+            };
+            component = renderComponent(GoogleLogin, propsObj);
+        });
 
+        it('shows the button', () => {
+            expect(component).to.exist;
+        });
+
+        it('displays a div element when tag prop is set to div', () => {
+            expect(component.get(0).tagName).to.equal('DIV');
+        });
+    });
 });

@@ -16,6 +16,7 @@ class GoogleLogin extends Component {
     children: React.PropTypes.node,
     style: React.PropTypes.object,
     approvalPrompt: PropTypes.string,
+    tag: PropTypes.string,
   };
 
   static defaultProps = {
@@ -121,16 +122,13 @@ class GoogleLogin extends Component {
     };
     const { tag, style, className, buttonText, children } = this.props;
     const googleLoginButton = React.createElement(
-      tag,
-      {
-        className: className,
+      tag, {
         onClick: this.onBtnClick,
         style: className ? {} : style || defaultStyle,
-        disabled: this.state.disabled
-      },
-      children ? children : buttonText
-    )
-
+        disabled: this.state.disabled,
+        className,
+      }, children ? children : buttonText
+    );
     return googleLoginButton;
   }
 }
