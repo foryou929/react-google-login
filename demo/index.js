@@ -16,10 +16,11 @@ const error = (response) => {
 
 ReactDOM.render(
   <GoogleLogin
-    clientId={'658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'}
+    clientId='658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'
     onSuccess={success}
     onFailure={error}
     offline={false}
+    tag='btn'
   >
     <FontAwesome
       name='google'
