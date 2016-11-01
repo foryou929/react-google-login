@@ -60,11 +60,7 @@ If you use the hostedDomain param, make sure to validate the id_token (a JSON we
 | redirectUri  |  string  |              postmessage             |
 |approvalPrompt|  string  |                   -                  |
 |     tag      |  string  |                button                |
-<<<<<<< HEAD
 |   autoLoad   |  boolean |                 false                |
-=======
-
->>>>>>> 56dd6c5694c4dda2bc8b321d5621bc1946812d55
 
 Google Scopes List: https://developers.google.com/identity/protocols/googlescopes
 
