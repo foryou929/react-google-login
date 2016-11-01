@@ -58,11 +58,15 @@
   "peerDependencies": {
     "react": "^15.1.0"
   },
+  "types": "./index.d.ts",
   "babel": {
     "presets": [
       "es2015",
       "react",
       "stage-0"
     ]
+  },
+  "dependencies": {
+    "@types/react": "^0.14.44"
   }
 }
