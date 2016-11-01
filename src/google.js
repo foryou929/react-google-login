@@ -18,6 +18,7 @@ class GoogleLogin extends Component {
     style: React.PropTypes.object,
     approvalPrompt: PropTypes.string,
     tag: PropTypes.string,
+    autoLoad: React.PropTypes.bool,
   };
 
   static defaultProps = {
@@ -31,14 +32,14 @@ class GoogleLogin extends Component {
 
   constructor(props) {
     super(props);
-    this.onBtnClick = this.onBtnClick.bind(this);
+    this.signIn = this.signIn.bind(this);
     this.state = {
       disable: true,
     };
   }
 
   componentDidMount() {
-    const { clientId, scope, cookiePolicy, loginHint, hostedDomain } = this.props;
+    const { clientId, scope, cookiePolicy, loginHint, hostedDomain, autoLoad } = this.props;
     ((d, s, id, cb) => {
       const element = d.getElementsByTagName(s)[0];
       const fjs = element;
@@ -63,11 +64,14 @@ class GoogleLogin extends Component {
         if (!window.gapi.auth2.getAuthInstance()) {
           window.gapi.auth2.init(params);
         }
+        if (autoLoad) {
+          this.signIn();
+        }
       });
     });
   }
 
-  onBtnClick() {
+  signIn() {
     if (!this.state.disable) {
       const auth2 = window.gapi.auth2.getAuthInstance();
       const { offline, redirectUri, onSuccess, onRequest, onFailure, approvalPrompt } = this.props;
@@ -128,7 +132,7 @@ class GoogleLogin extends Component {
     const { tag, style, className, buttonText, children } = this.props;
     const googleLoginButton = React.createElement(
       tag, {
-        onClick: this.onBtnClick,
+        onClick: this.signIn,
         style: className ? {} : style || defaultStyle,
         disabled: this.state.disabled,
         className,
