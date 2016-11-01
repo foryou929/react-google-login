@@ -67,6 +67,6 @@
     ]
   },
   "dependencies": {
-    "@types/react": "^0.14.44"
+    "@types/react": "*"
   }
 }
