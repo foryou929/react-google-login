@@ -25,11 +25,10 @@ ReactDOM.render(
     onFailure={error}
     onRequest={loading}
     offline={false}
-    tag='btn'
+    // className='button'
+    // style={{ color: 'red' }}
   >
-    <FontAwesome
-      name='google'
-    />
+
     <span> Login with Google</span>
   </GoogleLogin>,
   document.getElementById('google-login')

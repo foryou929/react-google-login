@@ -116,6 +116,7 @@ class GoogleLogin extends Component {
   }
 
   render() {
+    const { tag, style, className, buttonText, children } = this.props;
     const defaultStyle = {
       display: 'inline-block',
       background: '#d14836',
@@ -129,11 +130,18 @@ class GoogleLogin extends Component {
       fontWeight: 'bold',
       fontFamily: 'Roboto',
     };
-    const { tag, style, className, buttonText, children } = this.props;
+    const styleProp = (() => {
+      if (style) {
+        return style;
+      } else if (className) {
+        return {};
+      }
+      return defaultStyle;
+    })();
     const googleLoginButton = React.createElement(
       tag, {
         onClick: this.signIn,
-        style: className ? {} : style || defaultStyle,
+        style: styleProp,
         disabled: this.state.disabled,
         className,
       }, children ? children : buttonText

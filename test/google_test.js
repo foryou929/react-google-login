@@ -71,7 +71,6 @@ describe('Google Login', () => {
     });
 
     describe('With custom class and default props', () => {
-        
         let className ='test-class'; 
         
         beforeEach(() => {
@@ -101,7 +100,37 @@ describe('Google Login', () => {
         });
         
     });
+    describe('With custom class and custom style', () => {
+        let className ='test-class'; 
+        let style = { color: 'red' }; 
 
+        beforeEach(() => {
+            propsObj = {
+                onSuccess(response) {},
+                onFailure(response) {},
+                clientId: '658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com',
+                className,
+                style,
+            };
+            component = renderComponent(GoogleLogin, propsObj);
+        });
+
+        it('shows the button', () => {
+            expect(component).to.exist;
+        });
+        
+        it('displays correct button text', () => {
+            expect(component).to.have.text(defaultText);
+        });
+
+        it('has a class attr with custom class', () => {
+            expect(component).to.have.attr('class', className);
+        });
+        
+        it('to have custom inline styles', () => {
+            expect(component).to.have.attr('style');
+        });
+    });
     describe('With children, custom text, and default props', () => {
         
         const children = 'test';
