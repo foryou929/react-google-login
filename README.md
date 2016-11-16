@@ -10,8 +10,6 @@ npm install react-google-login
 ```
 ## How to use
 ```js
-'use strict';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import GoogleLogin from 'react-google-login';
@@ -61,7 +59,7 @@ Google Scopes List: https://developers.google.com/identity/protocols/googlescope
 
 ## onSuccess callback ( w/ offline false)
 
-onSuccess callback returns a GoogleUser object which provides access 
+onSuccess callback returns a GoogleUser object which provides access
 to all of the GoogleUser methods listed here: https://developers.google.com/identity/sign-in/web/reference#users .
 
 You can also access the returned values via the following properties on the returned object.
@@ -102,6 +100,9 @@ You can now also pass child components such as icons into the button component.
 npm run start
 
 ```
+Default dev server runs at localost:8080 in browser.
+You can set IP and PORT in webpack.config.dev.js
+
 ## Run Tests
 ```
 npm run test:watch
