@@ -12,16 +12,21 @@ const error = (response) => {
   console.error(response);
 };
 
+const loading = () => {
+  console.log('loading');
+};
+
 ReactDOM.render(
   <GoogleLogin
-    clientId={'658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'}
+    clientId='658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'
     onSuccess={success}
     onFailure={error}
+    onRequest={loading}
     offline={false}
+    // className='button'
+    // style={{ color: 'red' }}
   >
-    <FontAwesome
-      name='google'
-    />
+
     <span> Login with Google</span>
   </GoogleLogin>,
   document.getElementById('google-login')

@@ -1,6 +1,6 @@
 {
   "name": "react-google-login",
-  "version": "2.5.1",
+  "version": "2.5.8",
   "description": "A Google Login Component for React",
   "main": "dist/google-login.js",
   "scripts": {
@@ -58,11 +58,15 @@
   "peerDependencies": {
     "react": "^15.1.0"
   },
+  "types": "./index.d.ts",
   "babel": {
     "presets": [
       "es2015",
       "react",
       "stage-0"
     ]
+  },
+  "dependencies": {
+    "@types/react": "*"
   }
 }

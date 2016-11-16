@@ -5,6 +5,7 @@ class GoogleLogin extends Component {
     onSuccess: PropTypes.func.isRequired,
     onFailure: PropTypes.func.isRequired,
     clientId: PropTypes.string.isRequired,
+    onRequest: PropTypes.func,
     buttonText: PropTypes.string,
     offline: PropTypes.bool,
     scope: PropTypes.string,
@@ -14,25 +15,31 @@ class GoogleLogin extends Component {
     loginHint: PropTypes.string,
     hostedDomain: PropTypes.string,
     children: React.PropTypes.node,
+    style: React.PropTypes.object,
+    approvalPrompt: PropTypes.string,
+    tag: PropTypes.string,
+    autoLoad: React.PropTypes.bool,
   };
 
   static defaultProps = {
+    tag: 'button',
     buttonText: 'Login with Google',
     scope: 'profile email',
     redirectUri: 'postmessage',
     cookiePolicy: 'single_host_origin',
+    onRequest: () => {},
   };
 
   constructor(props) {
     super(props);
-    this.onBtnClick = this.onBtnClick.bind(this);
+    this.signIn = this.signIn.bind(this);
     this.state = {
-      disabled: 'disabled',
+      disable: true,
     };
   }
 
   componentDidMount() {
-    const { clientId, scope, cookiePolicy, loginHint, hostedDomain } = this.props;
+    const { clientId, scope, cookiePolicy, loginHint, hostedDomain, autoLoad } = this.props;
     ((d, s, id, cb) => {
       const element = d.getElementsByTagName(s)[0];
       const fjs = element;
@@ -52,57 +59,65 @@ class GoogleLogin extends Component {
       };
       window.gapi.load('auth2', () => {
         this.setState({
-          disabled: '',
+          disable: false,
         });
         if (!window.gapi.auth2.getAuthInstance()) {
           window.gapi.auth2.init(params);
+        }
+        if (autoLoad) {
+          this.signIn();
         }
       });
     });
   }
 
-  onBtnClick() {
-    const auth2 = window.gapi.auth2.getAuthInstance();
-    const { offline, redirectUri, onSuccess, onFailure } = this.props;
-    if (offline) {
-      const options = {
-        redirect_uri: redirectUri,
-      };
-      auth2.grantOfflineAccess(options)
-        .then(res => {
-          onSuccess(res);
-        }, err => {
-          onFailure(err);
-        });
-    } else {
-      auth2.signIn()
-        .then(res => {
-          /*
-            offer renamed response keys to names that match use
-          */
-          const basicProfile = res.getBasicProfile();
-          const authResponse = res.getAuthResponse();
-          res.googleId = basicProfile.getId();
-          res.tokenObj = authResponse;
-          res.tokenId = authResponse.id_token;
-          res.accessToken = authResponse.access_token;
-          res.profileObj = {
-            googleId: basicProfile.getId(),
-            imageUrl: basicProfile.getImageUrl(),
-            email: basicProfile.getEmail(),
-            name: basicProfile.getName(),
-            givenName: basicProfile.getGivenName(),
-            familyName: basicProfile.getFamilyName(),
-          };
-          onSuccess(res);
-        }, err => {
-          onFailure(err);
-        });
+  signIn() {
+    if (!this.state.disable) {
+      const auth2 = window.gapi.auth2.getAuthInstance();
+      const { offline, redirectUri, onSuccess, onRequest, onFailure, approvalPrompt } = this.props;
+      onRequest();
+      if (offline) {
+        const options = {
+          redirect_uri: redirectUri,
+          approval_prompt: approvalPrompt,
+        };
+        auth2.grantOfflineAccess(options)
+          .then(res => {
+            onSuccess(res);
+          }, err => {
+            onFailure(err);
+          });
+      } else {
+        auth2.signIn()
+          .then(res => {
+            /*
+              offer renamed response keys to names that match use
+            */
+            const basicProfile = res.getBasicProfile();
+            const authResponse = res.getAuthResponse();
+            res.googleId = basicProfile.getId();
+            res.tokenObj = authResponse;
+            res.tokenId = authResponse.id_token;
+            res.accessToken = authResponse.access_token;
+            res.profileObj = {
+              googleId: basicProfile.getId(),
+              imageUrl: basicProfile.getImageUrl(),
+              email: basicProfile.getEmail(),
+              name: basicProfile.getName(),
+              givenName: basicProfile.getGivenName(),
+              familyName: basicProfile.getFamilyName(),
+            };
+            onSuccess(res);
+          }, err => {
+            onFailure(err);
+          });
+      }
     }
   }
 
   render() {
-    const style = {
+    const { tag, style, className, buttonText, children } = this.props;
+    const defaultStyle = {
       display: 'inline-block',
       background: '#d14836',
       color: '#fff',
@@ -115,17 +130,23 @@ class GoogleLogin extends Component {
       fontWeight: 'bold',
       fontFamily: 'Roboto',
     };
-    const { className, buttonText, children } = this.props;
-    return (
-      <button
-        className={ className }
-        onClick={ this.onBtnClick }
-        style={ className ? {} : style }
-        disabled={ this.state.disabled }
-      >
-        { children ? children : buttonText }
-      </button>
+    const styleProp = (() => {
+      if (style) {
+        return style;
+      } else if (className) {
+        return {};
+      }
+      return defaultStyle;
+    })();
+    const googleLoginButton = React.createElement(
+      tag, {
+        onClick: this.signIn,
+        style: styleProp,
+        disabled: this.state.disabled,
+        className,
+      }, children ? children : buttonText
     );
+    return googleLoginButton;
   }
 }
 
