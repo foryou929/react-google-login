@@ -16,6 +16,7 @@ class GoogleLogin extends Component {
     hostedDomain: PropTypes.string,
     children: React.PropTypes.node,
     style: React.PropTypes.object,
+    disabledStyle: React.PropTypes.object,
     approvalPrompt: PropTypes.string,
     tag: PropTypes.string,
     autoLoad: React.PropTypes.bool,
@@ -27,6 +28,9 @@ class GoogleLogin extends Component {
     scope: 'profile email',
     redirectUri: 'postmessage',
     cookiePolicy: 'single_host_origin',
+    disabledStyle: {
+      opacity: 0.6,
+    },
     onRequest: () => {},
   };
 
@@ -116,8 +120,9 @@ class GoogleLogin extends Component {
   }
 
   render() {
-    const { tag, style, className, buttonText, children } = this.props;
-    const defaultStyle = {
+    const { tag, style, className, disabledStyle, buttonText, children } = this.props;
+    const { disabled } = this.state;
+    const initialStyle = {
       display: 'inline-block',
       background: '#d14836',
       color: '#fff',
@@ -130,6 +135,15 @@ class GoogleLogin extends Component {
       fontWeight: 'bold',
       fontFamily: 'Roboto',
     };
+    const defaultStyle = (() => {
+      if (disabled) {
+        return ({
+          ...initialStyle,
+          ...disabledStyle,
+        });
+      }
+      return initialStyle;
+    })();
     const styleProp = (() => {
       if (style) {
         return style;
@@ -142,7 +156,7 @@ class GoogleLogin extends Component {
       tag, {
         onClick: this.signIn,
         style: styleProp,
-        disabled: this.state.disabled,
+        disabled,
         className,
       }, children ? children : buttonText
     );

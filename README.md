@@ -54,6 +54,7 @@ If you use the hostedDomain param, make sure to validate the id_token (a JSON we
 |   buttonText |  string  |             Login with Google        |
 |   className  |  string  |                   -                  |
 |    style     |  object  |                   -                  |
+| disabledStyle|  object  |                   -                  |
 |   loginHint  |  string  |                   -                  |
 | redirectUri  |  string  |              postmessage             |
 |approvalPrompt|  string  |                   -                  |
@@ -83,7 +84,7 @@ You can also access the returned values via the following properties on the retu
 |:-------------:|:--------:|:------------------------------------:|
 |    code       |  object  |           offline token              |
 
-If `approvalPrompt` is set to `"force"`, refresh token will always be returned while exchanging auth code for tokens. 
+If `approvalPrompt` is set to `"force"`, refresh token will always be returned while exchanging auth code for tokens.
 Otherwise, refresh token will only be returned for the first time user gives permission to the app.
 
 You can now also pass child components such as icons into the button component.
