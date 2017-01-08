@@ -15,9 +15,9 @@ module.exports = {
     publicPath: '/',
   },
   module: {
-    loaders: [{
+    rules: [{
+      use: 'babel-loader',
       test: /\.js$/,
-      loader: 'babel',
       exclude: /node_modules/,
     }],
   },
@@ -25,7 +25,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
   ],
   resolve: {
-    extensions: ['', '.js'],
+    extensions: ['*', '.js'],
   },
   devServer: {
     contentBase: './demo',

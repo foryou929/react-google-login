@@ -1,5 +1,5 @@
-import {renderComponent, expect} from './test_helper';
-import GoogleLogin from '../src/google';
+import { renderComponent, expect } from './test_helper';
+import GoogleLogin from '../src/index';
 
 describe('Google Login', () => {
     const defaultText = 'Login with Google';
@@ -16,7 +16,7 @@ describe('Google Login', () => {
             };
             component = renderComponent(GoogleLogin, propsObj);
         });
-        
+
         it('shows the button', () => {
             expect(component).to.exist;
         });
@@ -28,20 +28,20 @@ describe('Google Login', () => {
         it('does not have a class attr', () => {
             expect(component).to.not.have.attr('class');
         });
-        
+
         it('has inline styles', () => {
             expect(component).to.have.attr('style');
         });
-        
+
         it('displays a button element when tag prop is not set', () => {
             expect(component.get(0).tagName).to.equal('BUTTON');
         });
     });
 
     describe('With custom text and default props', () => {
-        
-        const buttonText ='buttonText'; 
-        
+
+        const buttonText ='buttonText';
+
         beforeEach(() => {
             propsObj = {
                 onSuccess(response) {},
@@ -55,7 +55,7 @@ describe('Google Login', () => {
         it('shows the button', () => {
             expect(component).to.exist;
         });
-        
+
         it('displays correct button text', () => {
             expect(component).to.have.text(buttonText);
         });
@@ -63,7 +63,7 @@ describe('Google Login', () => {
         it('does not have a class attr', () => {
             expect(component).to.not.have.attr('class');
         });
-        
+
         it('has inline styles', () => {
             expect(component).to.have.attr('style');
         });
@@ -71,8 +71,8 @@ describe('Google Login', () => {
     });
 
     describe('With custom class and default props', () => {
-        let className ='test-class'; 
-        
+        let className ='test-class';
+
         beforeEach(() => {
             propsObj = {
                 onSuccess(response) {},
@@ -86,7 +86,7 @@ describe('Google Login', () => {
         it('shows the button', () => {
             expect(component).to.exist;
         });
-        
+
         it('displays correct button text', () => {
             expect(component).to.have.text(defaultText);
         });
@@ -94,15 +94,15 @@ describe('Google Login', () => {
         it('has a class attr with custom class', () => {
             expect(component).to.have.attr('class', className);
         });
-        
+
         it('does not have inline styles', () => {
             expect(component).to.not.have.attr('style');
         });
-        
+
     });
     describe('With custom class and custom style', () => {
-        let className ='test-class'; 
-        let style = { color: 'red' }; 
+        let className ='test-class';
+        let style = { color: 'red' };
 
         beforeEach(() => {
             propsObj = {
@@ -118,7 +118,7 @@ describe('Google Login', () => {
         it('shows the button', () => {
             expect(component).to.exist;
         });
-        
+
         it('displays correct button text', () => {
             expect(component).to.have.text(defaultText);
         });
@@ -126,15 +126,15 @@ describe('Google Login', () => {
         it('has a class attr with custom class', () => {
             expect(component).to.have.attr('class', className);
         });
-        
+
         it('to have custom inline styles', () => {
             expect(component).to.have.attr('style');
         });
     });
     describe('With children, custom text, and default props', () => {
-        
+
         const children = 'test';
-        const buttonText ='buttonText'; 
+        const buttonText ='buttonText';
 
         beforeEach(() => {
             propsObj = {
@@ -146,7 +146,7 @@ describe('Google Login', () => {
             };
             component = renderComponent(GoogleLogin, propsObj);
         });
-        
+
         it('shows the button', () => {
             expect(component).to.exist;
         });
@@ -154,23 +154,23 @@ describe('Google Login', () => {
         it('displays children text', () => {
             expect(component).to.have.text(children);
         });
-        
+
         it('does not display default text', () => {
             expect(component).to.not.have.text(defaultText);
         });
-        
+
         it('does not display custom text', () => {
             expect(component).to.not.have.text(buttonText);
         });
-        
+
         it('does not have a class attr', () => {
             expect(component).to.not.have.attr('class');
         });
-        
+
         it('has inline styles', () => {
             expect(component).to.have.attr('style');
         });
-        
+
     });
 
     describe('With style and default props', () => {
@@ -179,7 +179,7 @@ describe('Google Login', () => {
           'padding':'10px',
           'fontSize':'20px'
         };
-        
+
         beforeEach(() => {
             propsObj = {
                 onSuccess(response) {},

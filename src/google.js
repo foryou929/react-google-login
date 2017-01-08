@@ -1,39 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 
 class GoogleLogin extends Component {
-  static propTypes = {
-    onSuccess: PropTypes.func.isRequired,
-    onFailure: PropTypes.func.isRequired,
-    clientId: PropTypes.string.isRequired,
-    onRequest: PropTypes.func,
-    buttonText: PropTypes.string,
-    offline: PropTypes.bool,
-    scope: PropTypes.string,
-    className: PropTypes.string,
-    redirectUri: PropTypes.string,
-    cookiePolicy: PropTypes.string,
-    loginHint: PropTypes.string,
-    hostedDomain: PropTypes.string,
-    children: React.PropTypes.node,
-    style: React.PropTypes.object,
-    disabledStyle: React.PropTypes.object,
-    approvalPrompt: PropTypes.string,
-    tag: PropTypes.string,
-    autoLoad: React.PropTypes.bool,
-  };
-
-  static defaultProps = {
-    tag: 'button',
-    buttonText: 'Login with Google',
-    scope: 'profile email',
-    redirectUri: 'postmessage',
-    cookiePolicy: 'single_host_origin',
-    disabledStyle: {
-      opacity: 0.6,
-    },
-    onRequest: () => {},
-  };
-
   constructor(props) {
     super(props);
     this.signIn = this.signIn.bind(this);
@@ -137,10 +104,7 @@ class GoogleLogin extends Component {
     };
     const defaultStyle = (() => {
       if (disabled) {
-        return ({
-          ...initialStyle,
-          ...disabledStyle,
-        });
+        return Object.assign({}, initialStyle, disabledStyle);
       }
       return initialStyle;
     })();
@@ -163,5 +127,38 @@ class GoogleLogin extends Component {
     return googleLoginButton;
   }
 }
+
+GoogleLogin.propTypes = {
+  onSuccess: PropTypes.func.isRequired,
+  onFailure: PropTypes.func.isRequired,
+  clientId: PropTypes.string.isRequired,
+  onRequest: PropTypes.func,
+  buttonText: PropTypes.string,
+  offline: PropTypes.bool,
+  scope: PropTypes.string,
+  className: PropTypes.string,
+  redirectUri: PropTypes.string,
+  cookiePolicy: PropTypes.string,
+  loginHint: PropTypes.string,
+  hostedDomain: PropTypes.string,
+  children: React.PropTypes.node,
+  style: React.PropTypes.object,
+  disabledStyle: React.PropTypes.object,
+  approvalPrompt: PropTypes.string,
+  tag: PropTypes.string,
+  autoLoad: React.PropTypes.bool,
+};
+
+GoogleLogin.defaultProps = {
+  tag: 'button',
+  buttonText: 'Login with Google',
+  scope: 'profile email',
+  redirectUri: 'postmessage',
+  cookiePolicy: 'single_host_origin',
+  disabledStyle: {
+    opacity: 0.6,
+  },
+  onRequest: () => {},
+};
 
 export default GoogleLogin;

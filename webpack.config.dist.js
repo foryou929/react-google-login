@@ -13,9 +13,9 @@ module.exports = {
     library: 'GoogleLogin',
   },
   module: {
-    loaders: [{
+    rules: [{
+      use: 'babel-loader',
       test: /\.js$/,
-      loader: 'babel',
       exclude: /node_modules/,
     }],
   },
@@ -24,7 +24,7 @@ module.exports = {
     'react-dom': 'ReactDOM',
   },
   resolve: {
-    extensions: ['', '.js'],
+    extensions: ['*', '.js'],
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -32,8 +32,17 @@ module.exports = {
         'NODE_ENV': JSON.stringify('production'),
       },
     }),
-    new webpack.optimize.UglifyJsPlugin(),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+      debug: false,
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      minimize: true,
+      sourceMap: true,
+      mangle: false,
+      compress: {
+        warnings: false,
+      },
+    }),
   ],
 };
