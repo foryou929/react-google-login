@@ -24,7 +24,7 @@ module.exports = {
     'react-dom': 'ReactDOM',
   },
   resolve: {
-    extensions: ['*', '.js'],
+    extensions: ['.js'],
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -35,14 +35,6 @@ module.exports = {
     new webpack.LoaderOptionsPlugin({
       minimize: true,
       debug: false,
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      minimize: true,
-      sourceMap: true,
-      mangle: false,
-      compress: {
-        warnings: false,
-      },
     }),
   ],
 };

@@ -8,7 +8,6 @@ class GoogleLogin extends Component {
       disable: true,
     };
   }
-
   componentDidMount() {
     const { clientId, scope, cookiePolicy, loginHint, hostedDomain, autoLoad } = this.props;
     ((d, s, id, cb) => {
@@ -45,13 +44,14 @@ class GoogleLogin extends Component {
   signIn() {
     if (!this.state.disable) {
       const auth2 = window.gapi.auth2.getAuthInstance();
-      const { offline, redirectUri, onSuccess, onRequest, onFailure, approvalPrompt } = this.props;
+      const { offline, redirectUri, onSuccess, onRequest, onFailure, approvalPrompt, prompt } = this.props;
+      const options = {
+        redirect_uri: redirectUri,
+        approval_prompt: approvalPrompt,
+        prompt,
+      };
       onRequest();
       if (offline) {
-        const options = {
-          redirect_uri: redirectUri,
-          approval_prompt: approvalPrompt,
-        };
         auth2.grantOfflineAccess(options)
           .then(res => {
             onSuccess(res);
@@ -59,7 +59,7 @@ class GoogleLogin extends Component {
             onFailure(err);
           });
       } else {
-        auth2.signIn()
+        auth2.signIn(options)
           .then(res => {
             /*
               offer renamed response keys to names that match use
@@ -145,6 +145,7 @@ GoogleLogin.propTypes = {
   style: React.PropTypes.object,
   disabledStyle: React.PropTypes.object,
   approvalPrompt: PropTypes.string,
+  prompt: PropTypes.string,
   tag: PropTypes.string,
   autoLoad: React.PropTypes.bool,
 };
@@ -154,6 +155,7 @@ GoogleLogin.defaultProps = {
   buttonText: 'Login with Google',
   scope: 'profile email',
   redirectUri: 'postmessage',
+  prompt: '',
   cookiePolicy: 'single_host_origin',
   disabledStyle: {
     opacity: 0.6,

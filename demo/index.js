@@ -23,6 +23,7 @@ ReactDOM.render(
     onFailure={error}
     onRequest={loading}
     offline={false}
+    // prompt={'select_account'}
     // className='button'
     // style={{ color: 'red' }}
   >
