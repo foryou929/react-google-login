@@ -102,24 +102,24 @@ class GoogleLogin extends Component {
       fontWeight: 'bold',
       fontFamily: 'Roboto',
     };
-    const defaultStyle = (() => {
-      if (disabled) {
-        return Object.assign({}, initialStyle, disabledStyle);
-      }
-      return initialStyle;
-    })();
     const styleProp = (() => {
       if (style) {
         return style;
-      } else if (className) {
+      } else if (className && !style) {
         return {};
       }
-      return defaultStyle;
+      return initialStyle;
+    })();
+    const defaultStyle = (() => {
+      if (disabled) {
+        return Object.assign({}, styleProp, disabledStyle);
+      }
+      return styleProp;
     })();
     const googleLoginButton = React.createElement(
       tag, {
         onClick: this.signIn,
-        style: styleProp,
+        style: defaultStyle,
         disabled,
         className,
       }, children ? children : buttonText
