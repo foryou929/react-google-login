@@ -5,7 +5,7 @@ class GoogleLogin extends Component {
     super(props);
     this.signIn = this.signIn.bind(this);
     this.state = {
-      disable: true,
+      disabled: true,
     };
   }
   componentDidMount() {
@@ -29,7 +29,7 @@ class GoogleLogin extends Component {
       };
       window.gapi.load('auth2', () => {
         this.setState({
-          disable: false,
+          disabled: false,
         });
         if (!window.gapi.auth2.getAuthInstance()) {
           window.gapi.auth2.init(params);
@@ -42,7 +42,7 @@ class GoogleLogin extends Component {
   }
 
   signIn() {
-    if (!this.state.disable) {
+    if (!this.state.disabled) {
       const auth2 = window.gapi.auth2.getAuthInstance();
       const { offline, redirectUri, onSuccess, onRequest, onFailure, approvalPrompt, prompt } = this.props;
       const options = {
