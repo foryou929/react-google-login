@@ -7,7 +7,6 @@ describe('Google Login', () => {
     let propsObj;
 
     describe('With default props', () => {
-
         beforeEach(() => {
             propsObj = {
                 onSuccess(response) {},
@@ -37,9 +36,7 @@ describe('Google Login', () => {
             expect(component.get(0).tagName).to.equal('BUTTON');
         });
     });
-
     describe('With custom text and default props', () => {
-
         const buttonText ='buttonText';
 
         beforeEach(() => {
@@ -69,7 +66,6 @@ describe('Google Login', () => {
         });
 
     });
-
     describe('With custom class and default props', () => {
         let className ='test-class';
 
@@ -132,7 +128,6 @@ describe('Google Login', () => {
         });
     });
     describe('With children, custom text, and default props', () => {
-
         const children = 'test';
         const buttonText ='buttonText';
 
@@ -172,9 +167,7 @@ describe('Google Login', () => {
         });
 
     });
-
     describe('With style and default props', () => {
-
         let style = {
           'padding':'10px',
           'fontSize':'20px'
@@ -202,7 +195,7 @@ describe('Google Login', () => {
             expect(component).to.have.attr('style', 'padding: 10px; font-size: 20px;');
         });
     });
-   describe('With handles custom tag prop', () => {
+    describe('With handles custom tag prop', () => {
         beforeEach(() => {
             propsObj = {
                 onSuccess(response) {},
