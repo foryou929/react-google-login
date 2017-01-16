@@ -53,14 +53,13 @@ class GoogleLogin extends Component {
       onRequest();
       if (offline) {
         auth2.grantOfflineAccess(options)
-          .then(res => {
-            onSuccess(res);
-          }, err => {
-            onFailure(err);
-          });
+          .then(
+            res => onSuccess(res),
+            err => onFailure(err)
+          );
       } else {
         auth2.signIn(options)
-          .then(res => {
+          .then((res) => {
             /*
               offer renamed response keys to names that match use
             */
@@ -79,9 +78,9 @@ class GoogleLogin extends Component {
               familyName: basicProfile.getFamilyName(),
             };
             onSuccess(res);
-          }, err => {
-            onFailure(err);
-          });
+          }, err =>
+            onFailure(err)
+          );
       }
     }
   }
@@ -161,6 +160,7 @@ GoogleLogin.defaultProps = {
     opacity: 0.6,
   },
   onRequest: () => {},
+  offline: false,
 };
 
 export default GoogleLogin;

@@ -92,7 +92,7 @@ describe('Google Login', () => {
         });
 
         it('does not have inline styles', () => {
-            expect(component).to.not.have.attr('style');
+            expect(component).to.have.attr('style');
         });
 
     });
@@ -192,7 +192,7 @@ describe('Google Login', () => {
         });
 
         it('has a style with custom class', () => {
-            expect(component).to.have.attr('style', 'padding: 10px; font-size: 20px;');
+            expect(component).to.have.attr('style', 'padding: 10px; font-size: 20px; opacity: 0.6;');
         });
     });
     describe('With handles custom tag prop', () => {
