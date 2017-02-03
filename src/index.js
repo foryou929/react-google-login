@@ -9,7 +9,7 @@ class GoogleLogin extends Component {
     };
   }
   componentDidMount() {
-    const { clientId, scope, cookiePolicy, loginHint, hostedDomain, autoLoad } = this.props;
+    const { clientId, scope, cookiePolicy, loginHint, hostedDomain, autoLoad, fetchBasicProfile } = this.props;
     ((d, s, id, cb) => {
       const element = d.getElementsByTagName(s)[0];
       const fjs = element;
@@ -25,6 +25,7 @@ class GoogleLogin extends Component {
         cookiepolicy: cookiePolicy,
         login_hint: loginHint,
         hosted_domain: hostedDomain,
+        fetch_basic_profile: fetchBasicProfile,
         scope,
       };
       window.gapi.load('auth2', () => {
@@ -44,10 +45,11 @@ class GoogleLogin extends Component {
   signIn() {
     if (!this.state.disabled) {
       const auth2 = window.gapi.auth2.getAuthInstance();
-      const { offline, redirectUri, onSuccess, onRequest, onFailure, approvalPrompt, prompt } = this.props;
+      const { offline, redirectUri, onSuccess, onRequest, fetchBasicProfile, onFailure, approvalPrompt, prompt } = this.props;
       const options = {
         redirect_uri: redirectUri,
         approval_prompt: approvalPrompt,
+        fetch_basic_profile: fetchBasicProfile,
         prompt,
       };
       onRequest();
@@ -144,6 +146,7 @@ GoogleLogin.propTypes = {
   style: React.PropTypes.object,
   disabledStyle: React.PropTypes.object,
   approvalPrompt: PropTypes.string,
+  fetchBasicProfile: PropTypes.bool,
   prompt: PropTypes.string,
   tag: PropTypes.string,
   autoLoad: React.PropTypes.bool,
@@ -156,6 +159,7 @@ GoogleLogin.defaultProps = {
   redirectUri: 'postmessage',
   prompt: '',
   cookiePolicy: 'single_host_origin',
+  fetchBasicProfile: false,
   disabledStyle: {
     opacity: 0.6,
   },
