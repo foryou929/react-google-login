@@ -45,10 +45,9 @@ class GoogleLogin extends Component {
   signIn() {
     if (!this.state.disabled) {
       const auth2 = window.gapi.auth2.getAuthInstance();
-      const { offline, redirectUri, onSuccess, onRequest, fetchBasicProfile, onFailure, approvalPrompt, prompt } = this.props;
+      const { offline, redirectUri, onSuccess, onRequest, fetchBasicProfile, onFailure, prompt } = this.props;
       const options = {
         redirect_uri: redirectUri,
-        approval_prompt: approvalPrompt,
         fetch_basic_profile: fetchBasicProfile,
         prompt,
       };
@@ -145,7 +144,6 @@ GoogleLogin.propTypes = {
   children: React.PropTypes.node,
   style: React.PropTypes.object,
   disabledStyle: React.PropTypes.object,
-  approvalPrompt: PropTypes.string,
   fetchBasicProfile: PropTypes.bool,
   prompt: PropTypes.string,
   tag: PropTypes.string,

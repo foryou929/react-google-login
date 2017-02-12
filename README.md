@@ -42,26 +42,25 @@ If you use the hostedDomain param, make sure to validate the id_token (a JSON we
 
 ## Parameters
 
-|    params    |   value  |             default value            |
-|:------------:|:--------:|:------------------------------------:|
-|    clientId  |  string  |               REQUIRED               |
-| hostedDomain |  string  |                   -                  |
-|     scope    |  string  |             profile email            |
-|   onSuccess  | function |               REQUIRED               |
-|   onFailure  | function |               REQUIRED               |
-|   onRequest  | function |                   -                  |
-|    offline   |  boolean |                 false                |
-|   buttonText |  string  |             Login with Google        |
-|   className  |  string  |                   -                  |
-|    style     |  object  |                   -                  |
-| disabledStyle|  object  |                   -                  |
-|   loginHint  |  string  |                   -                  |
-| redirectUri  |  string  |              postmessage             |
-|approvalPrompt|  string  |                   -                  |
-|    promt     |  string  |                   -                  |
-|     tag      |  string  |                button                |
-|   autoLoad   |  boolean |                 false                |
-| fetchBasicProfile | boolean | false                            |
+|    params    |   value  |             default value            |   description    |
+|:------------:|:--------:|:------------------------------------:|:----------------:|
+|    clientId  |  string  |               REQUIRED               |                  |
+| hostedDomain |  string  |                   -                  |                  |
+|     scope    |  string  |             profile email            |                  |
+|   onSuccess  | function |               REQUIRED               |                  |
+|   onFailure  | function |               REQUIRED               |                  |
+|   onRequest  | function |                   -                  |                  |
+|    offline   |  boolean |                 false                |                  |
+|   buttonText |  string  |             Login with Google        |                  |
+|   className  |  string  |                   -                  |                  |
+|    style     |  object  |                   -                  |                  |
+| disabledStyle|  object  |                   -                  |                  |
+|   loginHint  |  string  |                   -                  |                  |
+| redirectUri  |  string  |              postmessage             |                  |
+|    prompt    |  string  |                   -                  |                  |
+|     tag      |  string  |                button                |  sets element tag (div, a, span, etc     |
+|   autoLoad   |  boolean |                 false                |                  |
+| fetchBasicProfile | boolean | false                            |                  |
 Google Scopes List: https://developers.google.com/identity/protocols/googlescopes
 
 ## onSuccess callback ( w/ offline false)
@@ -85,10 +84,7 @@ You can also access the returned values via the following properties on the retu
 |:-------------:|:--------:|:------------------------------------:|
 |    code       |  object  |           offline token              |
 
-If `approvalPrompt` is set to `"force"`, refresh token will always be returned while exchanging auth code for tokens.
-Otherwise, refresh token will only be returned for the first time user gives permission to the app.
-
-You can now also pass child components such as icons into the button component.
+You can also pass child components such as icons into the button component.
 ```js
   <GoogleLogin
     clientId={'658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'}

@@ -23,7 +23,8 @@ ReactDOM.render(
     onFailure={error}
     onRequest={loading}
     offline={false}
-    // prompt={'select_account'}
+    approvalPrompt="force"
+    // prompt="consent"
     // className='button'
     // style={{ color: 'red' }}
   >
