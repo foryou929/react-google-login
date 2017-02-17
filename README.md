@@ -60,7 +60,9 @@ If you use the hostedDomain param, make sure to validate the id_token (a JSON we
 |    prompt    |  string  |                   -                  |                  |
 |     tag      |  string  |                button                |  sets element tag (div, a, span, etc     |
 |   autoLoad   |  boolean |                 false                |                  |
-| fetchBasicProfile | boolean | false                            |                  |
+| fetchBasicProfile | boolean | true                            |                  |
+| disabled | boolean | false                            |                  |
+
 Google Scopes List: https://developers.google.com/identity/protocols/googlescopes
 
 ## onSuccess callback ( w/ offline false)

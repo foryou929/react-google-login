@@ -88,7 +88,7 @@ class GoogleLogin extends Component {
 
   render() {
     const { tag, style, className, disabledStyle, buttonText, children } = this.props;
-    const { disabled } = this.state;
+    const disabled = this.state.disabled || this.props.disabled;
     const initialStyle = {
       display: 'inline-block',
       background: '#d14836',
@@ -148,6 +148,7 @@ GoogleLogin.propTypes = {
   prompt: PropTypes.string,
   tag: PropTypes.string,
   autoLoad: React.PropTypes.bool,
+  disabled: React.PropTypes.bool,
 };
 
 GoogleLogin.defaultProps = {
@@ -157,7 +158,7 @@ GoogleLogin.defaultProps = {
   redirectUri: 'postmessage',
   prompt: '',
   cookiePolicy: 'single_host_origin',
-  fetchBasicProfile: false,
+  fetchBasicProfile: true,
   disabledStyle: {
     opacity: 0.6,
   },

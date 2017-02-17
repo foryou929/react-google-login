@@ -5,7 +5,7 @@ import GoogleLogin from '../src/index';
 // import GoogleLogin from '../dist/google-login';
 
 const success = (response) => {
-  console.log(response);
+  console.log(response.getBasicProfile());
 };
 
 const error = (response) => {
@@ -24,6 +24,7 @@ ReactDOM.render(
     onRequest={loading}
     offline={false}
     approvalPrompt="force"
+    // disabled
     // prompt="consent"
     // className='button'
     // style={{ color: 'red' }}
