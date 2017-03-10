@@ -9,7 +9,7 @@ class GoogleLogin extends Component {
     };
   }
   componentDidMount() {
-    const { clientId, scope, cookiePolicy, loginHint, hostedDomain, autoLoad, fetchBasicProfile } = this.props;
+    const { clientId, scope, cookiePolicy, loginHint, hostedDomain, autoLoad, fetchBasicProfile, discoveryDocs } = this.props;
     ((d, s, id, cb) => {
       const element = d.getElementsByTagName(s)[0];
       const fjs = element;
@@ -27,6 +27,7 @@ class GoogleLogin extends Component {
         hosted_domain: hostedDomain,
         fetch_basic_profile: fetchBasicProfile,
         scope,
+        discoveryDocs,
       };
       window.gapi.load('auth2', () => {
         this.setState({
@@ -149,6 +150,7 @@ GoogleLogin.propTypes = {
   tag: PropTypes.string,
   autoLoad: React.PropTypes.bool,
   disabled: React.PropTypes.bool,
+  discoveryDocs: React.PropTypes.array,
 };
 
 GoogleLogin.defaultProps = {
