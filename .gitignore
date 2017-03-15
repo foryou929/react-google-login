@@ -2,3 +2,4 @@ node_modules/
 .DS_store
 .module-cache
 npm-debug.log
+.c9

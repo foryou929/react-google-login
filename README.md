@@ -62,6 +62,7 @@ If you use the hostedDomain param, make sure to validate the id_token (a JSON we
 |   autoLoad   |  boolean |                 false                |                  |
 | fetchBasicProfile | boolean | true                            |                  |
 | disabled | boolean | false                            |                  |
+| discoveryDocs | - | https://developers.google.com/discovery/v1/using |
 
 Google Scopes List: https://developers.google.com/identity/protocols/googlescopes
 
