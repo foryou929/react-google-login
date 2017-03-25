@@ -9,7 +9,7 @@ class GoogleLogin extends Component {
     };
   }
   componentDidMount() {
-    const { clientId, scope, cookiePolicy, loginHint, hostedDomain, autoLoad, fetchBasicProfile, discoveryDocs, onFailure } = this.props;
+    const { clientId, cookiePolicy, loginHint, hostedDomain, autoLoad, fetchBasicProfile, discoveryDocs, onFailure } = this.props;
     ((d, s, id, cb) => {
       const element = d.getElementsByTagName(s)[0];
       const fjs = element;
@@ -26,7 +26,6 @@ class GoogleLogin extends Component {
         login_hint: loginHint,
         hosted_domain: hostedDomain,
         fetch_basic_profile: fetchBasicProfile,
-        scope,
         discoveryDocs,
       };
       window.gapi.load('auth2', () => {
@@ -49,11 +48,12 @@ class GoogleLogin extends Component {
   signIn() {
     if (!this.state.disabled) {
       const auth2 = window.gapi.auth2.getAuthInstance();
-      const { offline, redirectUri, onSuccess, onRequest, fetchBasicProfile, onFailure, prompt } = this.props;
+      const { offline, redirectUri, onSuccess, onRequest, fetchBasicProfile, onFailure, prompt, scope } = this.props;
       const options = {
         redirect_uri: redirectUri,
         fetch_basic_profile: fetchBasicProfile,
         prompt,
+        scope
       };
       onRequest();
       if (offline) {
