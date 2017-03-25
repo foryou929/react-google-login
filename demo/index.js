@@ -5,7 +5,7 @@ import GoogleLogin from '../src/index';
 // import GoogleLogin from '../dist/google-login';
 
 const success = (response) => {
-  console.log(response.getBasicProfile());
+  console.log(response);
 };
 
 const error = (response) => {
