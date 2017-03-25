@@ -9,7 +9,7 @@ class GoogleLogin extends Component {
     };
   }
   componentDidMount() {
-    const { clientId, scope, cookiePolicy, loginHint, hostedDomain, autoLoad, fetchBasicProfile, discoveryDocs } = this.props;
+    const { clientId, scope, cookiePolicy, loginHint, hostedDomain, autoLoad, fetchBasicProfile, discoveryDocs, onFailure } = this.props;
     ((d, s, id, cb) => {
       const element = d.getElementsByTagName(s)[0];
       const fjs = element;
@@ -34,7 +34,10 @@ class GoogleLogin extends Component {
           disabled: false,
         });
         if (!window.gapi.auth2.getAuthInstance()) {
-          window.gapi.auth2.init(params);
+          window.gapi.auth2.init(params).then(
+            () => {},
+            err => onFailure(err)
+          );
         }
         if (autoLoad) {
           this.signIn();

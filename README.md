@@ -104,6 +104,29 @@ You can also pass child components such as icons into the button component.
 ```
 
 
+## onFailure callback
+
+onFailure callback is called when either initialization or a signin attempt fails.
+
+| property name |  value   |             definition               |
+|:-------------:|:--------:|:------------------------------------:|
+|   error       |  string  |           Error code                 |
+|   details     |  string  |      Detailed error description      |
+
+Common error codes include:
+
+| error code | description |
+|:----------:|:-----------:|
+| `idpiframe_initialization_failed` | initialization of the Google Auth API failed (this will occur if a client doesn't have [third party cookies enabled](https://github.com/google/google-api-javascript-client/issues/260)) |
+| `popup_closed_by_user` | The user closed the popup before finishing the sign in flow.|
+| `access_denied` | The user denied the permission to the scopes required |
+| `immediate_failed` | No user could be automatically selected without prompting the consent flow. |
+
+More details can be found in the official Google docs:
+ * [GoogleAuth.then(onInit, onError)](https://developers.google.com/identity/sign-in/web/reference#googleauththenoninit-onerror)
+ * [GoogleAuth.signIn(options)](https://developers.google.com/identity/sign-in/web/reference#googleauthsigninoptions)
+ * [GoogleAuth.grantOfflineAccess(options)](https://developers.google.com/identity/sign-in/web/reference#googleauthgrantofflineaccessoptions)
+
 ## Dev Server
 ```
 npm run start
