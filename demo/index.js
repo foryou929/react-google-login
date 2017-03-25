@@ -17,19 +17,38 @@ const loading = () => {
 };
 
 ReactDOM.render(
-  <GoogleLogin
-    clientId='658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'
-    onSuccess={success}
-    onFailure={error}
-    onRequest={loading}
-    offline={false}
-    approvalPrompt="force"
-    // disabled
-    // prompt="consent"
-    // className='button'
-    // style={{ color: 'red' }}
-  >
-    <span> Login with Google</span>
-  </GoogleLogin>,
+  <div>
+    <GoogleLogin
+        clientId='658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'
+        scope='https://www.googleapis.com/auth/analytics'
+        onSuccess={success}
+        onFailure={error}
+        onRequest={loading}
+        offline={false}
+        approvalPrompt="force"
+        // disabled
+        // prompt="consent"
+        // className='button'
+        // style={{ color: 'red' }}
+    >
+      <span>Analytics</span>
+    </GoogleLogin>
+
+    <GoogleLogin
+        clientId='658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'
+        scope='https://www.googleapis.com/auth/adwords'
+        onSuccess={success}
+        onFailure={error}
+        onRequest={loading}
+        offline={false}
+        approvalPrompt="force"
+        // disabled
+        // prompt="consent"
+        // className='button'
+        // style={{ color: 'red' }}
+    >
+      <span>Adwords</span>
+    </GoogleLogin>
+  </div>,
   document.getElementById('google-login')
 );
