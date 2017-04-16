@@ -9,7 +9,7 @@ class GoogleLogin extends Component {
     };
   }
   componentDidMount() {
-    const { clientId, cookiePolicy, loginHint, hostedDomain, autoLoad, fetchBasicProfile, discoveryDocs, onFailure } = this.props;
+    const { clientId, cookiePolicy, loginHint, hostedDomain, autoLoad, fetchBasicProfile, redirectUri, discoveryDocs, onFailure, uxMode } = this.props;
     ((d, s, id, cb) => {
       const element = d.getElementsByTagName(s)[0];
       const fjs = element;
@@ -27,6 +27,8 @@ class GoogleLogin extends Component {
         hosted_domain: hostedDomain,
         fetch_basic_profile: fetchBasicProfile,
         discoveryDocs,
+        ux_mode: uxMode,
+        redirect_uri: redirectUri,
       };
       window.gapi.load('auth2', () => {
         this.setState({
@@ -44,16 +46,19 @@ class GoogleLogin extends Component {
       });
     });
   }
-
-  signIn() {
+  signIn(e) {
+    if (e) {
+      e.preventDefault(); // to prevent submit if used within form
+    }
     if (!this.state.disabled) {
       const auth2 = window.gapi.auth2.getAuthInstance();
-      const { offline, redirectUri, onSuccess, onRequest, fetchBasicProfile, onFailure, prompt, scope } = this.props;
+      const { offline, redirectUri, onSuccess, onRequest, fetchBasicProfile, onFailure, prompt, scope, responseType } = this.props;
       const options = {
+        response_type: responseType,
         redirect_uri: redirectUri,
         fetch_basic_profile: fetchBasicProfile,
         prompt,
-        scope
+        scope,
       };
       onRequest();
       if (offline) {
@@ -151,9 +156,11 @@ GoogleLogin.propTypes = {
   fetchBasicProfile: PropTypes.bool,
   prompt: PropTypes.string,
   tag: PropTypes.string,
-  autoLoad: React.PropTypes.bool,
-  disabled: React.PropTypes.bool,
-  discoveryDocs: React.PropTypes.array,
+  autoLoad: PropTypes.bool,
+  disabled: PropTypes.bool,
+  discoveryDocs: PropTypes.array,
+  responseType: PropTypes.string,
+  uxMode: PropTypes.string,
 };
 
 GoogleLogin.defaultProps = {
@@ -161,9 +168,11 @@ GoogleLogin.defaultProps = {
   buttonText: 'Login with Google',
   scope: 'profile email',
   redirectUri: 'postmessage',
+  responseType: 'permission',
   prompt: '',
   cookiePolicy: 'single_host_origin',
   fetchBasicProfile: true,
+  uxMode: 'popup',
   disabledStyle: {
     opacity: 0.6,
   },

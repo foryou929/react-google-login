@@ -42,6 +42,8 @@ ReactDOM.render(
         onRequest={loading}
         offline={false}
         approvalPrompt="force"
+        // uxMode="redirect"
+        // redirectUri="http://google.com"
         // disabled
         // prompt="consent"
         // className='button'
