@@ -19,13 +19,13 @@ const loading = () => {
 ReactDOM.render(
   <div>
     <GoogleLogin
-        clientId='658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'
-        scope='https://www.googleapis.com/auth/analytics'
-        onSuccess={success}
-        onFailure={error}
-        onRequest={loading}
-        offline={false}
-        approvalPrompt="force"
+      clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+      scope="https://www.googleapis.com/auth/analytics"
+      onSuccess={success}
+      onFailure={error}
+      onRequest={loading}
+      offline={false}
+      approvalPrompt="force"
         // disabled
         // prompt="consent"
         // className='button'
@@ -35,17 +35,15 @@ ReactDOM.render(
     </GoogleLogin>
 
     <GoogleLogin
-        clientId='658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'
-        scope='https://www.googleapis.com/auth/adwords'
-        onSuccess={success}
-        onFailure={error}
-        onRequest={loading}
-        offline={false}
-        approvalPrompt="force"
+      clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+      scope="https://www.googleapis.com/auth/adwords"
+      onSuccess={success}
+      onFailure={error}
+      onRequest={loading}
+      offline={false}
         // uxMode="redirect"
         // redirectUri="http://google.com"
         // disabled
-        // prompt="consent"
         // className='button'
         // style={{ color: 'red' }}
     >
