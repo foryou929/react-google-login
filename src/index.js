@@ -3,13 +3,13 @@ import React, { PropTypes, Component } from 'react';
 class GoogleLogin extends Component {
   constructor(props) {
     super(props);
-    this.signIn = this.signIn.bind(this);
     this.state = {
       disabled: true,
     };
   }
+
   componentDidMount() {
-    const { clientId, cookiePolicy, loginHint, hostedDomain, autoLoad, fetchBasicProfile, redirectUri, discoveryDocs, onFailure, uxMode } = this.props;
+    const { autoLoad, onFailure, clientId, cookiePolicy, scope, hostedDomain, fetchBasicProfile, uxMode } = this.props;
     ((d, s, id, cb) => {
       const element = d.getElementsByTagName(s)[0];
       const fjs = element;
@@ -20,16 +20,17 @@ class GoogleLogin extends Component {
       fjs.parentNode.insertBefore(js, fjs);
       js.onload = cb;
     })(document, 'script', 'google-login', () => {
+      // https://developers.google.com/api-client-library/javascript/reference/referencedocs#gapiauth2clientconfig
       const params = {
         client_id: clientId,
         cookiepolicy: cookiePolicy,
-        login_hint: loginHint,
-        hosted_domain: hostedDomain,
         fetch_basic_profile: fetchBasicProfile,
-        discoveryDocs,
+        hosted_domain: hostedDomain,
+        scope,
         ux_mode: uxMode,
-        redirect_uri: redirectUri,
       };
+      this.maybeSetRedirectUri(params);
+
       window.gapi.load('auth2', () => {
         this.setState({
           disabled: false,
@@ -46,29 +47,53 @@ class GoogleLogin extends Component {
       });
     });
   }
-  signIn(e) {
+  maybeSetPrompt = (params) => {
+    const { prompt } = this.props;
+    // only set prompt if it was passed in
+    if (prompt) {
+      params.prompt = prompt;
+    }
+  }
+
+  maybeSetRedirectUri = (params) => {
+    const { uxMode, redirectUri } = this.props;
+    // only set redirect_uri if we're actually redirecting
+    if (uxMode === 'redirect') {
+      params.redirect_uri = redirectUri;
+    }
+  }
+
+  signIn = (e) => {
     if (e) {
       e.preventDefault(); // to prevent submit if used within form
     }
     if (!this.state.disabled) {
       const auth2 = window.gapi.auth2.getAuthInstance();
-      const { offline, redirectUri, onSuccess, onRequest, fetchBasicProfile, onFailure, prompt, scope, responseType } = this.props;
-      const options = {
-        response_type: responseType,
-        redirect_uri: redirectUri,
-        fetch_basic_profile: fetchBasicProfile,
-        prompt,
-        scope,
-      };
+      const { offline, onSuccess, onRequest, onFailure, scope, fetchBasicProfile, uxMode } = this.props;
       onRequest();
       if (offline) {
-        auth2.grantOfflineAccess(options)
+        // https://developers.google.com/api-client-library/javascript/reference/referencedocs#gapiauth2offlineaccessoptions
+        const params = {
+          scope,
+        };
+        this.maybeSetPrompt(params);
+
+        auth2.grantOfflineAccess(params)
           .then(
             res => onSuccess(res),
             err => onFailure(err)
           );
       } else {
-        auth2.signIn(options)
+        // https://developers.google.com/api-client-library/javascript/reference/referencedocs#gapiauth2signinoptions
+        const params = {
+          fetch_basic_profile: fetchBasicProfile,
+          scope,
+          ux_mode: uxMode,
+        };
+        this.maybeSetPrompt(params);
+        this.maybeSetRedirectUri(params);
+
+        auth2.signIn(params)
           .then((res) => {
             /*
               offer renamed response keys to names that match use
@@ -148,7 +173,6 @@ GoogleLogin.propTypes = {
   className: PropTypes.string,
   redirectUri: PropTypes.string,
   cookiePolicy: PropTypes.string,
-  loginHint: PropTypes.string,
   hostedDomain: PropTypes.string,
   children: React.PropTypes.node,
   style: React.PropTypes.object,
@@ -158,8 +182,6 @@ GoogleLogin.propTypes = {
   tag: PropTypes.string,
   autoLoad: PropTypes.bool,
   disabled: PropTypes.bool,
-  discoveryDocs: PropTypes.array,
-  responseType: PropTypes.string,
   uxMode: PropTypes.string,
 };
 
@@ -167,8 +189,7 @@ GoogleLogin.defaultProps = {
   tag: 'button',
   buttonText: 'Login with Google',
   scope: 'profile email',
-  redirectUri: 'postmessage',
-  responseType: 'permission',
+  redirectUri: '',
   prompt: '',
   cookiePolicy: 'single_host_origin',
   fetchBasicProfile: true,
