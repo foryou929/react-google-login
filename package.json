@@ -9,7 +9,7 @@
     "test": "export NODE_ENV=test&& mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
     "test:watch": "npm run test -- --watch",
     "lint": "eslint src/ --fix",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf node_modules"
   },
   "repository": {
     "type": "git",
@@ -38,7 +38,6 @@
     "babel-core": "6.24.1",
     "babel-eslint": "7.2.2",
     "babel-loader": "6.4.1",
-    "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-react-constant-elements": "6.23.0",
     "babel-plugin-transform-react-inline-elements": "6.22.0",
     "babel-plugin-transform-react-remove-prop-types": "0.4.1",
@@ -73,18 +72,12 @@
             }
           ],
           "react"
-        ],
-        "plugins": [
-          "transform-class-properties"
         ]
       },
       "test": {
         "presets": [
           "es2015",
           "react"
-        ],
-        "plugins": [
-          "transform-class-properties"
         ]
       },
       "production": {
@@ -98,7 +91,6 @@
           "react"
         ],
         "plugins": [
-          "transform-class-properties",
           "transform-react-remove-prop-types",
           "transform-react-constant-elements",
           "transform-react-inline-elements"

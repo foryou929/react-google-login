@@ -47,6 +47,7 @@ If you use the hostedDomain param, make sure to validate the id_token (a JSON we
 |    clientId  |  string  |               REQUIRED               |                  |
 | hostedDomain |  string  |                   -                  |                  |
 |     scope    |  string  |             profile email            |                  |
+| responseType |  string  |              permission              | A list of space-delimited response type. The possible values are: id_token, to retrieve an ID Token permission (or token), to retrieve an Access Token code, to retrieve an Authorization Code             |
 |   onSuccess  | function |               REQUIRED               |                  |
 |   onFailure  | function |               REQUIRED               |                  |
 |   onRequest  | function |                   -                  |                  |
@@ -55,13 +56,15 @@ If you use the hostedDomain param, make sure to validate the id_token (a JSON we
 |   className  |  string  |                   -                  |                  |
 |    style     |  object  |                   -                  |                  |
 | disabledStyle|  object  |                   -                  |                  |
-|    prompt    |  string  |                   -                  |  one of `consent`, `select_account`, `none` (Note that `none` is not available for offline code flow) |
+|   loginHint  |  string  |                   -                  |                  |
+|    prompt    |  string  |                   -                  |                  |
 |     tag      |  string  |                button                |  sets element tag (div, a, span, etc     |
 |   autoLoad   |  boolean |                 false                |                  |
 | fetchBasicProfile | boolean | true                            |                  |
 | disabled | boolean | false                            |                  |
+| discoveryDocs | - | https://developers.google.com/discovery/v1/using |
 | uxMode       |  string  |  popup   | The UX mode to use for the sign-in flow. Valid values are popup and redirect. |
-| redirectUri       |  string  |  -   | If using ux_mode='redirect', this parameter allows you to override the default redirect_uri that will be used at the end of the consent flow. The default redirect_uri is the current URL stripped of query parameters and hash fragment. |
+| redirectUri       |  string  |  postmessage   | If using ux_mode='redirect', this parameter allows you to override the default redirect_uri that will be used at the end of the consent flow. The default redirect_uri is the current URL stripped of query parameters and hash fragment. |
 
 Google Scopes List: https://developers.google.com/identity/protocols/googlescopes
 
