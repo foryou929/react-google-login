@@ -64,7 +64,7 @@ If you use the hostedDomain param, make sure to validate the id_token (a JSON we
 | disabled | boolean | false                            |                  |
 | discoveryDocs | - | https://developers.google.com/discovery/v1/using |
 | uxMode       |  string  |  popup   | The UX mode to use for the sign-in flow. Valid values are popup and redirect. |
-| redirectUri       |  string  |  postmessage   | If using ux_mode='redirect', this parameter allows you to override the default redirect_uri that will be used at the end of the consent flow. The default redirect_uri is the current URL stripped of query parameters and hash fragment. |
+| redirectUri       |  string  |  -   | If using ux_mode='redirect', this parameter allows you to override the default redirect_uri that will be used at the end of the consent flow. The default redirect_uri is the current URL stripped of query parameters and hash fragment. |
 
 Google Scopes List: https://developers.google.com/identity/protocols/googlescopes
 

@@ -26,6 +26,7 @@ ReactDOM.render(
         onRequest={loading}
         offline={false}
         approvalPrompt="force"
+        responseType="id_token"
         // disabled
         // prompt="consent"
         // className='button'
@@ -40,7 +41,7 @@ ReactDOM.render(
         onSuccess={success}
         onFailure={error}
         onRequest={loading}
-        offline={false}
+        offline={true}
         approvalPrompt="force"
         // uxMode="redirect"
         // redirectUri="http://google.com"

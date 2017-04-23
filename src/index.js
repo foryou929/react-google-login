@@ -167,7 +167,6 @@ GoogleLogin.defaultProps = {
   tag: 'button',
   buttonText: 'Login with Google',
   scope: 'profile email',
-  redirectUri: 'postmessage',
   responseType: 'permission',
   prompt: '',
   cookiePolicy: 'single_host_origin',
