@@ -32,6 +32,10 @@
     "url": "https://github.com/anthonyjgrove/react-google-login/issues"
   },
   "homepage": "https://github.com/anthonyjgrove/react-google-login",
+  "dependencies": {
+    "@types/react": "*",
+    "prop-types": "^15.5.0"
+  },
   "devDependencies": {
     "autoprefixer": "6.7.7",
     "babel": "6.23.0",
@@ -53,12 +57,15 @@
     "jquery": "3.1.1",
     "jsdom": "9.12.0",
     "mocha": "3.2.0",
-    "react": "15.4.2",
-    "react-addons-test-utils": "15.4.2",
-    "react-dom": "15.4.2",
+    "react": "^15.5.0",
+    "react-dom": "^15.5.0",
     "react-fontawesome": "1.5.0",
     "webpack": "2.2.1",
     "webpack-dev-server": "2.4.2"
+  },
+  "peerDependencies": {
+    "react": "^15.5.0",
+    "react-dom": "^15.5.0"
   },
   "types": "./index.d.ts",
   "babel": {
@@ -97,8 +104,5 @@
         ]
       }
     }
-  },
-  "dependencies": {
-    "@types/react": "*"
   }
 }

@@ -22,6 +22,7 @@ module.exports = {
   externals: {
     'react': 'react',
     'react-dom': 'ReactDOM',
+    'prop-types': 'PropTypes'
   },
   resolve: {
     extensions: ['.js'],
