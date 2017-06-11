@@ -37,7 +37,11 @@ class GoogleLogin extends Component {
         });
         if (!window.gapi.auth2.getAuthInstance()) {
           window.gapi.auth2.init(params).then(
-            () => {},
+            (res) => {
+              if (res.isSignedIn.get()) {
+                this._handleSigninSuccess(res.currentUser.get())
+              }
+            },
             err => onFailure(err)
           );
         }
@@ -70,30 +74,32 @@ class GoogleLogin extends Component {
           );
       } else {
         auth2.signIn(options)
-          .then((res) => {
-            /*
-              offer renamed response keys to names that match use
-            */
-            const basicProfile = res.getBasicProfile();
-            const authResponse = res.getAuthResponse();
-            res.googleId = basicProfile.getId();
-            res.tokenObj = authResponse;
-            res.tokenId = authResponse.id_token;
-            res.accessToken = authResponse.access_token;
-            res.profileObj = {
-              googleId: basicProfile.getId(),
-              imageUrl: basicProfile.getImageUrl(),
-              email: basicProfile.getEmail(),
-              name: basicProfile.getName(),
-              givenName: basicProfile.getGivenName(),
-              familyName: basicProfile.getFamilyName(),
-            };
-            onSuccess(res);
-          }, err =>
-            onFailure(err)
+          .then(
+            res => this._handleSigninSuccess(res),
+            err => onFailure(err)
           );
       }
     }
+  }
+  _handleSigninSuccess(res) {
+    /*
+      offer renamed response keys to names that match use
+    */
+    const basicProfile = res.getBasicProfile();
+    const authResponse = res.getAuthResponse();
+    res.googleId = basicProfile.getId();
+    res.tokenObj = authResponse;
+    res.tokenId = authResponse.id_token;
+    res.accessToken = authResponse.access_token;
+    res.profileObj = {
+      googleId: basicProfile.getId(),
+      imageUrl: basicProfile.getImageUrl(),
+      email: basicProfile.getEmail(),
+      name: basicProfile.getName(),
+      givenName: basicProfile.getGivenName(),
+      familyName: basicProfile.getFamilyName(),
+    };
+    this.props.onSuccess(res);
   }
 
   render() {
