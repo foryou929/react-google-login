@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class GoogleLogin extends Component {
   constructor(props) {
@@ -150,9 +151,9 @@ GoogleLogin.propTypes = {
   cookiePolicy: PropTypes.string,
   loginHint: PropTypes.string,
   hostedDomain: PropTypes.string,
-  children: React.PropTypes.node,
-  style: React.PropTypes.object,
-  disabledStyle: React.PropTypes.object,
+  children: PropTypes.node,
+  style: PropTypes.object,
+  disabledStyle: PropTypes.object,
   fetchBasicProfile: PropTypes.bool,
   prompt: PropTypes.string,
   tag: PropTypes.string,
