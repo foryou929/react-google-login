@@ -10,7 +10,7 @@ class GoogleLogin extends Component {
     };
   }
   componentDidMount() {
-    const { clientId, cookiePolicy, loginHint, hostedDomain, autoLoad, fetchBasicProfile, redirectUri, discoveryDocs, onFailure, uxMode } = this.props;
+    const { clientId, cookiePolicy, loginHint, hostedDomain, autoLoad, isSignedIn, fetchBasicProfile, redirectUri, discoveryDocs, onFailure, uxMode } = this.props;
     ((d, s, id, cb) => {
       const element = d.getElementsByTagName(s)[0];
       const fjs = element;
@@ -38,8 +38,8 @@ class GoogleLogin extends Component {
         if (!window.gapi.auth2.getAuthInstance()) {
           window.gapi.auth2.init(params).then(
             (res) => {
-              if (res.isSignedIn.get()) {
-                this._handleSigninSuccess(res.currentUser.get())
+              if (isSignedIn && res.isSignedIn.get()) {
+                this._handleSigninSuccess(res.currentUser.get());
               }
             },
             err => onFailure(err)
@@ -168,6 +168,7 @@ GoogleLogin.propTypes = {
   discoveryDocs: PropTypes.array,
   responseType: PropTypes.string,
   uxMode: PropTypes.string,
+  isSignedIn: PropTypes.bool,
 };
 
 GoogleLogin.defaultProps = {
@@ -178,6 +179,7 @@ GoogleLogin.defaultProps = {
   prompt: '',
   cookiePolicy: 'single_host_origin',
   fetchBasicProfile: true,
+  isSignedIn: false,
   uxMode: 'popup',
   disabledStyle: {
     opacity: 0.6,

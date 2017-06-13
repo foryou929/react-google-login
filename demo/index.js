@@ -27,6 +27,7 @@ ReactDOM.render(
         offline={false}
         approvalPrompt="force"
         responseType="id_token"
+        isSignedIn={true}
         // disabled
         // prompt="consent"
         // className='button'
