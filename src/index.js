@@ -10,7 +10,7 @@ class GoogleLogin extends Component {
     };
   }
   componentDidMount() {
-    const { clientId, cookiePolicy, loginHint, hostedDomain, autoLoad, isSignedIn, fetchBasicProfile, redirectUri, discoveryDocs, onFailure, uxMode } = this.props;
+    const { clientId, cookiePolicy, loginHint, hostedDomain, autoLoad, isSignedIn, fetchBasicProfile, redirectUri, discoveryDocs, onFailure, uxMode, scope } = this.props;
     ((d, s, id, cb) => {
       const element = d.getElementsByTagName(s)[0];
       const fjs = element;
@@ -30,6 +30,7 @@ class GoogleLogin extends Component {
         discoveryDocs,
         ux_mode: uxMode,
         redirect_uri: redirectUri,
+        scope,
       };
       window.gapi.load('auth2', () => {
         this.setState({
