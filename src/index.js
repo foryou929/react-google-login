@@ -23,7 +23,7 @@ class GoogleLogin extends Component {
     })(document, 'script', 'google-login', () => {
       const params = {
         client_id: clientId,
-        cookiepolicy: cookiePolicy,
+        cookie_policy: cookiePolicy,
         login_hint: loginHint,
         hosted_domain: hostedDomain,
         fetch_basic_profile: fetchBasicProfile,
@@ -58,13 +58,9 @@ class GoogleLogin extends Component {
     }
     if (!this.state.disabled) {
       const auth2 = window.gapi.auth2.getAuthInstance();
-      const { offline, redirectUri, onSuccess, onRequest, fetchBasicProfile, onFailure, prompt, scope, responseType } = this.props;
+      const { offline, onSuccess, onRequest, onFailure, prompt } = this.props;
       const options = {
-        response_type: responseType,
-        redirect_uri: redirectUri,
-        fetch_basic_profile: fetchBasicProfile,
         prompt,
-        scope,
       };
       onRequest();
       if (offline) {
@@ -167,7 +163,6 @@ GoogleLogin.propTypes = {
   autoLoad: PropTypes.bool,
   disabled: PropTypes.bool,
   discoveryDocs: PropTypes.array,
-  responseType: PropTypes.string,
   uxMode: PropTypes.string,
   isSignedIn: PropTypes.bool,
 };
@@ -176,7 +171,6 @@ GoogleLogin.defaultProps = {
   tag: 'button',
   buttonText: 'Login with Google',
   scope: 'profile email',
-  responseType: 'permission',
   prompt: '',
   cookiePolicy: 'single_host_origin',
   fetchBasicProfile: true,
