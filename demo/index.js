@@ -42,8 +42,8 @@ ReactDOM.render(
         onSuccess={success}
         onFailure={error}
         onRequest={loading}
-        offline={true}
         approvalPrompt="force"
+        responseType="code"
         // uxMode="redirect"
         // redirectUri="http://google.com"
         // disabled
