@@ -71,7 +71,8 @@ declare namespace ReactGoogleLogin {
     readonly prompt?: string,
     readonly children?: ReactNode,
     readonly style?: CSSProperties,
-    readonly tag?: string;
+    readonly tag?: string,
+    readonly disabled?: boolean;
   }
 
   export default class GoogleLogin extends Component<GoogleLoginProps, {}> {
