@@ -61,7 +61,6 @@ declare namespace ReactGoogleLogin {
     readonly clientId: string,
     readonly onRequest?: () => void,
     readonly buttonText?: string,
-    readonly offline?: boolean,
     readonly scope?: string,
     readonly className?: string,
     readonly redirectUri?: string,

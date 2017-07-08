@@ -30,9 +30,9 @@ ReactDOM.render(
 ```
 ## onSuccess callback
 
-If offline is false callback will return the GoogleAuth object.
+If responseType is not 'code', callback will return the GoogleAuth object.
 
-If offline is true callback will return the offline token for use on your server.
+If responseType is 'code', callback will return the offline token for use on your server.
 
 If you use the hostedDomain param, make sure to validate the id_token (a JSON web token) returned by Google on your backend server:
  1. In the `responseGoogle(response) {...}` callback function, you should get back a standard JWT located at `response.hg.id_token`
@@ -47,11 +47,11 @@ If you use the hostedDomain param, make sure to validate the id_token (a JSON we
 |    clientId  |  string  |               REQUIRED               |                  |
 | hostedDomain |  string  |                   -                  |                  |
 |     scope    |  string  |             profile email            |                  |
-| responseType |  string  |              permission              | A list of space-delimited response type. The possible values are: id_token, to retrieve an ID Token permission (or token), to retrieve an Access Token code, to retrieve an Authorization Code             |
+| responseType |  string  |              permission              | Can be either space-delimited 'id_token', to retrieve an ID Token + 'permission' (or 'token'), to retrieve an Access Token, or 'code', to retrieve an Authorization Code.
+             |
 |   onSuccess  | function |               REQUIRED               |                  |
 |   onFailure  | function |               REQUIRED               |                  |
 |   onRequest  | function |                   -                  |                  |
-|    offline   |  boolean |                 false                |                  |
 |   buttonText |  string  |             Login with Google        |                  |
 |   className  |  string  |                   -                  |                  |
 |    style     |  object  |                   -                  |                  |
@@ -95,7 +95,6 @@ You can also pass child components such as icons into the button component.
     clientId={'658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'}
     onSuccess={responseGoogle}
     onFailure={responseGoogle}
-    offline={false}
   >
     <FontAwesome
       name='google'

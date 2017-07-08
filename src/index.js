@@ -57,7 +57,7 @@ class GoogleLogin extends Component {
     }
     if (!this.state.disabled) {
       const auth2 = window.gapi.auth2.getAuthInstance();
-      const { offline, redirectUri, onSuccess, onRequest, fetchBasicProfile, onFailure, prompt, scope, responseType } = this.props;
+      const { redirectUri, onSuccess, onRequest, fetchBasicProfile, onFailure, prompt, scope, responseType } = this.props;
       const options = {
         response_type: responseType,
         redirect_uri: redirectUri,
@@ -66,7 +66,7 @@ class GoogleLogin extends Component {
         scope,
       };
       onRequest();
-      if (offline) {
+      if (responseType === 'code') {
         auth2.grantOfflineAccess(options)
           .then(
             res => onSuccess(res),
@@ -150,7 +150,6 @@ GoogleLogin.propTypes = {
   clientId: PropTypes.string.isRequired,
   onRequest: PropTypes.func,
   buttonText: PropTypes.string,
-  offline: PropTypes.bool,
   scope: PropTypes.string,
   className: PropTypes.string,
   redirectUri: PropTypes.string,
@@ -185,7 +184,6 @@ GoogleLogin.defaultProps = {
     opacity: 0.6,
   },
   onRequest: () => {},
-  offline: false,
 };
 
 export default GoogleLogin;
