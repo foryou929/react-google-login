@@ -48,7 +48,6 @@ If you use the hostedDomain param, make sure to validate the id_token (a JSON we
 | hostedDomain |  string  |                   -                  |                  |
 |     scope    |  string  |             profile email            |                  |
 | responseType |  string  |              permission              | Can be either space-delimited 'id_token', to retrieve an ID Token + 'permission' (or 'token'), to retrieve an Access Token, or 'code', to retrieve an Authorization Code.
-             |
 |   onSuccess  | function |               REQUIRED               |                  |
 |   onFailure  | function |               REQUIRED               |                  |
 |   onRequest  | function |                   -                  |                  |
