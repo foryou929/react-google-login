@@ -68,6 +68,7 @@ declare namespace ReactGoogleLogin {
     readonly loginHint?: string,
     readonly hostedDomain?: string,
     readonly prompt?: string,
+    readonly responseType?: string,
     readonly children?: ReactNode,
     readonly style?: CSSProperties,
     readonly tag?: string,
