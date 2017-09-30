@@ -115,6 +115,18 @@ onFailure callback is called when either initialization or a signin attempt fail
 |   error       |  string  |           Error code                 |
 |   details     |  string  |      Detailed error description      |
 
+## Logout 
+Use GoogleLogout button to logout the user from google.
+
+```js
+    import GoogleLogout from 'react-google-login';
+    <GoogleLogout
+      buttonText="Logout"
+      onLogoutSuccess={logout}
+    >
+    </GoogleLogout>
+  ```
+
 Common error codes include:
 
 | error code | description |
