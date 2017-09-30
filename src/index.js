@@ -10,7 +10,7 @@ class GoogleLogin extends Component {
     };
   }
   componentDidMount() {
-    const { clientId, cookiePolicy, loginHint, hostedDomain, autoLoad, isSignedIn, fetchBasicProfile, redirectUri, discoveryDocs, onFailure, uxMode } = this.props;
+    const { clientId, cookiePolicy, loginHint, hostedDomain, autoLoad, isSignedIn, fetchBasicProfile, redirectUri, discoveryDocs, onFailure, uxMode, scope } = this.props;
     ((d, s, id, cb) => {
       const element = d.getElementsByTagName(s)[0];
       const fjs = element;
@@ -23,13 +23,14 @@ class GoogleLogin extends Component {
     })(document, 'script', 'google-login', () => {
       const params = {
         client_id: clientId,
-        cookiepolicy: cookiePolicy,
+        cookie_policy: cookiePolicy,
         login_hint: loginHint,
         hosted_domain: hostedDomain,
         fetch_basic_profile: fetchBasicProfile,
         discoveryDocs,
         ux_mode: uxMode,
         redirect_uri: redirectUri,
+        scope,
       };
       window.gapi.load('auth2', () => {
         this.setState({
@@ -42,7 +43,7 @@ class GoogleLogin extends Component {
                 this._handleSigninSuccess(res.currentUser.get());
               }
             },
-            err => onFailure(err)
+            err => onFailure(err),
           );
         }
         if (autoLoad) {
@@ -57,27 +58,15 @@ class GoogleLogin extends Component {
     }
     if (!this.state.disabled) {
       const auth2 = window.gapi.auth2.getAuthInstance();
-      const { redirectUri, onSuccess, onRequest, fetchBasicProfile, onFailure, prompt, scope, responseType } = this.props;
+      const { onSuccess, onRequest, onFailure, prompt, responseType } = this.props;
       const options = {
-        response_type: responseType,
-        redirect_uri: redirectUri,
-        fetch_basic_profile: fetchBasicProfile,
         prompt,
-        scope,
       };
       onRequest();
       if (responseType === 'code') {
-        auth2.grantOfflineAccess(options)
-          .then(
-            res => onSuccess(res),
-            err => onFailure(err)
-          );
+        auth2.grantOfflineAccess(options).then(res => onSuccess(res), err => onFailure(err));
       } else {
-        auth2.signIn(options)
-          .then(
-            res => this._handleSigninSuccess(res),
-            err => onFailure(err)
-          );
+        auth2.signIn(options).then(res => this._handleSigninSuccess(res), err => onFailure(err));
       }
     }
   }
@@ -133,12 +122,14 @@ class GoogleLogin extends Component {
       return styleProp;
     })();
     const googleLoginButton = React.createElement(
-      tag, {
+      tag,
+      {
         onClick: this.signIn,
         style: defaultStyle,
         disabled,
         className,
-      }, children ? children : buttonText
+      },
+      children ? children : buttonText,
     );
     return googleLoginButton;
   }
@@ -165,16 +156,15 @@ GoogleLogin.propTypes = {
   autoLoad: PropTypes.bool,
   disabled: PropTypes.bool,
   discoveryDocs: PropTypes.array,
-  responseType: PropTypes.string,
   uxMode: PropTypes.string,
   isSignedIn: PropTypes.bool,
+  responseType: PropTypes.string,
 };
 
 GoogleLogin.defaultProps = {
   tag: 'button',
   buttonText: 'Login with Google',
   scope: 'profile email',
-  responseType: 'permission',
   prompt: '',
   cookiePolicy: 'single_host_origin',
   fetchBasicProfile: true,
