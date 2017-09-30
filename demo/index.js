@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // import FontAwesome from 'react-fontawesome';
 import GoogleLogin from '../src/index';
+import GoogleLogout from '../src/logout';
 // import GoogleLogin from '../dist/google-login';
 
 const success = (response) => {
@@ -16,43 +17,54 @@ const loading = () => {
   console.log('loading');
 };
 
+const logout = () => {
+  console.log('logout');
+};
+
+
 ReactDOM.render(
   <div>
     <GoogleLogin
-        clientId='658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'
-        scope='https://www.googleapis.com/auth/analytics'
-        onSuccess={success}
-        onFailure={error}
-        onRequest={loading}
-        offline={false}
-        approvalPrompt="force"
-        responseType="id_token"
-        isSignedIn={true}
-        // disabled
-        // prompt="consent"
-        // className='button'
-        // style={{ color: 'red' }}
+      clientId='658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'
+      scope='https://www.googleapis.com/auth/analytics'
+      onSuccess={success}
+      onFailure={error}
+      onRequest={loading}
+      offline={false}
+      approvalPrompt="force"
+      responseType="id_token"
+      isSignedIn={true}
+    // disabled
+    // prompt="consent"
+    // className='button'
+    // style={{ color: 'red' }}
     >
       <span>Analytics</span>
     </GoogleLogin>
 
     <GoogleLogin
-        clientId='658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'
-        scope='https://www.googleapis.com/auth/adwords'
-        onSuccess={success}
-        onFailure={error}
-        onRequest={loading}
-        approvalPrompt="force"
-        responseType="code"
-        // uxMode="redirect"
-        // redirectUri="http://google.com"
-        // disabled
-        // prompt="consent"
-        // className='button'
-        // style={{ color: 'red' }}
+      clientId='658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'
+      scope='https://www.googleapis.com/auth/adwords'
+      onSuccess={success}
+      onFailure={error}
+      onRequest={loading}
+      approvalPrompt="force"
+      responseType="code"
+    // uxMode="redirect"
+    // redirectUri="http://google.com"
+    // disabled
+    // prompt="consent"
+    // className='button'
+    // style={{ color: 'red' }}
     >
       <span>Adwords</span>
     </GoogleLogin>
+
+    <GoogleLogout
+      buttonText="Logout"
+      onLogoutSuccess={logout}
+    >
+    </GoogleLogout>
   </div>,
   document.getElementById('google-login')
 );

@@ -51,6 +51,16 @@ class GoogleLogin extends Component {
       });
     });
   }
+
+  signOut() {
+    const auth2 = window.gapi.auth2.getAuthInstance();
+    if (auth2 != null) {
+      auth2.signOut().then(() => {
+        console.log("User loggout out");
+      });
+    }
+  }
+
   signIn(e) {
     if (e) {
       e.preventDefault(); // to prevent submit if used within form
@@ -69,18 +79,20 @@ class GoogleLogin extends Component {
       if (responseType === 'code') {
         auth2.grantOfflineAccess(options)
           .then(
-            res => onSuccess(res),
-            err => onFailure(err)
+          res => onSuccess(res),
+          err => onFailure(err)
           );
       } else {
         auth2.signIn(options)
           .then(
-            res => this._handleSigninSuccess(res),
-            err => onFailure(err)
+          res => this._handleSigninSuccess(res),
+          err => onFailure(err)
           );
       }
     }
   }
+
+
   _handleSigninSuccess(res) {
     /*
       offer renamed response keys to names that match use
@@ -183,7 +195,7 @@ GoogleLogin.defaultProps = {
   disabledStyle: {
     opacity: 0.6,
   },
-  onRequest: () => {},
+  onRequest: () => { },
 };
 
 export default GoogleLogin;
