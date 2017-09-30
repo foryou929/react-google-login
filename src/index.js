@@ -92,7 +92,7 @@ class GoogleLogin extends Component {
   }
 
   render() {
-    const { tag, style, className, disabledStyle, buttonText, children } = this.props
+    const { tag, type, style, className, disabledStyle, buttonText, children } = this.props
     const disabled = this.state.disabled || this.props.disabled
     const initialStyle = {
       display: 'inline-block',
@@ -126,6 +126,7 @@ class GoogleLogin extends Component {
       {
         onClick: this.signIn,
         style: defaultStyle,
+        type,
         disabled,
         className
       },
@@ -158,10 +159,12 @@ GoogleLogin.propTypes = {
   discoveryDocs: PropTypes.array,
   uxMode: PropTypes.string,
   isSignedIn: PropTypes.bool,
-  responseType: PropTypes.string
+  responseType: PropTypes.string,
+  type: PropTypes.string
 }
 
 GoogleLogin.defaultProps = {
+  type: 'button',
   tag: 'button',
   buttonText: 'Login with Google',
   scope: 'profile email',
