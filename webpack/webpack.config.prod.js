@@ -3,10 +3,12 @@ const webpack = require('webpack')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const uglifyConf = require('./uglify.json')
 
+const fileRoot = process.cwd()
+
 module.exports = {
   entry: ['./src/index.js'],
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(fileRoot, 'dist'),
     filename: 'google-login.js',
     libraryTarget: 'umd',
     library: 'GoogleLogin'
