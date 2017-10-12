@@ -3,7 +3,7 @@
 // Definitions by: Ruslan Ibragimov <https://github.com/IRus>
 import {Component, ReactNode, CSSProperties} from 'react';
 
-declare namespace ReactGoogleLogin {
+export namespace ReactGoogleLogin {
 
   interface AuthResponse {
     readonly access_token: string;
@@ -75,8 +75,8 @@ declare namespace ReactGoogleLogin {
     readonly disabled?: boolean;
   }
 
-  export default class GoogleLogin extends Component<GoogleLoginProps, {}> {
+  export class GoogleLogin extends Component<GoogleLoginProps, {}> {
   }
 }
 
-export = ReactGoogleLogin;
+export default ReactGoogleLogin.GoogleLogin;

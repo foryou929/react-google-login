@@ -1,21 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
 // import FontAwesome from 'react-fontawesome';
 import { GoogleLogin, GoogleLogout } from '../src/index';
 
 // import GoogleLogin from '../dist/google-login';
 
-const success = (response) => {
-  console.log(response);
-};
+const success = response => {
+  console.log(response)
+}
 
-const error = (response) => {
-  console.error(response);
-};
+const error = response => {
+  console.error(response)
+}
 
 const loading = () => {
-  console.log('loading');
-};
+  console.log('loading')
+}
 
 const logout = () => {
   console.log('logout');
@@ -25,7 +25,7 @@ const logout = () => {
 ReactDOM.render(
   <div>
     <GoogleLogin
-      clientId='658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'
+      clientId='978118182047-asotl763greu49j754bbiap2js2oc4ki.apps.googleusercontent.com'
       scope='https://www.googleapis.com/auth/analytics'
       onSuccess={success}
       onFailure={error}
@@ -43,7 +43,7 @@ ReactDOM.render(
     </GoogleLogin>
 
     <GoogleLogin
-      clientId='658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'
+      clientId='978118182047-asotl763greu49j754bbiap2js2oc4ki.apps.googleusercontent.com'
       scope='https://www.googleapis.com/auth/adwords'
       onSuccess={success}
       onFailure={error}
@@ -67,4 +67,4 @@ ReactDOM.render(
     </GoogleLogout>
   </div>,
   document.getElementById('google-login')
-);
+)
