@@ -25,7 +25,7 @@ const logout = () => {
 ReactDOM.render(
   <div>
     <GoogleLogin
-      clientId='978118182047-asotl763greu49j754bbiap2js2oc4ki.apps.googleusercontent.com'
+      clientId='658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'
       scope='https://www.googleapis.com/auth/analytics'
       onSuccess={success}
       onFailure={error}
@@ -43,7 +43,7 @@ ReactDOM.render(
     </GoogleLogin>
 
     <GoogleLogin
-      clientId='978118182047-asotl763greu49j754bbiap2js2oc4ki.apps.googleusercontent.com'
+      clientId='658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'
       scope='https://www.googleapis.com/auth/adwords'
       onSuccess={success}
       onFailure={error}
