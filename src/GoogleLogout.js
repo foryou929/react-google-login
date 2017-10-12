@@ -29,7 +29,6 @@ class GoogleLogout extends Component {
   }
 
   signOut() {
-    console.log("signout called");
     const auth2 = window.gapi.auth2.getAuthInstance();
     if (auth2 != null) {
       auth2.signOut().then(() => {
