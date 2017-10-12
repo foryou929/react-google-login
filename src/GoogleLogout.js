@@ -1,46 +1,45 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class GoogleLogout extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       disabled: true,
-    };
-    this.signOut = this.signOut.bind(this);
+    }
+    this.signOut = this.signOut.bind(this)
   }
   componentDidMount() {
     ((d, s, id, cb) => {
-      const element = d.getElementsByTagName(s)[0];
-      const fjs = element;
-      let js = element;
-      js = d.createElement(s);
-      js.id = id;
-      js.src = '//apis.google.com/js/client:platform.js';
-      fjs.parentNode.insertBefore(js, fjs);
-      js.onload = cb;
+      const element = d.getElementsByTagName(s)[0]
+      const fjs = element
+      let js = element
+      js = d.createElement(s)
+      js.id = id
+      js.src = '//apis.google.com/js/client:platform.js'
+      fjs.parentNode.insertBefore(js, fjs)
+      js.onload = cb
     })(document, 'script', 'google-login', () => {
       window.gapi.load('auth2', () => {
         this.setState({
           disabled: false,
-        });
-      });
-    });
+        })
+      })
+    })
   }
 
   signOut() {
-    const auth2 = window.gapi.auth2.getAuthInstance();
+    const auth2 = window.gapi.auth2.getAuthInstance()
     if (auth2 != null) {
       auth2.signOut().then(() => {
-        console.log("User loggout out");
-        this.props.onLogoutSuccess();
-      });
+        this.props.onLogoutSuccess()
+      })
     }
   }
 
   render() {
-    const { tag, style, className, disabledStyle, buttonText, children } = this.props;
-    const disabled = this.state.disabled || this.props.disabled;
+    const { tag, style, className, disabledStyle, buttonText, children } = this.props
+    const disabled = this.state.disabled || this.props.disabled
     const initialStyle = {
       display: 'inline-block',
       background: '#d14836',
@@ -53,30 +52,30 @@ class GoogleLogout extends Component {
       fontSize: 16,
       fontWeight: 'bold',
       fontFamily: 'Roboto',
-    };
+    }
     const styleProp = (() => {
       if (style) {
-        return style;
+        return style
       } else if (className && !style) {
-        return {};
+        return {}
       }
-      return initialStyle;
-    })();
+      return initialStyle
+    })()
     const defaultStyle = (() => {
       if (disabled) {
-        return Object.assign({}, styleProp, disabledStyle);
+        return Object.assign({}, styleProp, disabledStyle)
       }
-      return styleProp;
-    })();
+      return styleProp
+    })()
     const googleLoginButton = React.createElement(
       tag, {
         onClick: this.signOut,
         style: defaultStyle,
         disabled,
         className,
-      }, children ? children : buttonText
-    );
-    return googleLoginButton;
+      }, children || buttonText
+    )
+    return googleLoginButton
   }
 }
 
@@ -87,7 +86,7 @@ GoogleLogout.propTypes = {
   style: PropTypes.object,
   disabledStyle: PropTypes.object,
   disabled: PropTypes.bool,
-};
+}
 
 GoogleLogout.defaultProps = {
   tag: 'button',
@@ -97,6 +96,6 @@ GoogleLogout.defaultProps = {
     opacity: 0.6,
   },
   onRequest: () => { },
-};
+}
 
-export default GoogleLogout;
+export default GoogleLogout
