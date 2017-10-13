@@ -40,6 +40,18 @@ If you use the hostedDomain param, make sure to validate the id_token (a JSON we
  3. Have your server decode the id_token by using a common JWT library such as [jwt-simple](https://github.com/hokaccha/node-jwt-simple) or by sending a GET request to `https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=YOUR_TOKEN_HERE`
  4. The returned decoded token should have an `hd` key equal to the hosted domain you'd like to restrict to.
 
+
+## Logout 
+Use GoogleLogout button to logout the user from google.
+
+```js
+    import GoogleLogout from 'react-google-login';
+    <GoogleLogout
+      buttonText="Logout"
+      onLogoutSuccess={logout}
+    >
+    </GoogleLogout>
+  ```
 ## Parameters
 
 |    params    |   value  |             default value            |   description    |
@@ -113,6 +125,8 @@ onFailure callback is called when either initialization or a signin attempt fail
 |:-------------:|:--------:|:------------------------------------:|
 |   error       |  string  |           Error code                 |
 |   details     |  string  |      Detailed error description      |
+
+
 
 Common error codes include:
 

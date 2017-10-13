@@ -1,19 +1,16 @@
 import { renderComponent, expect } from './test_helper';
-import { GoogleLogin } from '../src/index';
+import { GoogleLogout } from '../src/index';
 
-describe('Google Login', () => {
-    const defaultText = 'Login with Google';
+describe('Google Logout', () => {
+    const defaultText = 'Logout';
     let component;
     let propsObj;
 
     describe('With default props', () => {
         beforeEach(() => {
             propsObj = {
-                onSuccess(response) { },
-                onFailure(response) { },
-                clientId: '658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'
             };
-            component = renderComponent(GoogleLogin, propsObj);
+            component = renderComponent(GoogleLogout, propsObj);
         });
 
         it('shows the button', () => {
@@ -41,12 +38,9 @@ describe('Google Login', () => {
 
         beforeEach(() => {
             propsObj = {
-                onSuccess(response) { },
-                onFailure(response) { },
-                clientId: '658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com',
                 buttonText
             };
-            component = renderComponent(GoogleLogin, propsObj);
+            component = renderComponent(GoogleLogout, propsObj);
         });
 
         it('shows the button', () => {
@@ -71,12 +65,9 @@ describe('Google Login', () => {
 
         beforeEach(() => {
             propsObj = {
-                onSuccess(response) { },
-                onFailure(response) { },
-                clientId: '658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com',
                 className
             };
-            component = renderComponent(GoogleLogin, propsObj);
+            component = renderComponent(GoogleLogout, propsObj);
         });
 
         it('shows the button', () => {
@@ -102,13 +93,10 @@ describe('Google Login', () => {
 
         beforeEach(() => {
             propsObj = {
-                onSuccess(response) { },
-                onFailure(response) { },
-                clientId: '658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com',
                 className,
                 style,
             };
-            component = renderComponent(GoogleLogin, propsObj);
+            component = renderComponent(GoogleLogout, propsObj);
         });
 
         it('shows the button', () => {
@@ -133,13 +121,10 @@ describe('Google Login', () => {
 
         beforeEach(() => {
             propsObj = {
-                onSuccess(response) { },
-                onFailure(response) { },
-                clientId: '658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com',
                 children,
                 buttonText,
             };
-            component = renderComponent(GoogleLogin, propsObj);
+            component = renderComponent(GoogleLogout, propsObj);
         });
 
         it('shows the button', () => {
@@ -175,12 +160,9 @@ describe('Google Login', () => {
 
         beforeEach(() => {
             propsObj = {
-                onSuccess(response) { },
-                onFailure(response) { },
-                clientId: '658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com',
                 style
             };
-            component = renderComponent(GoogleLogin, propsObj);
+            component = renderComponent(GoogleLogout, propsObj);
         });
 
         it('shows the button', () => {
@@ -198,12 +180,9 @@ describe('Google Login', () => {
     describe('With handles custom tag prop', () => {
         beforeEach(() => {
             propsObj = {
-                onSuccess(response) { },
-                onFailure(response) { },
                 tag: 'div',
-                clientId: '658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com',
             };
-            component = renderComponent(GoogleLogin, propsObj);
+            component = renderComponent(GoogleLogout, propsObj);
         });
 
         it('shows the button', () => {
