@@ -1,4 +1,2 @@
-import GoogleLogin from './GoogleLogin'
-import GoogleLogout from './GoogleLogout'
-
-export { GoogleLogin, GoogleLogout }
+export { default as GoogleLogin } from './GoogleLogin'
+export { default as GoogleLogout } from './GoogleLogout'
