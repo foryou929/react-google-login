@@ -12,7 +12,7 @@ npm install react-google-login
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import GoogleLogin from 'react-google-login';
+import { GoogleLogin } from 'react-google-login';
 
 const responseGoogle = (response) => {
   console.log(response);
@@ -45,7 +45,7 @@ If you use the hostedDomain param, make sure to validate the id_token (a JSON we
 Use GoogleLogout button to logout the user from google.
 
 ```js
-    import GoogleLogout from 'react-google-login';
+    import { GoogleLogout } from 'react-google-login';
     <GoogleLogout
       buttonText="Logout"
       onLogoutSuccess={logout}
