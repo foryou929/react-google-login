@@ -12,7 +12,10 @@ npm install react-google-login
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
+import GoogleLogin from 'react-google-login';
+// or
 import { GoogleLogin } from 'react-google-login';
+
 
 const responseGoogle = (response) => {
   console.log(response);
@@ -41,7 +44,7 @@ If you use the hostedDomain param, make sure to validate the id_token (a JSON we
  4. The returned decoded token should have an `hd` key equal to the hosted domain you'd like to restrict to.
 
 
-## Logout 
+## Logout
 Use GoogleLogout button to logout the user from google.
 
 ```js
