@@ -73,6 +73,8 @@ export namespace ReactGoogleLogin {
     readonly style?: CSSProperties,
     readonly tag?: string,
     readonly disabled?: boolean;
+    readonly autoLoad?: boolean;
+    readonly uxMode?: string;
   }
 
   export class GoogleLogin extends Component<GoogleLoginProps, {}> {
