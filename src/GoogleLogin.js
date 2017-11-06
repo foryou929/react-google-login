@@ -10,7 +10,7 @@ class GoogleLogin extends Component {
     }
   }
   componentDidMount() {
-    const { clientId, cookiePolicy, loginHint, hostedDomain, autoLoad, isSignedIn, fetchBasicProfile, redirectUri, discoveryDocs, onFailure, uxMode, scope } = this.props
+    const { clientId, cookiePolicy, loginHint, hostedDomain, autoLoad, isSignedIn, fetchBasicProfile, redirectUri, discoveryDocs, onFailure, uxMode, scope, responseType } = this.props
       ; ((d, s, id, cb) => {
         const element = d.getElementsByTagName(s)[0]
         const fjs = element
@@ -32,6 +32,11 @@ class GoogleLogin extends Component {
           redirect_uri: redirectUri,
           scope
         }
+
+        if (responseType === 'code') {
+          params.access_type = 'offline';
+        }
+
         window.gapi.load('auth2', () => {
           this.setState({
             disabled: false
