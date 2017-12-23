@@ -78,22 +78,22 @@ class GoogleLogout extends Component {
 }
 
 GoogleLogout.propTypes = {
+  tag: PropTypes.string,
   buttonText: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.node,
   style: PropTypes.object,
   disabledStyle: PropTypes.object,
   disabled: PropTypes.bool,
+  onLogoutSuccess: PropTypes.func,
 }
 
 GoogleLogout.defaultProps = {
   tag: 'button',
   buttonText: 'Logout',
-  responseType: 'permission',
   disabledStyle: {
     opacity: 0.6,
   },
-  onRequest: () => { },
 }
 
 export default GoogleLogout
