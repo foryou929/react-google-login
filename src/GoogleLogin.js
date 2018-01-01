@@ -5,6 +5,7 @@ class GoogleLogin extends Component {
   constructor(props) {
     super(props)
     this.signIn = this.signIn.bind(this)
+    this.enableButton = this.enableButton.bind(this)
     this.state = {
       disabled: true
     }
@@ -38,9 +39,7 @@ class GoogleLogin extends Component {
         }
 
         window.gapi.load('auth2', () => {
-          this.setState({
-            disabled: false
-          })
+          this.enableButton()
           if (!window.gapi.auth2.getAuthInstance()) {
             window.gapi.auth2.init(params).then(
               res => {
@@ -56,6 +55,14 @@ class GoogleLogin extends Component {
           }
         })
       })
+  }
+  componentWillUnmount() {
+    this.enableButton = () => {}
+  }
+  enableButton() {
+    this.setState({
+      disabled: false
+    })
   }
   signIn(e) {
     if (e) {
