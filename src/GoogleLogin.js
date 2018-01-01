@@ -34,7 +34,7 @@ class GoogleLogin extends Component {
         }
 
         if (responseType === 'code') {
-          params.access_type = 'offline';
+          params.access_type = 'offline'
         }
 
         window.gapi.load('auth2', () => {
