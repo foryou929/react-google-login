@@ -19,7 +19,12 @@ class GoogleLogin extends Component {
         js = d.createElement(s)
         js.id = id
         js.src = '//apis.google.com/js/client:platform.js'
-        fjs.parentNode.insertBefore(js, fjs)
+        if(fjs && fjs.parentNode) {
+          fjs.parentNode.insertBefore(js, fjs)
+        }
+        else {
+          d.head.appendChild(js)
+        }
         js.onload = cb
       })(document, 'script', 'google-login', () => {
         const params = {
