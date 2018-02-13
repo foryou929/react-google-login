@@ -11,7 +11,7 @@ class GoogleLogin extends Component {
     }
   }
   componentDidMount() {
-    const { clientId, cookiePolicy, loginHint, hostedDomain, autoLoad, isSignedIn, fetchBasicProfile, redirectUri, discoveryDocs, onFailure, uxMode, scope, responseType } = this.props
+    const { clientId, cookiePolicy, loginHint, hostedDomain, autoLoad, isSignedIn, fetchBasicProfile, redirectUri, discoveryDocs, onFailure, uxMode, scope, responseType, accessType } = this.props
       ; ((d, s, id, cb) => {
         const element = d.getElementsByTagName(s)[0]
         const fjs = element
@@ -31,11 +31,8 @@ class GoogleLogin extends Component {
           discoveryDocs,
           ux_mode: uxMode,
           redirect_uri: redirectUri,
-          scope
-        }
-
-        if (responseType === 'code') {
-          params.access_type = 'offline'
+          scope,
+          access_type: accessType
         }
 
         window.gapi.load('auth2', () => {
@@ -172,7 +169,8 @@ GoogleLogin.propTypes = {
   uxMode: PropTypes.string,
   isSignedIn: PropTypes.bool,
   responseType: PropTypes.string,
-  type: PropTypes.string
+  type: PropTypes.string,
+  accessType: PropTypes.string,
 }
 
 GoogleLogin.defaultProps = {
@@ -180,6 +178,7 @@ GoogleLogin.defaultProps = {
   tag: 'button',
   buttonText: 'Login with Google',
   scope: 'profile email',
+  accessType: 'online',
   prompt: '',
   cookiePolicy: 'single_host_origin',
   fetchBasicProfile: true,

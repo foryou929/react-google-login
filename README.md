@@ -63,6 +63,7 @@ Use GoogleLogout button to logout the user from google.
 | hostedDomain |  string  |                   -                  |                  |
 |     scope    |  string  |             profile email            |                  |
 | responseType |  string  |              permission              | Can be either space-delimited 'id_token', to retrieve an ID Token + 'permission' (or 'token'), to retrieve an Access Token, or 'code', to retrieve an Authorization Code.
+| accessType   |  string  |              online                  | Can be either 'online' or 'offline'. Use offline with responseType 'code' to retrieve a refresh token |
 |   onSuccess  | function |               REQUIRED               |                  |
 |   onFailure  | function |               REQUIRED               |                  |
 |   onRequest  | function |                   -                  |                  |
