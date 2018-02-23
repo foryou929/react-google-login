@@ -15,7 +15,14 @@
     "type": "git",
     "url": "git+https://github.com/anthonyjgrove/react-google-login.git"
   },
-  "keywords": ["react", "reactjs", "react-component", "google-login", "google-oAuth2", "google-oAuth"],
+  "keywords": [
+    "react",
+    "reactjs",
+    "react-component",
+    "google-login",
+    "google-oAuth2",
+    "google-oAuth"
+  ],
   "author": {
     "name": "Anthony Grove",
     "email": "anthony@th3legend.com"
@@ -76,7 +83,10 @@
         ]
       },
       "test": {
-        "presets": ["es2015", "react"]
+        "presets": [
+          "es2015",
+          "react"
+        ]
       }
     }
   }

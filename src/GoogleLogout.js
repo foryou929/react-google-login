@@ -10,13 +10,14 @@ class GoogleLogout extends Component {
     this.signOut = this.signOut.bind(this)
   }
   componentDidMount() {
+    const { jsSrc } = this.props;
     ((d, s, id, cb) => {
       const element = d.getElementsByTagName(s)[0]
       const fjs = element
       let js = element
       js = d.createElement(s)
       js.id = id
-      js.src = '//apis.google.com/js/client:platform.js'
+      js.src = jsSrc || '//apis.google.com/js/client:platform.js'
       fjs.parentNode.insertBefore(js, fjs)
       js.onload = cb
     })(document, 'script', 'google-login', () => {
@@ -78,6 +79,7 @@ class GoogleLogout extends Component {
 }
 
 GoogleLogout.propTypes = {
+  jsSrc: PropTypes.string,
   buttonText: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.node,

@@ -11,14 +11,14 @@ class GoogleLogin extends Component {
     }
   }
   componentDidMount() {
-    const { clientId, cookiePolicy, loginHint, hostedDomain, autoLoad, isSignedIn, fetchBasicProfile, redirectUri, discoveryDocs, onFailure, uxMode, scope, responseType } = this.props
+    const { clientId, jsSrc, cookiePolicy, loginHint, hostedDomain, autoLoad, isSignedIn, fetchBasicProfile, redirectUri, discoveryDocs, onFailure, uxMode, scope, responseType } = this.props
       ; ((d, s, id, cb) => {
         const element = d.getElementsByTagName(s)[0]
         const fjs = element
         let js = element
         js = d.createElement(s)
         js.id = id
-        js.src = '//apis.google.com/js/client:platform.js'
+        js.src = jsSrc || '//apis.google.com/js/client:platform.js'
         fjs.parentNode.insertBefore(js, fjs)
         js.onload = cb
       })(document, 'script', 'google-login', () => {
@@ -152,6 +152,7 @@ GoogleLogin.propTypes = {
   onSuccess: PropTypes.func.isRequired,
   onFailure: PropTypes.func.isRequired,
   clientId: PropTypes.string.isRequired,
+  jsSrc: PropTypes.string,
   onRequest: PropTypes.func,
   buttonText: PropTypes.string,
   scope: PropTypes.string,

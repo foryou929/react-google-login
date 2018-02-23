@@ -59,6 +59,7 @@ export interface GoogleLoginProps {
   readonly onSuccess: (response: GoogleLoginResponse | GoogleLoginResponseOffline) => void,
   readonly onFailure: (error: any) => void,
   readonly clientId: string,
+  readonly jsSrc?: string,
   readonly onRequest?: () => void,
   readonly buttonText?: string,
   readonly scope?: string,
