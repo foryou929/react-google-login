@@ -60,7 +60,8 @@ Use GoogleLogout button to logout the user from google.
 |    params    |   value  |             default value            |   description    |
 |:------------:|:--------:|:------------------------------------:|:----------------:|
 |    clientId  |  string  |               REQUIRED               |                  |
-| hostedDomain |  string  |                   -                  |                  |
+|    jsSrc     |  string  |                   -                  |                  |
+| hostedDomain |  string  |                   -                  | URL of the Javascript file normally hosted by Google |
 |     scope    |  string  |             profile email            |                  |
 | responseType |  string  |              permission              | Can be either space-delimited 'id_token', to retrieve an ID Token + 'permission' (or 'token'), to retrieve an Access Token, or 'code', to retrieve an Authorization Code.
 |   onSuccess  | function |               REQUIRED               |                  |

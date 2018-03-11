@@ -24,7 +24,8 @@ class GoogleLogin extends Component {
       onFailure,
       uxMode,
       scope,
-      responseType
+      responseType,
+      jsSrc
     } = this.props
     ;((d, s, id, cb) => {
       const element = d.getElementsByTagName(s)[0]
@@ -32,7 +33,7 @@ class GoogleLogin extends Component {
       let js = element
       js = d.createElement(s)
       js.id = id
-      js.src = '//apis.google.com/js/client:platform.js'
+      js.src = jsSrc
       fjs.parentNode.insertBefore(js, fjs)
       js.onload = cb
     })(document, 'script', 'google-login', () => {
@@ -169,6 +170,7 @@ GoogleLogin.propTypes = {
   onSuccess: PropTypes.func.isRequired,
   onFailure: PropTypes.func.isRequired,
   clientId: PropTypes.string.isRequired,
+  jsSrc: PropTypes.string,
   onRequest: PropTypes.func,
   buttonText: PropTypes.string,
   scope: PropTypes.string,
@@ -205,7 +207,8 @@ GoogleLogin.defaultProps = {
   disabledStyle: {
     opacity: 0.6
   },
-  onRequest: () => {}
+  onRequest: () => {},
+  jsSrc: '//apis.google.com/js/client:platform.js'
 }
 
 export default GoogleLogin
