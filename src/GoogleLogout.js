@@ -5,12 +5,12 @@ class GoogleLogout extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      disabled: true,
+      disabled: true
     }
     this.signOut = this.signOut.bind(this)
   }
   componentDidMount() {
-    ((d, s, id, cb) => {
+    ;((d, s, id, cb) => {
       const element = d.getElementsByTagName(s)[0]
       const fjs = element
       let js = element
@@ -22,7 +22,7 @@ class GoogleLogout extends Component {
     })(document, 'script', 'google-login', () => {
       window.gapi.load('auth2', () => {
         this.setState({
-          disabled: false,
+          disabled: false
         })
       })
     })
@@ -49,7 +49,7 @@ class GoogleLogout extends Component {
       border: '1px solid transparent',
       fontSize: 16,
       fontWeight: 'bold',
-      fontFamily: 'Roboto',
+      fontFamily: 'Roboto'
     }
     const styleProp = (() => {
       if (style) {
@@ -57,22 +57,27 @@ class GoogleLogout extends Component {
       } else if (className && !style) {
         return {}
       }
+
       return initialStyle
     })()
     const defaultStyle = (() => {
       if (disabled) {
         return Object.assign({}, styleProp, disabledStyle)
       }
+
       return styleProp
     })()
     const googleLoginButton = React.createElement(
-      tag, {
+      tag,
+      {
         onClick: this.signOut,
         style: defaultStyle,
         disabled,
-        className,
-      }, children || buttonText
+        className
+      },
+      children || buttonText
     )
+
     return googleLoginButton
   }
 }
@@ -84,16 +89,15 @@ GoogleLogout.propTypes = {
   style: PropTypes.object,
   disabledStyle: PropTypes.object,
   disabled: PropTypes.bool,
+  tag: PropTypes.string
 }
 
 GoogleLogout.defaultProps = {
   tag: 'button',
   buttonText: 'Logout',
-  responseType: 'permission',
   disabledStyle: {
-    opacity: 0.6,
-  },
-  onRequest: () => { },
+    opacity: 0.6
+  }
 }
 
 export default GoogleLogout

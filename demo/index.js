@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 // import FontAwesome from 'react-fontawesome';
 import { GoogleLogout, GoogleLogin } from '../src/index'
 
+const clientId = '617246850621-95f9qhmehd380g2df86pjhrqc84n8nij.apps.googleusercontent.com'
 // import GoogleLogin, { GoogleLogout } from '../dist/google-login'
 
 const success = response => {
@@ -24,7 +25,7 @@ const logout = () => {
 ReactDOM.render(
   <div>
     <GoogleLogin
-      clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+      clientId={clientId}
       scope="https://www.googleapis.com/auth/analytics"
       onSuccess={success}
       onFailure={error}
@@ -42,7 +43,7 @@ ReactDOM.render(
     </GoogleLogin>
 
     <GoogleLogin
-      clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+      clientId={clientId}
       scope="https://www.googleapis.com/auth/adwords"
       onSuccess={success}
       onFailure={error}
