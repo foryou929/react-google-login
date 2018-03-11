@@ -75,6 +75,10 @@ export interface GoogleLoginProps {
   readonly disabled?: boolean;
   readonly autoLoad?: boolean;
   readonly uxMode?: string;
+  readonly disabledStyle?: CSSProperties;
+  readonly fetchBasicProfile?: boolean;
+  readonly isSignedIn?: boolean;
+  readonly type?: string;
 }
 
 export class GoogleLogin extends Component<GoogleLoginProps, {}> {
