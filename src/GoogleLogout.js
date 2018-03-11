@@ -100,7 +100,7 @@ GoogleLogout.defaultProps = {
   disabledStyle: {
     opacity: 0.6
   },
-  jsSrc: ''
+  jsSrc: '//apis.google.com/js/client:platform.js'
 }
 
 export default GoogleLogout
