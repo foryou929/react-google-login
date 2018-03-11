@@ -1,6 +1,6 @@
 {
   "name": "react-google-login",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "description": "A Google Login Component for React",
   "main": "dist/google-login.js",
   "scripts": {
@@ -17,7 +17,14 @@
     "type": "git",
     "url": "git+https://github.com/anthonyjgrove/react-google-login.git"
   },
-  "keywords": ["react", "reactjs", "react-component", "google-login", "google-oAuth2", "google-oAuth"],
+  "keywords": [
+    "react",
+    "reactjs",
+    "react-component",
+    "google-login",
+    "google-oAuth2",
+    "google-oAuth"
+  ],
   "author": {
     "name": "Anthony Grove",
     "email": "anthony@th3legend.com"
@@ -74,7 +81,10 @@
         ]
       },
       "test": {
-        "presets": ["es2015", "react"]
+        "presets": [
+          "es2015",
+          "react"
+        ]
       }
     }
   }
