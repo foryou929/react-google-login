@@ -24,6 +24,7 @@ class GoogleLogin extends Component {
       onFailure,
       uxMode,
       scope,
+      accessType,
       responseType,
       jsSrc
     } = this.props
@@ -46,7 +47,8 @@ class GoogleLogin extends Component {
         discoveryDocs,
         ux_mode: uxMode,
         redirect_uri: redirectUri,
-        scope
+        scope,
+        access_type: accessType
       }
 
       if (responseType === 'code') {
@@ -191,7 +193,8 @@ GoogleLogin.propTypes = {
   uxMode: PropTypes.string,
   isSignedIn: PropTypes.bool,
   responseType: PropTypes.string,
-  type: PropTypes.string
+  type: PropTypes.string,
+  accessType: PropTypes.string
 }
 
 GoogleLogin.defaultProps = {
@@ -199,6 +202,7 @@ GoogleLogin.defaultProps = {
   tag: 'button',
   buttonText: 'Login with Google',
   scope: 'profile email',
+  accessType: 'online',
   prompt: '',
   cookiePolicy: 'single_host_origin',
   fetchBasicProfile: true,
