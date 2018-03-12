@@ -95,7 +95,8 @@ GoogleLogout.propTypes = {
   style: PropTypes.object,
   disabledStyle: PropTypes.object,
   disabled: PropTypes.bool,
-  tag: PropTypes.string
+  tag: PropTypes.string,
+  onLogoutSuccess: PropTypes.func
 }
 
 GoogleLogout.defaultProps = {
