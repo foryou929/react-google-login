@@ -216,7 +216,7 @@ GoogleLogin.defaultProps = {
     opacity: 0.6
   },
   onRequest: () => {},
-  jsSrc: '//apis.google.com/js/client:platform.js'
+  jsSrc: 'https://apis.google.com/js/client:platform.js'
 }
 
 export default GoogleLogin
