@@ -1,6 +1,6 @@
 {
   "name": "react-google-login",
-  "version": "3.0.8",
+  "version": "3.0.9",
   "description": "A Google Login Component for React",
   "main": "dist/google-login.js",
   "scripts": {
@@ -13,18 +13,12 @@
     "lint:fix": "eslint ./src --fix",
     "clean": "rm -rf node_modules dist; rm package-lock.json"
   },
+  "pre-commit": ["test", "lint", "bundle"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/anthonyjgrove/react-google-login.git"
   },
-  "keywords": [
-    "react",
-    "reactjs",
-    "react-component",
-    "google-login",
-    "google-oAuth2",
-    "google-oAuth"
-  ],
+  "keywords": ["react", "reactjs", "react-component", "google-login", "google-oAuth2", "google-oAuth"],
   "author": {
     "name": "Anthony Grove",
     "email": "anthony@th3legend.com"
@@ -55,6 +49,7 @@
     "jquery": "3.2.1",
     "jsdom": "9.12.0",
     "mocha": "3.5.3",
+    "pre-commit": "^1.2.2",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-fontawesome": "1.6.1",
@@ -81,10 +76,7 @@
         ]
       },
       "test": {
-        "presets": [
-          "es2015",
-          "react"
-        ]
+        "presets": ["es2015", "react"]
       }
     }
   }
