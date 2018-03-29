@@ -1,7 +1,6 @@
 // Type definitions for react-google-login v2.5.4
 // Project: https://github.com/anthonyjgrove/react-google-login
 // Definitions by: Ruslan Ibragimov <https://github.com/IRus>
-
 import {Component, ReactNode, CSSProperties} from 'react';
 
 export as namespace ReactGoogleLogin;
