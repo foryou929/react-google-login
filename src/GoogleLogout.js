@@ -41,7 +41,12 @@ class GoogleLogout extends Component {
   }
 
   render() {
-    const { tag, style, className, disabledStyle, buttonText, children } = this.props
+    const { tag, style, className, disabledStyle, buttonText, children, render } = this.props
+
+    if (render) {
+      return render({ onClick: this.signOut })
+    }
+
     const disabled = this.state.disabled || this.props.disabled
     const initialStyle = {
       display: 'inline-block',
@@ -96,7 +101,8 @@ GoogleLogout.propTypes = {
   disabledStyle: PropTypes.object,
   disabled: PropTypes.bool,
   tag: PropTypes.string,
-  onLogoutSuccess: PropTypes.func
+  onLogoutSuccess: PropTypes.func,
+  render: PropTypes.func
 }
 
 GoogleLogout.defaultProps = {
