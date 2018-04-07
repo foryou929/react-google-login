@@ -84,6 +84,7 @@ export interface GoogleLoginProps {
 }
 
 export class GoogleLogin extends Component<GoogleLoginProps, {}> {
+  public signIn(e?: Event): void;
 }
 
 export interface GoogleLogoutProps {
@@ -98,6 +99,7 @@ export interface GoogleLogoutProps {
 }
 
 export class GoogleLogout extends Component<GoogleLogoutProps, {}> {
+  public signOut(): void;
 }
 
 export default GoogleLogin;
