@@ -254,7 +254,7 @@ describe('Google Login', () => {
 })
 
 describe('Google Login Dist', () => {
-  const defaultText = 'Login with Google'
+  const defaultText = 'Sign in with Google'
   let component
   let propsObj
 
