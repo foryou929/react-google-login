@@ -34,6 +34,7 @@ ReactDOM.render(
       approvalPrompt="force"
       responseType="id_token"
       isSignedIn
+      mode="dark"
       // disabled
       // prompt="consent"
       // className='button'
@@ -41,7 +42,8 @@ ReactDOM.render(
     >
       <span>Analytics</span>
     </GoogleLogin>
-
+    <br />
+    <br />
     <GoogleLogin
       clientId={clientId}
       scope="https://www.googleapis.com/auth/adwords"
@@ -59,7 +61,11 @@ ReactDOM.render(
     >
       <span>Adwords</span>
     </GoogleLogin>
-
+    <br />
+    <br />
+    <GoogleLogin onSuccess={success} onFailure={error} clientId={clientId} />
+    <br />
+    <br />
     <GoogleLogout buttonText="Logout" onLogoutSuccess={logout} />
   </div>,
   document.getElementById('google-login')

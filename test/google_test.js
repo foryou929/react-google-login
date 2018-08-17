@@ -4,7 +4,7 @@ import { GoogleLogin } from '../src/index'
 import { GoogleLogin as GoogleLoginDist } from '../dist/google-login'
 
 describe('Google Login', () => {
-  const defaultText = 'Login with Google'
+  const defaultText = 'Sign in with Google'
   let component
   let propsObj
 
@@ -20,6 +20,10 @@ describe('Google Login', () => {
 
     it('shows the button', () => {
       expect(component).to.exist
+    })
+
+    it('has the google icon svg', () => {
+      expect(component).to.have.descendants('svg')
     })
 
     it('displays correct button text', () => {
@@ -59,6 +63,10 @@ describe('Google Login', () => {
       expect(component).to.have.text(buttonText)
     })
 
+    it('has the google icon svg', () => {
+      expect(component).to.have.descendants('svg')
+    })
+
     it('does not have a class attr', () => {
       expect(component).to.not.have.attr('class')
     })
@@ -68,7 +76,7 @@ describe('Google Login', () => {
     })
   })
   describe('With custom class and default props', () => {
-    let className = 'test-class'
+    const className = 'test-class'
 
     beforeEach(() => {
       propsObj = {
@@ -97,8 +105,8 @@ describe('Google Login', () => {
     })
   })
   describe('With custom class and custom style', () => {
-    let className = 'test-class'
-    let style = { color: 'red' }
+    const className = 'test-class'
+    const style = { color: 'red' }
 
     beforeEach(() => {
       propsObj = {
@@ -167,7 +175,7 @@ describe('Google Login', () => {
     })
   })
   describe('With style and default props', () => {
-    let style = {
+    const style = {
       padding: '10px',
       fontSize: '20px'
     }
@@ -211,6 +219,36 @@ describe('Google Login', () => {
 
     it('displays a div element when tag prop is set to div', () => {
       expect(component.get(0).tagName).to.equal('DIV')
+    })
+  })
+  describe('With mode="dark" prop', () => {
+    beforeEach(() => {
+      propsObj = {
+        onSuccess(response) {},
+        onFailure(response) {},
+        mode: 'dark',
+        clientId: '658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'
+      }
+      component = renderComponent(GoogleLogin, propsObj)
+    })
+
+    it('should have correct background color', done => {
+      expect(component.get(0).style.backgroundColor).to.equal('rgb(66, 133, 244)')
+      done()
+    })
+  })
+  describe('without google icon', () => {
+    beforeEach(() => {
+      propsObj = {
+        onSuccess(response) {},
+        onFailure(response) {},
+        icon: false,
+        clientId: '658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'
+      }
+      component = renderComponent(GoogleLogin, propsObj)
+    })
+    it('should not have icon', () => {
+      expect(component).not.have.descendants('svg')
     })
   })
 })
@@ -280,7 +318,7 @@ describe('Google Login Dist', () => {
     })
   })
   describe('With custom class and default props', () => {
-    let className = 'test-class'
+    const className = 'test-class'
 
     beforeEach(() => {
       propsObj = {
@@ -309,8 +347,8 @@ describe('Google Login Dist', () => {
     })
   })
   describe('With custom class and custom style', () => {
-    let className = 'test-class'
-    let style = { color: 'red' }
+    const className = 'test-class'
+    const style = { color: 'red' }
 
     beforeEach(() => {
       propsObj = {
@@ -379,7 +417,7 @@ describe('Google Login Dist', () => {
     })
   })
   describe('With style and default props', () => {
-    let style = {
+    const style = {
       padding: '10px',
       fontSize: '20px'
     }
