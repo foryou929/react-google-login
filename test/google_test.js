@@ -221,12 +221,12 @@ describe('Google Login', () => {
       expect(component.get(0).tagName).to.equal('DIV')
     })
   })
-  describe('With mode="dark" prop', () => {
+  describe('With theme="dark" prop', () => {
     beforeEach(() => {
       propsObj = {
         onSuccess(response) {},
         onFailure(response) {},
-        mode: 'dark',
+        theme: 'dark',
         clientId: '658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'
       }
       component = renderComponent(GoogleLogin, propsObj)

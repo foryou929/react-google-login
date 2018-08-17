@@ -81,6 +81,8 @@ Use GoogleLogout button to logout the user from google.
 | disabled | boolean | false                            |                  |
 | discoveryDocs | - | https://developers.google.com/discovery/v1/using |
 | uxMode       |  string  |  popup   | The UX mode to use for the sign-in flow. Valid values are popup and redirect. |
+| theme | string | light | If set to `dark` the button will follow the Google brand guidelines for dark. Otherwise it will default to light (https://developers.google.com/identity/branding-guidelines) |
+| icon | boolean | true | Show (`true`) or hide (`false`) the Google Icon |
 | redirectUri       |  string  |  -   | If using ux_mode='redirect', this parameter allows you to override the default redirect_uri that will be used at the end of the consent flow. The default redirect_uri is the current URL stripped of query parameters and hash fragment. |
 | isSignedIn | boolean | false | If true will return GoogleUser object on load, if user has given your app permission |
 Google Scopes List: https://developers.google.com/identity/protocols/googlescopes

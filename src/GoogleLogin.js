@@ -130,7 +130,7 @@ class GoogleLogin extends Component {
   }
 
   render() {
-    const { tag, type, style, className, disabledStyle, buttonText, children, render, mode, icon } = this.props
+    const { tag, type, style, className, disabledStyle, buttonText, children, render, theme, icon } = this.props
     const disabled = this.state.disabled || this.props.disabled
 
     if (render) {
@@ -138,11 +138,11 @@ class GoogleLogin extends Component {
     }
 
     const initialStyle = {
-      backgroundColor: mode === 'dark' ? 'rgb(66, 133, 244)' : '#fff',
+      backgroundColor: theme === 'dark' ? 'rgb(66, 133, 244)' : '#fff',
       display: 'inline-flex',
       alignItems: 'center',
-      color: mode === 'dark' ? '#fff' : 'rgba(0, 0, 0, .54)',
-      boxShadow: '0 2px 2px 0 rgba(0, 0, 0, .24)',
+      color: theme === 'dark' ? '#fff' : 'rgba(0, 0, 0, .54)',
+      boxShadow: '0 2px 2px 0 rgba(0, 0, 0, .24), 0 0 1px 0 rgba(0, 0, 0, .24)',
       padding: 0,
       borderRadius: 2,
       border: '1px solid transparent',
@@ -158,8 +158,8 @@ class GoogleLogin extends Component {
 
     const activeStyle = {
       cursor: 'pointer',
-      backgroundColor: mode === 'dark' ? '#3367D6' : '#eee',
-      color: mode === 'dark' ? '#fff' : 'rgba(0, 0, 0, .54)',
+      backgroundColor: theme === 'dark' ? '#3367D6' : '#eee',
+      color: theme === 'dark' ? '#fff' : 'rgba(0, 0, 0, .54)',
       opacity: 1
     }
     const styleProp = (() => {
@@ -177,7 +177,7 @@ class GoogleLogin extends Component {
       }
 
       if (this.state.active) {
-        if (mode === 'dark') {
+        if (theme === 'dark') {
           return Object.assign({}, styleProp, activeStyle)
         }
 
@@ -194,7 +194,7 @@ class GoogleLogin extends Component {
       tag,
       {
         onMouseEnter: () => this.setState({ hovered: true }),
-        onMouseLeave: () => this.setState({ hovered: false }),
+        onMouseLeave: () => this.setState({ hovered: false, active: false }),
         onMouseDown: () => this.setState({ active: true }),
         onMouseUp: () => this.setState({ active: false }),
         onClick: this.signIn,
@@ -243,7 +243,7 @@ GoogleLogin.propTypes = {
   type: PropTypes.string,
   accessType: PropTypes.string,
   render: PropTypes.func,
-  mode: PropTypes.string,
+  theme: PropTypes.string,
   icon: PropTypes.bool
 }
 
@@ -262,6 +262,7 @@ GoogleLogin.defaultProps = {
     opacity: 0.6
   },
   icon: true,
+  theme: 'light',
   onRequest: () => {},
   jsSrc: 'https://apis.google.com/js/client:platform.js'
 }

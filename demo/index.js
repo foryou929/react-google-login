@@ -34,7 +34,7 @@ ReactDOM.render(
       approvalPrompt="force"
       responseType="id_token"
       isSignedIn
-      mode="dark"
+      theme="dark"
       // disabled
       // prompt="consent"
       // className='button'
@@ -64,6 +64,9 @@ ReactDOM.render(
     <br />
     <br />
     <GoogleLogin onSuccess={success} onFailure={error} clientId={clientId} />
+    <br />
+    <br />
+    <GoogleLogin theme="dark" onSuccess={success} onFailure={error} clientId={clientId} />
     <br />
     <br />
     <GoogleLogout buttonText="Logout" onLogoutSuccess={logout} />
