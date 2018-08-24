@@ -1,3 +1,3 @@
-export { default } from './GoogleLogin'
-export { default as GoogleLogin } from './GoogleLogin'
-export { default as GoogleLogout } from './GoogleLogout'
+export { default } from './google-login'
+export { default as GoogleLogin } from './google-login'
+export { default as GoogleLogout } from './google-logout'

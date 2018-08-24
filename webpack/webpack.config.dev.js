@@ -4,9 +4,11 @@ const webpack = require('webpack')
 const fileRoot = process.cwd()
 
 module.exports = {
+  target: 'web',
+  mode: 'development',
   devtool: 'eval',
   entry: {
-    demo: ['webpack/hot/dev-server', './demo/index.js']
+    app: ['react-hot-loader/patch', 'webpack-dev-server/client?http://localhost:8080', 'webpack/hot/only-dev-server', './demo/index.js']
   },
   output: {
     path: path.join(fileRoot, 'demo'),
@@ -22,7 +24,18 @@ module.exports = {
           options: {
             cacheDirectory: true,
             babelrc: false,
-            presets: ['react', ['es2015', { modules: false }]]
+            presets: [
+              '@babel/preset-react',
+              [
+                '@babel/preset-env',
+                {
+                  targets: {
+                    esmodules: false
+                  }
+                }
+              ]
+            ],
+            plugins: ['react-hot-loader/babel']
           }
         }
       }
@@ -42,6 +55,20 @@ module.exports = {
     historyApiFallback: true,
     compress: false,
     host: process.env.IP || '0.0.0.0',
-    port: parseInt(process.env.PORT, 0) || 8080
+    port: parseInt(process.env.PORT, 0) || 8080,
+    hot: true,
+    open: false,
+    quiet: false,
+    noInfo: false,
+    inline: true,
+    lazy: false,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+      'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
+    },
+    stats: {
+      colors: true
+    }
   }
 }

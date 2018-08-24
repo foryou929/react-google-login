@@ -1,0 +1,219 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Google Login With children, custom text, and default props has inline styles 1`] = `
+Object {
+  "background": "#d14836",
+  "border": "1px solid transparent",
+  "borderRadius": 2,
+  "color": "#fff",
+  "display": "inline-block",
+  "fontFamily": "Roboto",
+  "fontSize": 16,
+  "fontWeight": "bold",
+  "opacity": 0.6,
+  "paddingBottom": 10,
+  "paddingTop": 10,
+  "width": 190,
+}
+`;
+
+exports[`Google Login With children, custom text, and default props render the button 1`] = `
+<button
+  disabled={true}
+  onClick={[Function]}
+  style={
+    Object {
+      "background": "#d14836",
+      "border": "1px solid transparent",
+      "borderRadius": 2,
+      "color": "#fff",
+      "display": "inline-block",
+      "fontFamily": "Roboto",
+      "fontSize": 16,
+      "fontWeight": "bold",
+      "opacity": 0.6,
+      "paddingBottom": 10,
+      "paddingTop": 10,
+      "width": 190,
+    }
+  }
+  type="button"
+>
+  test
+</button>
+`;
+
+exports[`Google Login With custom class and custom style has inline styles 1`] = `
+Object {
+  "color": "red",
+  "opacity": 0.6,
+}
+`;
+
+exports[`Google Login With custom class and custom style render the button 1`] = `
+<button
+  className="test-class"
+  disabled={true}
+  onClick={[Function]}
+  style={
+    Object {
+      "color": "red",
+      "opacity": 0.6,
+    }
+  }
+  type="button"
+>
+  Login with Google
+</button>
+`;
+
+exports[`Google Login With custom class and default props has inline styles 1`] = `
+Object {
+  "opacity": 0.6,
+}
+`;
+
+exports[`Google Login With custom class and default props render the button 1`] = `
+<button
+  className="test-class"
+  disabled={true}
+  onClick={[Function]}
+  style={
+    Object {
+      "opacity": 0.6,
+    }
+  }
+  type="button"
+>
+  Login with Google
+</button>
+`;
+
+exports[`Google Login With custom text and default props has inline styles 1`] = `
+Object {
+  "background": "#d14836",
+  "border": "1px solid transparent",
+  "borderRadius": 2,
+  "color": "#fff",
+  "display": "inline-block",
+  "fontFamily": "Roboto",
+  "fontSize": 16,
+  "fontWeight": "bold",
+  "opacity": 0.6,
+  "paddingBottom": 10,
+  "paddingTop": 10,
+  "width": 190,
+}
+`;
+
+exports[`Google Login With custom text and default props render the button 1`] = `
+<button
+  disabled={true}
+  onClick={[Function]}
+  style={
+    Object {
+      "background": "#d14836",
+      "border": "1px solid transparent",
+      "borderRadius": 2,
+      "color": "#fff",
+      "display": "inline-block",
+      "fontFamily": "Roboto",
+      "fontSize": 16,
+      "fontWeight": "bold",
+      "opacity": 0.6,
+      "paddingBottom": 10,
+      "paddingTop": 10,
+      "width": 190,
+    }
+  }
+  type="button"
+>
+  buttonText
+</button>
+`;
+
+exports[`Google Login With default props has inline styles 1`] = `
+Object {
+  "background": "#d14836",
+  "border": "1px solid transparent",
+  "borderRadius": 2,
+  "color": "#fff",
+  "display": "inline-block",
+  "fontFamily": "Roboto",
+  "fontSize": 16,
+  "fontWeight": "bold",
+  "opacity": 0.6,
+  "paddingBottom": 10,
+  "paddingTop": 10,
+  "width": 190,
+}
+`;
+
+exports[`Google Login With default props render the button 1`] = `
+<button
+  disabled={true}
+  onClick={[Function]}
+  style={
+    Object {
+      "background": "#d14836",
+      "border": "1px solid transparent",
+      "borderRadius": 2,
+      "color": "#fff",
+      "display": "inline-block",
+      "fontFamily": "Roboto",
+      "fontSize": 16,
+      "fontWeight": "bold",
+      "opacity": 0.6,
+      "paddingBottom": 10,
+      "paddingTop": 10,
+      "width": 190,
+    }
+  }
+  type="button"
+>
+  Login with Google
+</button>
+`;
+
+exports[`Google Login With handles custom tag prop has inline styles 1`] = `
+Object {
+  "background": "#d14836",
+  "border": "1px solid transparent",
+  "borderRadius": 2,
+  "color": "#fff",
+  "display": "inline-block",
+  "fontFamily": "Roboto",
+  "fontSize": 16,
+  "fontWeight": "bold",
+  "opacity": 0.6,
+  "paddingBottom": 10,
+  "paddingTop": 10,
+  "width": 190,
+}
+`;
+
+exports[`Google Login With handles custom tag prop render the button 1`] = `
+<div
+  disabled={true}
+  onClick={[Function]}
+  style={
+    Object {
+      "background": "#d14836",
+      "border": "1px solid transparent",
+      "borderRadius": 2,
+      "color": "#fff",
+      "display": "inline-block",
+      "fontFamily": "Roboto",
+      "fontSize": 16,
+      "fontWeight": "bold",
+      "opacity": 0.6,
+      "paddingBottom": 10,
+      "paddingTop": 10,
+      "width": 190,
+    }
+  }
+  type="button"
+>
+  Login with Google
+</div>
+`;

@@ -6,6 +6,7 @@ const uglifyConf = require('./uglify.json')
 const fileRoot = process.cwd()
 
 module.exports = {
+  mode: 'production',
   entry: ['./src/index.js'],
   output: {
     path: path.join(fileRoot, 'dist'),
@@ -22,7 +23,17 @@ module.exports = {
           options: {
             cacheDirectory: true,
             babelrc: false,
-            presets: ['react', ['es2015', { modules: false }]],
+            presets: [
+              '@babel/preset-react',
+              [
+                '@babel/preset-env',
+                {
+                  targets: {
+                    esmodules: false
+                  }
+                }
+              ]
+            ],
             plugins: ['transform-react-remove-prop-types', 'transform-react-constant-elements', 'transform-react-inline-elements']
           }
         }
@@ -38,15 +49,32 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production')
-      }
+      'process.env.NODE_ENV': JSON.stringify('production')
     }),
-    new UglifyJsPlugin({ uglifyConf }),
     new webpack.LoaderOptionsPlugin({
       minimize: true,
       debug: false
     }),
-    new webpack.optimize.AggressiveMergingPlugin()
-  ]
+    new UglifyJsPlugin(uglifyConf),
+    new webpack.optimize.AggressiveMergingPlugin(),
+    new webpack.optimize.ModuleConcatenationPlugin(),
+  ],
+  performance: {
+    hints: 'warning'
+  },
+  stats: {
+    errorDetails: true,
+    assets: true,
+    children: false,
+    chunks: false,
+    hash: false,
+    modules: false,
+    publicPath: false,
+    timings: true,
+    version: false,
+    warnings: true,
+    colors: {
+      green: '\u001b[32m'
+    }
+  }
 }
