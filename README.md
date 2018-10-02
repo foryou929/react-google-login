@@ -31,6 +31,23 @@ ReactDOM.render(
   document.getElementById('googleButton')
 );
 ```
+
+## Google button without styling or custom buttom
+```js
+ReactDOM.render(
+  <GoogleLogin
+    clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+    render={renderProps => (
+      <button onClick={renderProps.onClick}>This is my custom Google button</button>
+    )}
+    buttonText="Login"
+    onSuccess={responseGoogle}
+    onFailure={responseGoogle}
+  />,
+  document.getElementById('googleButton')
+);
+```
+
 ## onSuccess callback
 
 If responseType is not 'code', callback will return the GoogleAuth object.
