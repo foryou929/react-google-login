@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import GoogleIcon from './GoogleIcon'
+import ButtonContent from './ButtonContent'
+
 class GoogleLogin extends Component {
   constructor(props) {
     super(props)
     this.signIn = this.signIn.bind(this)
     this.enableButton = this.enableButton.bind(this)
     this.state = {
-      disabled: true
+      disabled: true,
+      hovered: false,
+      active: false
     }
   }
   componentDidMount() {
@@ -125,7 +130,7 @@ class GoogleLogin extends Component {
   }
 
   render() {
-    const { tag, type, style, className, disabledStyle, buttonText, children, render } = this.props
+    const { tag, type, style, className, disabledStyle, buttonText, children, render, theme, icon } = this.props
     const disabled = this.state.disabled || this.props.disabled
 
     if (render) {
@@ -133,17 +138,29 @@ class GoogleLogin extends Component {
     }
 
     const initialStyle = {
-      display: 'inline-block',
-      background: '#d14836',
-      color: '#fff',
-      width: 190,
-      paddingTop: 10,
-      paddingBottom: 10,
+      backgroundColor: theme === 'dark' ? 'rgb(66, 133, 244)' : '#fff',
+      display: 'inline-flex',
+      alignItems: 'center',
+      color: theme === 'dark' ? '#fff' : 'rgba(0, 0, 0, .54)',
+      boxShadow: '0 2px 2px 0 rgba(0, 0, 0, .24), 0 0 1px 0 rgba(0, 0, 0, .24)',
+      padding: 0,
       borderRadius: 2,
       border: '1px solid transparent',
-      fontSize: 16,
-      fontWeight: 'bold',
-      fontFamily: 'Roboto'
+      fontSize: 14,
+      fontWeight: '500',
+      fontFamily: 'Roboto, sans-serif'
+    }
+
+    const hoveredStyle = {
+      cursor: 'pointer',
+      opacity: 0.9
+    }
+
+    const activeStyle = {
+      cursor: 'pointer',
+      backgroundColor: theme === 'dark' ? '#3367D6' : '#eee',
+      color: theme === 'dark' ? '#fff' : 'rgba(0, 0, 0, .54)',
+      opacity: 1
     }
     const styleProp = (() => {
       if (style) {
@@ -159,18 +176,39 @@ class GoogleLogin extends Component {
         return Object.assign({}, styleProp, disabledStyle)
       }
 
+      if (this.state.active) {
+        if (theme === 'dark') {
+          return Object.assign({}, styleProp, activeStyle)
+        }
+
+        return Object.assign({}, styleProp, activeStyle)
+      }
+
+      if (this.state.hovered) {
+        return Object.assign({}, styleProp, hoveredStyle)
+      }
+
       return styleProp
     })()
     const googleLoginButton = React.createElement(
       tag,
       {
+        onMouseEnter: () => this.setState({ hovered: true }),
+        onMouseLeave: () => this.setState({ hovered: false, active: false }),
+        onMouseDown: () => this.setState({ active: true }),
+        onMouseUp: () => this.setState({ active: false }),
         onClick: this.signIn,
         style: defaultStyle,
         type,
         disabled,
         className
       },
-      children || buttonText
+      [
+        icon && <GoogleIcon key={1} active={this.state.active} />,
+        <ButtonContent icon={icon} key={2}>
+          {children || buttonText}
+        </ButtonContent>
+      ]
     )
 
     return googleLoginButton
@@ -204,13 +242,15 @@ GoogleLogin.propTypes = {
   responseType: PropTypes.string,
   type: PropTypes.string,
   accessType: PropTypes.string,
-  render: PropTypes.func
+  render: PropTypes.func,
+  theme: PropTypes.string,
+  icon: PropTypes.bool
 }
 
 GoogleLogin.defaultProps = {
   type: 'button',
   tag: 'button',
-  buttonText: 'Login with Google',
+  buttonText: 'Sign in with Google',
   scope: 'profile email',
   accessType: 'online',
   prompt: '',
@@ -221,6 +261,8 @@ GoogleLogin.defaultProps = {
   disabledStyle: {
     opacity: 0.6
   },
+  icon: true,
+  theme: 'light',
   onRequest: () => {},
   jsSrc: 'https://apis.google.com/js/client:platform.js'
 }
