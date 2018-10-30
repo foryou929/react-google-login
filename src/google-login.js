@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import GoogleIcon from './GoogleIcon'
-import ButtonContent from './ButtonContent'
+import Icon from './icon'
+import ButtonContent from './button-content'
 
 class GoogleLogin extends Component {
   constructor(props) {
@@ -130,7 +130,7 @@ class GoogleLogin extends Component {
   }
 
   render() {
-    const { tag, type, style, className, disabledStyle, buttonText, children, render, theme, icon } = this.props
+    const { tag, type, className, disabledStyle, buttonText, children, render, theme, icon } = this.props
     const disabled = this.state.disabled || this.props.disabled
 
     if (render) {
@@ -162,33 +162,25 @@ class GoogleLogin extends Component {
       color: theme === 'dark' ? '#fff' : 'rgba(0, 0, 0, .54)',
       opacity: 1
     }
-    const styleProp = (() => {
-      if (style) {
-        return style
-      } else if (className && !style) {
-        return {}
-      }
 
-      return initialStyle
-    })()
     const defaultStyle = (() => {
       if (disabled) {
-        return Object.assign({}, styleProp, disabledStyle)
+        return Object.assign({}, initialStyle, disabledStyle)
       }
 
       if (this.state.active) {
         if (theme === 'dark') {
-          return Object.assign({}, styleProp, activeStyle)
+          return Object.assign({}, initialStyle, activeStyle)
         }
 
-        return Object.assign({}, styleProp, activeStyle)
+        return Object.assign({}, initialStyle, activeStyle)
       }
 
       if (this.state.hovered) {
-        return Object.assign({}, styleProp, hoveredStyle)
+        return Object.assign({}, initialStyle, hoveredStyle)
       }
 
-      return styleProp
+      return initialStyle
     })()
     const googleLoginButton = React.createElement(
       tag,
@@ -204,7 +196,7 @@ class GoogleLogin extends Component {
         className
       },
       [
-        icon && <GoogleIcon key={1} active={this.state.active} />,
+        icon && <Icon key={1} active={this.state.active} />,
         <ButtonContent icon={icon} key={2}>
           {children || buttonText}
         </ButtonContent>
@@ -229,7 +221,6 @@ GoogleLogin.propTypes = {
   loginHint: PropTypes.string,
   hostedDomain: PropTypes.string,
   children: PropTypes.node,
-  style: PropTypes.object,
   disabledStyle: PropTypes.object,
   fetchBasicProfile: PropTypes.bool,
   prompt: PropTypes.string,

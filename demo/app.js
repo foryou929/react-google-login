@@ -1,6 +1,6 @@
 import React from 'react'
-// import { GoogleLogout, GoogleLogin } from '../src/index'
-import GoogleLogin, { GoogleLogout } from '../dist/google-login'
+import { GoogleLogout, GoogleLogin } from '../src/index'
+// import GoogleLogin, { GoogleLogout } from '../dist/google-login'
 // import FontAwesome from 'react-fontawesome';
 
 const clientId = '617246850621-95f9qhmehd380g2df86pjhrqc84n8nij.apps.googleusercontent.com'
@@ -66,6 +66,9 @@ export default () => (
     <br />
     <br />
     <GoogleLogin theme="dark" onSuccess={success} onFailure={error} clientId={clientId} />
+    <br />
+    <br />
+    <GoogleLogin theme="dark" style={{ background: 'blue' }} onSuccess={success} onFailure={error} clientId={clientId} />
     <br />
     <br />
     <GoogleLogout buttonText="Logout" onLogoutSuccess={logout} />

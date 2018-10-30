@@ -7,7 +7,7 @@ const fileRoot = process.cwd()
 
 module.exports = {
   mode: 'production',
-  entry: ['./src/index.js'],
+  entry: './src/index.js',
   output: {
     path: path.join(fileRoot, 'dist'),
     filename: 'google-login.js',
@@ -34,7 +34,7 @@ module.exports = {
                 }
               ]
             ],
-            plugins: ['transform-react-remove-prop-types', 'transform-react-constant-elements', 'transform-react-inline-elements']
+            plugins: ['transform-react-remove-prop-types']
           }
         }
       }
@@ -57,7 +57,7 @@ module.exports = {
     }),
     new UglifyJsPlugin(uglifyConf),
     new webpack.optimize.AggressiveMergingPlugin(),
-    new webpack.optimize.ModuleConcatenationPlugin(),
+    new webpack.optimize.ModuleConcatenationPlugin()
   ],
   performance: {
     hints: 'warning'

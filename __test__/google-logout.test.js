@@ -8,8 +8,6 @@ import { GoogleLogout } from '../src'
 configure({ adapter: new Adapter() })
 
 describe('Google Logout', () => {
-  const defaultText = 'Logout'
-
   describe('With default props', () => {
     const props = {
       onSuccess() {},
@@ -24,10 +22,6 @@ describe('Google Logout', () => {
     })
 
     const button = shallow(<GoogleLogout {...props} />)
-
-    test('displays correct button text', () => {
-      expect(button.text()).toEqual(defaultText)
-    })
 
     test('does not have a class attr', () => {
       expect(button.prop('className')).toEqual(undefined)
@@ -59,10 +53,6 @@ describe('Google Logout', () => {
 
     const button = shallow(<GoogleLogout {...props} />)
 
-    test('displays correct button text', () => {
-      expect(button.text()).toEqual(buttonText)
-    })
-
     test('does not have a class attr', () => {
       expect(button.prop('className')).toEqual(undefined)
     })
@@ -92,10 +82,6 @@ describe('Google Logout', () => {
     })
 
     const button = shallow(<GoogleLogout {...props} />)
-
-    test('displays correct button text', () => {
-      expect(button.text()).toEqual(defaultText)
-    })
 
     test('does not have a class attr', () => {
       expect(button.prop('className')).toEqual(className)
@@ -128,10 +114,6 @@ describe('Google Logout', () => {
 
     const button = shallow(<GoogleLogout {...props} />)
 
-    test('displays correct button text', () => {
-      expect(button.text()).toEqual(defaultText)
-    })
-
     test('does not have a class attr', () => {
       expect(button.prop('className')).toEqual(className)
     })
@@ -162,10 +144,6 @@ describe('Google Logout', () => {
 
     const button = shallow(<GoogleLogout {...props}>{children}</GoogleLogout>)
 
-    test('displays correct button text', () => {
-      expect(button.text()).toEqual(children)
-    })
-
     test('does not have a class attr', () => {
       expect(button.prop('className')).toEqual(undefined)
     })
@@ -195,10 +173,6 @@ describe('Google Logout', () => {
     })
 
     const button = shallow(<GoogleLogout {...props} />)
-
-    test('displays correct button text', () => {
-      expect(button.text()).toEqual(defaultText)
-    })
 
     test('does not have a class attr', () => {
       expect(button.prop('className')).toEqual(undefined)
