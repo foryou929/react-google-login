@@ -12,6 +12,7 @@ module.exports = {
     path: path.join(fileRoot, 'dist'),
     filename: 'google-login.js',
     libraryTarget: 'umd',
+    globalObject: 'typeof self !== "undefined" ? self : this',
     library: 'GoogleLogin'
   },
   module: {
