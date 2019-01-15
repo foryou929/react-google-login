@@ -151,7 +151,7 @@ GoogleLogout.defaultProps = {
   },
   icon: true,
   theme: 'light',
-  jsSrc: 'https://apis.google.com/js/client:platform.js'
+  jsSrc: 'https://apis.google.com/js/api.js'
 }
 
 export default GoogleLogout

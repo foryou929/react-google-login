@@ -255,7 +255,7 @@ GoogleLogin.defaultProps = {
   icon: true,
   theme: 'light',
   onRequest: () => {},
-  jsSrc: 'https://apis.google.com/js/client:platform.js'
+  jsSrc: 'https://apis.google.com/js/api.js'
 }
 
 export default GoogleLogin
