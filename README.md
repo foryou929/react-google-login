@@ -32,7 +32,7 @@ ReactDOM.render(
 );
 ```
 
-## Google button without styling or custom buttom
+## Google button without styling or custom button
 ```js
 ReactDOM.render(
   <GoogleLogin
