@@ -213,7 +213,7 @@ GoogleLogin.propTypes = {
   clientId: PropTypes.string.isRequired,
   jsSrc: PropTypes.string,
   onRequest: PropTypes.func,
-  buttonText: PropTypes.string,
+  buttonText: PropTypes.node,
   scope: PropTypes.string,
   className: PropTypes.string,
   redirectUri: PropTypes.string,
