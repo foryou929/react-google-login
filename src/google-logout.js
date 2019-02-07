@@ -16,21 +16,7 @@ class GoogleLogout extends Component {
     }
   }
   componentDidMount() {
-    const {
-      jsSrc,
-      onFailure,
-      isSignedIn,
-      clientId,
-      cookiePolicy,
-      loginHint,
-      hostedDomain,
-      fetchBasicProfile,
-      discoveryDocs,
-      uxMode,
-      redirectUri,
-      scope,
-      accessType
-    } = this.props
+    const { jsSrc, autoLoad, onFailure, isSignedIn, clientId, cookiePolicy, loginHint, hostedDomain, fetchBasicProfile,discoveryDocs,uxMode,redirectUri,scope,accessType } = this.props
     ;((d, s, id, cb) => {
       const element = d.getElementsByTagName(s)[0]
       const fjs = element
@@ -45,6 +31,32 @@ class GoogleLogout extends Component {
       }
       js.onload = cb
     })(document, 'script', 'google-login', () => {
+        const params = {
+            client_id: clientId,
+            cookie_policy: cookiePolicy,
+            login_hint: loginHint,
+            hosted_domain: hostedDomain,
+            fetch_basic_profile: fetchBasicProfile,
+            discoveryDocs,
+            ux_mode: uxMode,
+            redirect_uri: redirectUri,
+            scope,
+            access_type: accessType
+          };
+          window.gapi.load("auth2", () => {
+            this.enableButton();
+            if (!window.gapi.auth2.getAuthInstance()) {
+              window.gapi.auth2.init(params).then(
+                res => {
+                  if (isSignedIn && res.isSignedIn.get()) {
+                    this.handleSigninSuccess(res.currentUser.get());
+                  }
+                },
+                err => onFailure(err)
+              );
+            }
+          });
+
       const params = {
         client_id: clientId,
         cookie_policy: cookiePolicy,
@@ -70,6 +82,7 @@ class GoogleLogout extends Component {
           )
         }
       })
+
     })
   }
   componentWillUnmount() {
