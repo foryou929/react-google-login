@@ -129,7 +129,7 @@ class GoogleLogout extends Component {
 
 GoogleLogout.propTypes = {
   jsSrc: PropTypes.string,
-  buttonText: PropTypes.string,
+  buttonText: PropTypes.node,
   className: PropTypes.string,
   children: PropTypes.node,
   disabledStyle: PropTypes.object,
