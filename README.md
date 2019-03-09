@@ -76,7 +76,7 @@ Use GoogleLogout button to logout the user from google.
 
 |    params    |   value  |             default value            |   description    |
 |:------------:|:--------:|:------------------------------------:|:----------------:|
-|    clientId  |  string  |               REQUIRED               |                  |
+|    clientId  |  string  |               REQUIRED               | You can create a clientID by creating a [new project on Google developers website.](https://developers.google.com/identity/sign-in/web/sign-in) |
 |    jsSrc     |  string  |                   -                  |                  |
 | hostedDomain |  string  |                   -                  | URL of the Javascript file normally hosted by Google |
 |     scope    |  string  |             profile email            |                  |
