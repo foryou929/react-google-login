@@ -28,6 +28,7 @@ interface BasicProfile {
 export interface GoogleLoginResponse {
   getBasicProfile(): BasicProfile;
   getAuthResponse(): AuthResponse;
+  reloadAuthResponse(): Promise<AuthResponse>;
   getGrantedScopes(): string;
   getHostedDomain(): string;
   getId(): string;
