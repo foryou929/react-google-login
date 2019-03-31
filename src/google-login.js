@@ -134,7 +134,7 @@ class GoogleLogin extends Component {
     const disabled = this.state.disabled || this.props.disabled
 
     if (render) {
-      return render({ onClick: this.signIn })
+      return render({ onClick: this.signIn, disabled })
     }
 
     const initialStyle = {

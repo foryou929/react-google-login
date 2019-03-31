@@ -91,11 +91,11 @@ class GoogleLogout extends Component {
 
   render() {
     const { tag, type, className, disabledStyle, buttonText, children, render, theme, icon } = this.props
+    const disabled = this.state.disabled || this.props.disabled
 
     if (render) {
-      return render({ onClick: this.signOut })
+      return render({ onClick: this.signOut, disabled })
     }
-    const disabled = this.state.disabled || this.props.disabled
 
     const initialStyle = {
       backgroundColor: theme === 'dark' ? 'rgb(66, 133, 244)' : '#fff',
