@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { GoogleLogout, GoogleLogin } from '../src/index'
 // import GoogleLogin, { GoogleLogout } from '../dist/google-login'
 // import FontAwesome from 'react-fontawesome';
@@ -21,8 +21,32 @@ const logout = () => {
   console.log('logout') // eslint-disable-line
 }
 
+const MountTest = () => {
+  const [showButton, toggleShow] = useState(true)
+
+  if (showButton) {
+    return (
+      <GoogleLogin
+        onSuccess={res => {
+          toggleShow(false)
+          success(res)
+        }}
+        onFailure={error}
+        clientId={clientId}
+      >
+        Auth then Hide button
+      </GoogleLogin>
+    )
+  }
+
+  return <button onClick={() => toggleShow(true)}>show button</button>
+}
+
 export default () => (
   <div>
+    <MountTest />
+    <br />
+    <br />
     <GoogleLogin
       clientId={clientId}
       scope="https://www.googleapis.com/auth/analytics"

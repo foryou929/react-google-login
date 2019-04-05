@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import App from './app'
 
 const renderApp = Component => {
-  const app = document.getElementById('google-login')
+  const app = document.getElementById('app')
 
   render(<Component />, app)
 }

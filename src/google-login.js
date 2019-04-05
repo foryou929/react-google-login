@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import Icon from './icon'
 import ButtonContent from './button-content'
+import loadScript from './load-script'
 
 class GoogleLogin extends Component {
   constructor(props) {
@@ -33,20 +34,8 @@ class GoogleLogin extends Component {
       responseType,
       jsSrc
     } = this.props
-    ;((d, s, id, cb) => {
-      const element = d.getElementsByTagName(s)[0]
-      const fjs = element
-      let js = element
-      js = d.createElement(s)
-      js.id = id
-      js.src = jsSrc
-      if (fjs && fjs.parentNode) {
-        fjs.parentNode.insertBefore(js, fjs)
-      } else {
-        d.head.appendChild(js)
-      }
-      js.onload = cb
-    })(document, 'script', 'google-login', () => {
+
+    loadScript(document, 'script', 'google-login', jsSrc, () => {
       const params = {
         client_id: clientId,
         cookie_policy: cookiePolicy,
@@ -84,6 +73,8 @@ class GoogleLogin extends Component {
   }
   componentWillUnmount() {
     this.enableButton = () => {}
+    const el = document.getElementById('google-login')
+    el.parentNode.removeChild(el)
   }
   enableButton() {
     this.setState({
