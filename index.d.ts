@@ -82,7 +82,7 @@ export interface GoogleLoginProps {
   readonly isSignedIn?: boolean;
   readonly type?: string;
   readonly accessType?: string;
-  readonly render?: (props: { onClick: () => void }) => JSX.Element;
+  readonly render?: (props: { onClick: () => void, disabled: boolean }) => JSX.Element;
 }
 
 export class GoogleLogin extends Component<GoogleLoginProps, {}> {
