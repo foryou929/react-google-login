@@ -82,7 +82,7 @@ export interface GoogleLoginProps {
   readonly isSignedIn?: boolean;
   readonly type?: string;
   readonly accessType?: string;
-  readonly render?: (props?: { onClick: () => void }) => JSX.Element;
+  readonly render?: (props: { onClick: () => void }) => JSX.Element;
 }
 
 export class GoogleLogin extends Component<GoogleLoginProps, {}> {
@@ -100,7 +100,7 @@ export interface GoogleLogoutProps {
   readonly disabled?: boolean;
   readonly disabledStyle?: CSSProperties;
   readonly tag?: string;
-  readonly render?: (props?: { onClick: () => void }) => JSX.Element;
+  readonly render?: (props: { onClick: () => void }) => JSX.Element;
 }
 
 export class GoogleLogout extends Component<GoogleLogoutProps, {}> {
