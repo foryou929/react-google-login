@@ -71,11 +71,15 @@ class GoogleLogin extends Component {
       })
     })
   }
-//   componentWillUnmount() {
-//     this.enableButton = () => {}
-//     const el = document.getElementById('google-login')
-//     el.parentNode.removeChild(el)
-//   }
+  componentWillUnmount() {
+    this.enableButton = () => {}
+    try {
+      const el = document.getElementById('google-login')
+      el.parentNode.removeChild(el)
+    } catch (error) {
+      // just ignore it; the container is already removed
+    }
+  }
   enableButton() {
     this.setState({
       disabled: false
