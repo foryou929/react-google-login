@@ -1,4 +1,4 @@
-name: Node CI
+name: Test
 
 on: [push]
 
@@ -17,7 +17,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: npm install, build, and test
+    - name: npm install, bundle, and test
       run: |
         npm ci
         npm run bundle --if-present
