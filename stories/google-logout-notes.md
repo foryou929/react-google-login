@@ -1,4 +1,4 @@
-# React Google Login
+# React Google Logout
 
 > A Google oAUth Sign-in / Log-in Component for React
 
@@ -9,7 +9,7 @@ npm install react-google-login
 
 ```
 ## How to use
-```js
+```
 import React from 'react';
 import ReactDOM from 'react-dom';
 import GoogleLogin from 'react-google-login';
@@ -34,7 +34,7 @@ ReactDOM.render(
 ```
 
 ## Google button without styling or custom button
-```js
+```
 ReactDOM.render(
   <GoogleLogin
     clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
@@ -57,7 +57,7 @@ If responseType is not 'code', callback will return the GoogleAuth object.
 If responseType is 'code', callback will return the offline token for use on your server.
 
 If you use the hostedDomain param, make sure to validate the id_token (a JSON web token) returned by Google on your backend server:
- 1. In the `responseGoogle(response) {...}` callback function, you should get back a standard JWT located at `response.Zi.id_token`
+ 1. In the `responseGoogle(response) {...}` callback function, you should get back a standard JWT located at `response.hg.id_token`
  2. Send this token to your server (preferably as an `Authorization` header)
  3. Have your server decode the id_token by using a common JWT library such as [jwt-simple](https://github.com/hokaccha/node-jwt-simple) or by sending a GET request to `https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=YOUR_TOKEN_HERE`
  4. The returned decoded token should have an `hd` key equal to the hosted domain you'd like to restrict to.
@@ -66,7 +66,7 @@ If you use the hostedDomain param, make sure to validate the id_token (a JSON we
 ## Logout
 Use GoogleLogout button to logout the user from google.
 
-```js
+```
     import { GoogleLogout } from 'react-google-login';
     <GoogleLogout
       clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
@@ -75,38 +75,6 @@ Use GoogleLogout button to logout the user from google.
     >
     </GoogleLogout>
   ```
-## Login Props
-
-|    params    |   value  |             default value            |   description    |
-|:------------:|:--------:|:------------------------------------:|:----------------:|
-|    clientId  |  string  |               REQUIRED               | You can create a clientID by creating a [new project on Google developers website.](https://developers.google.com/identity/sign-in/web/sign-in) |
-|    jsSrc     |  string  |                   -                  |                  |
-| hostedDomain |  string  |                   -                  | URL of the Javascript file normally hosted by Google |
-|     scope    |  string  |             profile email            |                  |
-| responseType |  string  |              permission              | Can be either space-delimited 'id_token', to retrieve an ID Token + 'permission' (or 'token'), to retrieve an Access Token, or 'code', to retrieve an Authorization Code.
-| accessType   |  string  |              online                  | Can be either 'online' or 'offline'. Use offline with responseType 'code' to retrieve a refresh token |
-|   onSuccess  | function |               REQUIRED               |                  |
-|   onFailure  | function |               REQUIRED               |                  |
-|   onRequest  | function |                   -                  |                  |
-|   buttonText |  string  |             Login with Google        |                  |
-|   className  |  string  |                   -                  |                  |
-|    style     |  object  |                   -                  |                  |
-| disabledStyle|  object  |                   -                  |                  |
-|   loginHint  |  string  |                   -                  |                  |
-|    prompt    |  string  |                   -                  |                  |
-|     tag      |  string  |                button                |  sets element tag (div, a, span, etc     |
-|     type      |  string  |               button                |sets button type (submit || button)     |
-|   autoLoad   |  boolean |                 false                |                  |
-| fetchBasicProfile | boolean | true                            |                  |
-| disabled | boolean | false                            |                  |
-| discoveryDocs | - | https://developers.google.com/discovery/v1/using |
-| uxMode       |  string  |  popup   | The UX mode to use for the sign-in flow. Valid values are popup and redirect. |
-| theme | string | light | If set to `dark` the button will follow the Google brand guidelines for dark. Otherwise it will default to light (https://developers.google.com/identity/branding-guidelines) |
-| icon | boolean | true | Show (`true`) or hide (`false`) the Google Icon |
-| redirectUri       |  string  |  -   | If using ux_mode='redirect', this parameter allows you to override the default redirect_uri that will be used at the end of the consent flow. The default redirect_uri is the current URL stripped of query parameters and hash fragment. |
-| isSignedIn | boolean | false | If true will return GoogleUser object on load, if user has given your app permission |
-| render       | function | -                                     | Render prop to use a custom element, use renderProps.onClick |
-Google Scopes List: [scopes](https://developers.google.com/identity/protocols/googlescopes)
 
 ## Logout Props
 
@@ -158,7 +126,8 @@ You can also access the returned values via the following properties on the retu
 |    code       |  object  |           offline token              |
 
 You can also pass child components such as icons into the button component.
-```js
+
+```
   <GoogleLogin
     clientId={'658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com'}
     onSuccess={responseGoogle}
@@ -172,7 +141,6 @@ You can also pass child components such as icons into the button component.
 
 ```
 
-
 ## onFailure callback
 
 onFailure callback is called when either initialization or a signin attempt fails.
@@ -181,8 +149,6 @@ onFailure callback is called when either initialization or a signin attempt fail
 |:-------------:|:--------:|:------------------------------------:|
 |   error       |  string  |           Error code                 |
 |   details     |  string  |      Detailed error description      |
-
-
 
 Common error codes include:
 
@@ -197,25 +163,6 @@ More details can be found in the official Google docs:
  * [GoogleAuth.then(onInit, onError)](https://developers.google.com/identity/sign-in/web/reference#googleauththenoninit-onerror)
  * [GoogleAuth.signIn(options)](https://developers.google.com/identity/sign-in/web/reference#googleauthsigninoptions)
  * [GoogleAuth.grantOfflineAccess(options)](https://developers.google.com/identity/sign-in/web/reference#googleauthgrantofflineaccessoptions)
-
-## Dev Server
-```
-npm run start
-
-```
-Default dev server runs at localost:8080 in browser.
-You can set IP and PORT in webpack.config.dev.js
-
-## Run Tests
-```
-npm run test:watch
-
-```
-
-## Production Bundle
-```
-npm run bundle
-```
 
 ##### Checkout my other login: [React Instagram Login](https://github.com/anthonyjgrove/react-instagram-login)
 

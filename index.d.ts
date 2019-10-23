@@ -38,6 +38,19 @@ export interface GoogleLoginResponse {
   grantOfflineAccess(options: GrantOfflineAccessOptions): Promise<GoogleLoginResponseOffline>;
   signIn(options: SignInOptions): Promise<any>;
   grant(options: SignInOptions): Promise<any>;
+  // google-login.js sez: offer renamed response keys to names that match use
+  googleId: string;
+  tokenObj: AuthResponse;
+  tokenId: string;
+  accessToken: string;
+  profileObj: {
+    googleId: string;
+    imageUrl: string;
+    email: string;
+    name: string;
+    givenName: string;
+    familyName: string;
+  }
 }
 
 interface GrantOfflineAccessOptions {
@@ -93,6 +106,7 @@ export class GoogleLogin extends Component<GoogleLoginProps, {}> {
 export interface GoogleLogoutProps {
   readonly clientId: string,
   readonly onLogoutSuccess?: () => void;
+  readonly onFaliure?: () => void;
   readonly buttonText?: string;
   readonly className?: string;
   readonly children?: ReactNode;
