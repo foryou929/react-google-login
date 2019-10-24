@@ -17,10 +17,12 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: npm install, bundle, and test
+    - name: npm install, bundle, build, deploy, and test
       run: |
         npm ci
         npm run bundle --if-present
+        npm run build-storybook
+        npm run deploy-storybook -- --out=docs/
         npm test
       env:
         CI: true
