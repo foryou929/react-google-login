@@ -22,6 +22,7 @@ jobs:
         npm ci
         npm run build-storybook
         npm run deploy-storybook -- --out=docs/
+        npm run bundle --if-present
         npm test
       env:
         CI: true
