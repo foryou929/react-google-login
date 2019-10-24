@@ -7,3 +7,4 @@ npm-debug.log
 yarn.lock
 .vscode
 .jest-test-results.json
+docs/

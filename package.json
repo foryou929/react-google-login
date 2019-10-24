@@ -45,10 +45,7 @@
   "homepage": "https://github.com/anthonyjgrove/react-google-login",
   "dependencies": {
     "@types/react": "*",
-    "prop-types": "^15.6.0",
-    "@storybook/addon-jest": "5.2.1",
-    "@storybook/addon-knobs": "5.2.1",
-    "@storybook/addon-notes": "5.2.1"
+    "prop-types": "^15.6.0"
   },
   "devDependencies": {
     "@babel/core": "7.4.3",
@@ -57,7 +54,10 @@
     "@babel/preset-env": "7.4.3",
     "@babel/preset-react": "7.0.0",
     "@storybook/addon-actions": "5.2.1",
+    "@storybook/addon-jest": "5.2.1",
+    "@storybook/addon-knobs": "5.2.1",
     "@storybook/addon-links": "5.2.1",
+    "@storybook/addon-notes": "5.2.1",
     "@storybook/addons": "5.2.1",
     "@storybook/react": "5.2.1",
     "@storybook/storybook-deployer": "2.8.1",
