@@ -20,7 +20,6 @@ jobs:
     - name: npm install, bundle, build, deploy, and test
       run: |
         npm ci
-#        npm run bundle --if-present
         npm run build-storybook
         npm run deploy-storybook -- --out=docs/
         npm test
