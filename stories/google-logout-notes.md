@@ -1,13 +1,3 @@
-# React Google Logout
-
-> A Google oAUth Sign-in / Log-in Component for React
-
-
-## Install
-```
-npm install react-google-login
-
-```
 ## How to use
 ```
 import React from 'react';
@@ -163,9 +153,3 @@ More details can be found in the official Google docs:
  * [GoogleAuth.then(onInit, onError)](https://developers.google.com/identity/sign-in/web/reference#googleauththenoninit-onerror)
  * [GoogleAuth.signIn(options)](https://developers.google.com/identity/sign-in/web/reference#googleauthsigninoptions)
  * [GoogleAuth.grantOfflineAccess(options)](https://developers.google.com/identity/sign-in/web/reference#googleauthgrantofflineaccessoptions)
-
-##### Checkout my other login: [React Instagram Login](https://github.com/anthonyjgrove/react-instagram-login)
-
-##### Checkout keppelen's [React Facebook Login](https://github.com/keppelen/react-facebook-login)
-
-### Follow me on Twitter: [@anthonyjgrove](https://twitter.com/anthonyjgrove)
