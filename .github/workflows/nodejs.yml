@@ -22,7 +22,7 @@ jobs:
         npm ci
         npm run bundle --if-present
         npm run build-storybook
-        npm run deploy-storybook
+        npm run deploy-storybook -- --ci
         npm test
       env:
         CI: true
