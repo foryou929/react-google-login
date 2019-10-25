@@ -22,7 +22,7 @@ jobs:
         npm ci
         npm run bundle --if-present
         npm run build-storybook
-        npm run deploy-storybook -- --ci
+        npm run deploy-storybook -- --ci --host-token-env-variable='25f809e0d381140f906e69078e9ea777c11d2d2b'
         npm test
       env:
         CI: true
