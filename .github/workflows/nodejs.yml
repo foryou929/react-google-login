@@ -17,7 +17,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-        GH_TOKEN: "2bfc58bed9a1e1cf2e758bf68d91f1e77fdd4b20"
+        repo-token: "2bfc58bed9a1e1cf2e758bf68d91f1e77fdd4b20"
     - name: npm install, bundle, build, deploy, and test
       run: |
         npm ci
@@ -27,4 +27,4 @@ jobs:
         npm test
       env:
         CI: true
-      
+
