@@ -2,6 +2,9 @@ name: Test
 
 on: [push, pull_request]
 
+environment:
+  GH_TOKEN: "2bfc58bed9a1e1cf2e758bf68d91f1e77fdd4b20"
+
 jobs:
   build:
 
@@ -10,10 +13,6 @@ jobs:
     strategy:
       matrix:
         node-version: [8.x, 10.x, 12.x]
-
-    environment:
-      GH_TOKEN: "2bfc58bed9a1e1cf2e758bf68d91f1e77fdd4b20"
-      
     steps:
     - uses: actions/checkout@v1
     - name: Use Node.js ${{ matrix.node-version }}
