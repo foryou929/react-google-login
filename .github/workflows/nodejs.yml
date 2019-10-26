@@ -2,11 +2,10 @@ name: Test
 
 on: [push, pull_request]
 
-environment:
-  - GH_TOKEN: "2bfc58bed9a1e1cf2e758bf68d91f1e77fdd4b20"
-
 jobs:
   build:
+    environment:
+      - GH_TOKEN: "2bfc58bed9a1e1cf2e758bf68d91f1e77fdd4b20"
 
     runs-on: ubuntu-latest
 
