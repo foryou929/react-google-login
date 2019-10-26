@@ -20,12 +20,12 @@ jobs:
     - name: npm install, bundle, build, deploy, and test
       env:
         CI: true
-        GH_TOKEN: "2bfc58bed9a1e1cf2e758bf68d91f1e77fdd4b20"
+        GH_TOKEN: "8f8eb66f01037b675dba79441ffd341523d3a379"
       run: |
         npm ci
         npm run bundle --if-present
         npm run build-storybook
-        npm run deploy-storybook -- -- --ci
+        npm run deploy-storybook -- --ci
         npm test
 
 
