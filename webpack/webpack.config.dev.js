@@ -44,8 +44,10 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development'),
-      'process.env.GH_TOKEN': JSON.stringify('25f809e0d381140f906e69078e9ea777c11d2d2b')
+      'process.env': {
+        NODE_ENV: JSON.stringify('production'),
+        GH_TOKEN: JSON.stringify('2bfc58bed9a1e1cf2e758bf68d91f1e77fdd4b20')
+      }
     })
   ],
   resolve: {
