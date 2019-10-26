@@ -3,6 +3,7 @@ name: Test
 on: [push, pull_request]
 
 jobs:
+
   build:
 
     runs-on: ubuntu-latest
@@ -10,7 +11,6 @@ jobs:
     strategy:
       matrix:
         node-version: [8.x, 10.x, 12.x]
-
     steps:
     - uses: actions/checkout@v1
     - name: Use Node.js ${{ matrix.node-version }}
@@ -18,11 +18,14 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: npm install, bundle, build, deploy, and test
+      env:
+        CI: true
+        GH_TOKEN: '7eda42000226e7cf67506984b77794b68ecd4d3b'
       run: |
         npm ci
         npm run bundle --if-present
         npm run build-storybook
-        npm run deploy-storybook -- --out=docs/
+        npm run deploy-storybook -- --ci
         npm test
-      env:
-        CI: true
+
+
