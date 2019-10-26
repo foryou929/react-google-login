@@ -20,12 +20,12 @@ jobs:
     - name: npm install, bundle, build, deploy, and test
       env:
         CI: true
-        GH_TOKEN: "7eda42000226e7cf67506984b77794b68ecd4d3b"
+        GITHUB_TOKEN: "7eda42000226e7cf67506984b77794b68ecd4d3b"
       run: |
         npm ci
         npm run bundle --if-present
         npm run build-storybook
-        npm run deploy-storybook -- --ci
+        npm run deploy-storybook -- --ci --host-token-env-variable=GITHUB_TOKEN
         npm test
 
 
