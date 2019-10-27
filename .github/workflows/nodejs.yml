@@ -20,7 +20,7 @@ jobs:
     - name: npm install, bundle, build, deploy, and test
       env:
         CI: true
-        GH_TOKEN: '7eda42000226e7cf67506984b77794b68ecd4d3b'
+        GH_TOKEN: ${{}}
       run: |
         npm ci
         npm run bundle --if-present
