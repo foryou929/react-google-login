@@ -17,9 +17,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: install
-      run: npm ci
-    - name: bundle
-      run: npm run bundle --if-present
-    - name: test
-      run: npm test
+    - use: ./.github/actions/install-actions
+    - use: ./.github/actions/bundle-actions
+    - use: ./.github/actions/test-actions
