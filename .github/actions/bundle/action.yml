@@ -1,3 +1,2 @@
-steps:
-  - name: bundle
-    run: npm run bundle
+name: bundle
+run: npm run bundle
