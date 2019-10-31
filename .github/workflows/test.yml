@@ -18,8 +18,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: install
-      uses: .github/actions/install
+      uses: ./.github/actions/install
     - name: bundle
-      uses: .github/actions/bundle
+      uses: ./.github/actions/bundle
     - name: test
-      uses: .github/actions/test
+      uses: ./.github/actions/test
