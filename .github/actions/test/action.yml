@@ -1,5 +1,5 @@
 name: test
 runs:
   using: 'node12'
-  main: 'lk'
+  main: 'lk.yml'
 
