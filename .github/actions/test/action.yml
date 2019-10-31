@@ -1,3 +1,5 @@
-steps:
-  - name: test
-    run: npm test
+name: test
+runs:
+  using: 'node12'
+  main: 'lk'
+
