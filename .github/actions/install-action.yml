@@ -1,2 +1,2 @@
-- name: install
-    run: npm ci
+name: install
+  run: npm ci
