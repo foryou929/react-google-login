@@ -20,6 +20,6 @@ jobs:
     - name: install
       run: npm ci
     - name: bundle
-      run: npm bundle
+      run: npm run bundle --if-present
     - name: test
       uses: ./.github/actions/test
