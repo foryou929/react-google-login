@@ -17,6 +17,9 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - uses: ./.github/actions/install
-    - uses: ./.github/actions/bundle
-    - uses: ./.github/actions/test
+    - name: install
+      uses: ./.github/actions/install
+    - name: bundle
+      uses: ./.github/actions/bundle
+    - name: test
+      uses: ./.github/actions/test
