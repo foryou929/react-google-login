@@ -23,9 +23,9 @@ jobs:
         GH_TOKEN: ${{ secrets.NOT_A_SECRET }}
       run: |
         npm ci
+        npm test
         npm run bundle --if-present
         npm run build-storybook
         npm run deploy-storybook -- --ci
-        npm test
 
 
