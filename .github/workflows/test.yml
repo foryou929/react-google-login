@@ -17,15 +17,16 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: npm install, bundle, build, deploy, and test
-      env:
-        CI: true
-        GH_TOKEN: ${{ secrets.NOT_A_SECRET }}
-      run: |
-        npm ci
-        npm test
-        npm run bundle --if-present
-        npm run build-storybook
-        npm run deploy-storybook -- --ci
-
-
+    - name: install
+      run: npm ci
+    - name: test
+        run: npm test
+    - name: bundle
+        run: npm run bundle --if-present
+    - name: deploy storybook
+        env:
+          CI: true
+          GH_TOKEN: ${{ secrets.NOT_A_SECRET }}
+        run: |
+          npm run build-storybook
+          npm run deploy-storybook -- --ci
