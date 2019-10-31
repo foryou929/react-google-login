@@ -20,7 +20,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - uses: ./.github/actions/install-actions
-      - uses: ./.github/actions/bundle-actions
-      - uses: ./.github/actions/test-actions
-      - uses: ./.github/actions/deploy-storybook-actions
+      - uses: ./.github/actions/install/actions
+      - uses: ./.github/actions/bundle/actions
+      - uses: ./.github/actions/test/actions
+      - uses: ./.github/actions/deploy-storybook/actions
