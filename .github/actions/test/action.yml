@@ -1,2 +1,3 @@
-name: test
-  run: npm test
+steps:
+  - name: test
+    run: npm test
