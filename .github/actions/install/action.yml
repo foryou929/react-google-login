@@ -1,2 +1,4 @@
 name: Test
-runs: npm ci
+runs:
+  using: 'node12'
+  main: 'npm ci'
