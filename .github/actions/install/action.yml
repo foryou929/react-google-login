@@ -1,1 +1,1 @@
-run: npm ci
+- run: npm ci
