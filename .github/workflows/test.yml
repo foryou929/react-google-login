@@ -22,4 +22,4 @@ jobs:
     - name: bundle
       run: npm run bundle --if-present
     - name: test
-      uses: ./.github/actions/test
+      uses: npm run test

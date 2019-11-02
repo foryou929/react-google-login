@@ -20,7 +20,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - uses: ./.github/actions/install
-      - uses: ./.github/actions/bundle
-      - uses: ./.github/actions/test
-      - uses: ./.github/actions/deploy-storybook
+      - name: install
+        run: npm ci
+      - name: bundle
+        run: npm run bundle --if-present
+      - name: test
+        uses: npm run test
+      - name: deploy storybook
+        uses: npm run deploy-storybook -- --ci

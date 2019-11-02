@@ -44,7 +44,7 @@
   },
   "homepage": "https://github.com/anthonyjgrove/react-google-login",
   "dependencies": {
-    "@types/react": "*",
+    "@types/react": "^16.9.11",
     "prop-types": "^15.6.0"
   },
   "devDependencies": {
@@ -61,13 +61,14 @@
     "@storybook/addons": "^5.2.1",
     "@storybook/react": "^5.2.1",
     "@storybook/storybook-deployer": "^2.8.1",
-    "autoprefixer": "^9.5.0",
+    "autoprefixer": "^9.7.1",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^24.7.1",
     "babel-loader": "^8.0.5",
     "babel-plugin-transform-react-constant-elements": "^6.23.0",
     "babel-plugin-transform-react-inline-elements": "^6.22.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "child_process": "^1.0.2",
     "dotenv": "^8.2.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.11.2",
@@ -81,7 +82,7 @@
     "react-test-renderer": "^16.8.6",
     "uglifyjs-webpack-plugin": "^2.1.2",
     "webpack": "^4.29.6",
-    "webpack-cli": "^3.3.0",
+    "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.2.1"
   },
   "peerDependencies": {
