@@ -25,6 +25,9 @@ jobs:
       - name: bundle
         run: npm run bundle --if-present
       - name: test
-        uses: npm run test
+        run: npm run test
       - name: deploy storybook
-        uses: npm run deploy-storybook -- --ci
+        env:
+          CI: true
+          GH_TOKEN: ${{ secrets.NOT_A_SECRET }}
+        run: npm run deploy-storybook -- --ci
