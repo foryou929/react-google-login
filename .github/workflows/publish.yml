@@ -20,13 +20,13 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: install
+      - name: Install
         run: npm ci
-      - name: bundle
+      - name: Bundle
         run: npm run bundle --if-present
-      - name: test
+      - name: Test
         run: npm run test
-      - name: deploy storybook
+      - name: Deploy Storybook
         env:
           CI: true
           GH_TOKEN: ${{ secrets.NOT_A_SECRET }}
