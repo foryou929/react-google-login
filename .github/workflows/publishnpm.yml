@@ -1,8 +1,10 @@
-name: Node.js Package
+name: Publish NMP
 
 on:
   release:
     types: [created]
+    tags:
+      - v5.*
 
 jobs:
   build:
@@ -14,6 +16,8 @@ jobs:
           node-version: 12
       - name: Install
         run: npm ci
+      - name: Bundle
+        run: npm run bundle --if-present
       - name: Test
         run: npm test
 
@@ -28,24 +32,9 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - name: Install
         run: npm ci
+      - name: Bundle
+        run: npm run bundle --if-present
       - name: Publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
-        run: npm publish
-
-  publish-gpr:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-          registry-url: https://npm.pkg.github.com/
-          scope: '@your-github-username'
-      - name: install
-        run: npm ci
-      - name: Publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
         run: npm publish
