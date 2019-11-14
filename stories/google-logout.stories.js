@@ -37,6 +37,6 @@ story.add('Default Button', () => (
     </GoogleLogout>
   ),
   {
-    jest: ['google-logout.test.js', 'google-logout-dist.test.js'],
+    jest: ['google-logout.test.js', 'google-logout-dist.nottest.js'],
     notes: { markdown: markdownNotes }
   });
