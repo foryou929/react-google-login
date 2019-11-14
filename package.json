@@ -61,7 +61,7 @@
     "@storybook/addons": "^5.2.1",
     "@storybook/react": "^5.2.1",
     "@storybook/storybook-deployer": "^2.8.1",
-    "autoprefixer": "^9.5.0",
+    "autoprefixer": "^9.7.1",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^24.7.1",
     "babel-loader": "^8.0.5",
@@ -80,7 +80,7 @@
     "react-test-renderer": "^16.8.6",
     "uglifyjs-webpack-plugin": "^2.1.2",
     "webpack": "^4.29.6",
-    "webpack-cli": "^3.3.0",
+    "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.2.1"
   },
   "peerDependencies": {

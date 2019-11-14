@@ -1,0 +1,40 @@
+name: Publish NPM
+
+on:
+  release:
+    types: [created]
+    tags:
+      - v*
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Install
+        run: npm ci
+      - name: Bundle
+        run: npm run bundle --if-present
+      - name: Test
+        run: npm test
+
+  publish-npm:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org/
+      - name: Install
+        run: npm ci
+      - name: Bundle
+        run: npm run bundle --if-present
+      - name: Publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+        run: npm publish

@@ -1,26 +1,28 @@
 name: Test
 
-on: [push, pull_request]
+on:
+    push:
+        branches-ignore:
+        - master
 
 jobs:
+
   build:
 
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [8.x, 10.x, 12.x]
-
+        node-version: [12.x]
     steps:
     - uses: actions/checkout@v1
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: npm install, bundle, and test
-      run: |
-        npm ci
-        npm run bundle --if-present
-        npm test
-      env:
-        CI: true
+    - name: install
+      run: npm ci
+    - name: bundle
+      run: npm run bundle --if-present
+    - name: test
+      run: npm run test
