@@ -37,6 +37,6 @@ story.add('Default Button', () => (
   </GoogleLogin>
 ),
   {
-    jest: ['google-login.test.js', 'google-login-dist.test.js'],
+    jest: ['google-login.test.js', 'google-login-dist.nottest.js'],
     notes: { markdown: markdownNotes }
   });
