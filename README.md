@@ -2,7 +2,7 @@
 
 > A Google oAUth Sign-in / Log-in Component for React
 
-##Storybook
+## Storybook
 
 [Demo Link](https://anthonyjgrove.github.io/react-google-login/)
 
