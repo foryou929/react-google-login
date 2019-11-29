@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --config webpack/webpack.config.dev.js",
     "dev": "npm run start",
-    "bundle": "webpack --config webpack/webpack.config.prod.js; git add ./dist/google-login.js",
+    "bundle": "webpack --config webpack/webpack.config.prod.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:generate-output": "jest --json --outputFile=.jest-test-results.json",
