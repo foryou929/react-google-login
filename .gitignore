@@ -8,3 +8,4 @@ yarn.lock
 .vscode
 .jest-test-results.json
 docs/
+dist/
