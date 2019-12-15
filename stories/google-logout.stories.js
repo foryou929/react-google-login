@@ -30,7 +30,7 @@ story.add('Default Button', () => (
       theme={select('Theme', options)}
       clientId={clientId}
       disabled={boolean('Disabled', false)}
-      onSuccess={action('clicked')}
+      onLogoutSuccess={action('clicked')}
       onFailure={action('clicked')}
     >
       {text('Button Name', '')}
