@@ -1,165 +1,129 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-
-import Icon from './icon'
+import useGoogleLogout from './use-google-logout'
 import ButtonContent from './button-content'
-import loadScript from './load-script'
+import Icon from './icon'
 
-class GoogleLogout extends Component {
-  constructor(props) {
-    super(props)
-    this.signOut = this.signOut.bind(this)
-    this.enableButton = this.enableButton.bind(this)
-    this.state = {
-      disabled: true,
-      hovered: false,
-      active: false
-    }
-  }
-  componentDidMount() {
-    const {
-      jsSrc,
-      onFailure,
-      isSignedIn,
-      clientId,
-      cookiePolicy,
-      loginHint,
-      hostedDomain,
-      fetchBasicProfile,
-      discoveryDocs,
-      uxMode,
-      redirectUri,
-      scope,
-      accessType
-    } = this.props
+const GoogleLogout = props => {
+  const [hovered, setHovered] = useState(false)
+  const [active, setActive] = useState(false)
+  const {
+    tag,
+    type,
+    className,
+    disabledStyle,
+    buttonText,
+    children,
+    render,
+    theme,
+    icon,
+    disabled: disabledProp,
+    onLogoutSuccess,
+    clientId,
+    cookiePolicy,
+    loginHint,
+    hostedDomain,
+    fetchBasicProfile,
+    redirectUri,
+    discoveryDocs,
+    onFailure,
+    uxMode,
+    scope,
+    accessType,
+    jsSrc
+  } = props
 
-    loadScript(document, 'script', 'google-login', jsSrc, () => {
-      const params = {
-        client_id: clientId,
-        cookie_policy: cookiePolicy,
-        login_hint: loginHint,
-        hosted_domain: hostedDomain,
-        fetch_basic_profile: fetchBasicProfile,
-        discoveryDocs,
-        ux_mode: uxMode,
-        redirect_uri: redirectUri,
-        scope,
-        access_type: accessType
-      }
-      window.gapi.load('auth2', () => {
-        this.enableButton()
-        if (!window.gapi.auth2.getAuthInstance()) {
-          window.gapi.auth2.init(params).then(
-            res => {
-              if (isSignedIn && res.isSignedIn.get()) {
-                this.handleSigninSuccess(res.currentUser.get())
-              }
-            },
-            err => onFailure(err)
-          )
-        }
-      })
-    })
-  }
-  componentWillUnmount() {
-    this.enableButton = () => {}
-    try {
-      const el = document.getElementById('google-login')
-      el.parentNode.removeChild(el)
-    } catch (error) {
-      // just ignore it; the container is already removed
-    }
-  }
-  enableButton() {
-    this.setState({
-      disabled: false
-    })
-  }
-  signOut() {
-    if (window.gapi) {
-      const auth2 = window.gapi.auth2.getAuthInstance()
-      if (auth2 != null) {
-        auth2.signOut().then(auth2.disconnect().then(this.props.onLogoutSuccess))
-      }
-    }
+  const { signOut, loaded } = useGoogleLogout({
+    jsSrc,
+    onFailure,
+    clientId,
+    cookiePolicy,
+    loginHint,
+    hostedDomain,
+    fetchBasicProfile,
+    discoveryDocs,
+    uxMode,
+    redirectUri,
+    scope,
+    accessType,
+    onLogoutSuccess
+  })
+  const disabled = disabledProp || !loaded
+
+  if (render) {
+    return render({ onClick: signOut, disabled })
   }
 
-  render() {
-    const { tag, type, className, disabledStyle, buttonText, children, render, theme, icon } = this.props
-    const disabled = this.state.disabled || this.props.disabled
+  const initialStyle = {
+    backgroundColor: theme === 'dark' ? 'rgb(66, 133, 244)' : '#fff',
+    display: 'inline-flex',
+    alignItems: 'center',
+    color: theme === 'dark' ? '#fff' : 'rgba(0, 0, 0, .54)',
+    boxShadow: '0 2px 2px 0 rgba(0, 0, 0, .24), 0 0 1px 0 rgba(0, 0, 0, .24)',
+    padding: 0,
+    borderRadius: 2,
+    border: '1px solid transparent',
+    fontSize: 14,
+    fontWeight: '500',
+    fontFamily: 'Roboto, sans-serif'
+  }
 
-    if (render) {
-      return render({ onClick: this.signOut, disabled })
+  const hoveredStyle = {
+    cursor: 'pointer',
+    opacity: 0.9
+  }
+
+  const activeStyle = {
+    cursor: 'pointer',
+    backgroundColor: theme === 'dark' ? '#3367D6' : '#eee',
+    color: theme === 'dark' ? '#fff' : 'rgba(0, 0, 0, .54)',
+    opacity: 1
+  }
+
+  const defaultStyle = (() => {
+    if (disabled) {
+      return Object.assign({}, initialStyle, disabledStyle)
     }
 
-    const initialStyle = {
-      backgroundColor: theme === 'dark' ? 'rgb(66, 133, 244)' : '#fff',
-      display: 'inline-flex',
-      alignItems: 'center',
-      color: theme === 'dark' ? '#fff' : 'rgba(0, 0, 0, .54)',
-      boxShadow: '0 2px 2px 0 rgba(0, 0, 0, .24), 0 0 1px 0 rgba(0, 0, 0, .24)',
-      padding: 0,
-      borderRadius: 2,
-      border: '1px solid transparent',
-      fontSize: 14,
-      fontWeight: '500',
-      fontFamily: 'Roboto, sans-serif'
-    }
-
-    const hoveredStyle = {
-      cursor: 'pointer',
-      opacity: 0.9
-    }
-
-    const activeStyle = {
-      cursor: 'pointer',
-      backgroundColor: theme === 'dark' ? '#3367D6' : '#eee',
-      color: theme === 'dark' ? '#fff' : 'rgba(0, 0, 0, .54)',
-      opacity: 1
-    }
-
-    const defaultStyle = (() => {
-      if (disabled) {
-        return Object.assign({}, initialStyle, disabledStyle)
-      }
-
-      if (this.state.active) {
-        if (theme === 'dark') {
-          return Object.assign({}, initialStyle, activeStyle)
-        }
-
+    if (active) {
+      if (theme === 'dark') {
         return Object.assign({}, initialStyle, activeStyle)
       }
 
-      if (this.state.hovered) {
-        return Object.assign({}, initialStyle, hoveredStyle)
-      }
+      return Object.assign({}, initialStyle, activeStyle)
+    }
 
-      return initialStyle
-    })()
-    const GoogleLogoutButton = React.createElement(
-      tag,
-      {
-        onMouseEnter: () => this.setState({ hovered: true }),
-        onMouseLeave: () => this.setState({ hovered: false, active: false }),
-        onMouseDown: () => this.setState({ active: true }),
-        onMouseUp: () => this.setState({ active: false }),
-        onClick: this.signOut,
-        style: defaultStyle,
-        type,
-        disabled,
-        className
+    if (hovered) {
+      return Object.assign({}, initialStyle, hoveredStyle)
+    }
+
+    return initialStyle
+  })()
+  const GoogleLogoutButton = React.createElement(
+    tag,
+    {
+      onMouseEnter: () => setHovered(true),
+      onMouseLeave: () => {
+        setHovered(false)
+        setActive(false)
       },
-      [
-        icon && <Icon key={1} active={this.state.active} />,
-        <ButtonContent icon={icon} key={2}>
-          {children || buttonText}
-        </ButtonContent>
-      ]
-    )
+      onMouseDown: () => setActive(true),
+      onMouseUp: () => setActive(false),
+      onClick: signOut,
+      style: defaultStyle,
+      type,
+      disabled,
+      className
+    },
+    [
+      icon && <Icon key={1} active={active} />,
+      <ButtonContent icon={icon} key={2}>
+        {children || buttonText}
+      </ButtonContent>
+    ]
+  )
 
-    return GoogleLogoutButton
-  }
+  return GoogleLogoutButton
 }
 
 GoogleLogout.propTypes = {
