@@ -53,6 +53,51 @@ ReactDOM.render(
 );
 ```
 
+## Login Hook
+```js
+import { useGoogleLogin } from './use-google-login'
+
+const { signIn, loaded } = useGoogleLogin({
+    onSuccess,
+    clientId,
+    cookiePolicy,
+    loginHint,
+    hostedDomain,
+    autoLoad,
+    isSignedIn,
+    fetchBasicProfile,
+    redirectUri,
+    discoveryDocs,
+    onFailure,
+    uxMode,
+    scope,
+    accessType,
+    responseType,
+    jsSrc,
+    onRequest,
+    prompt
+  })
+```
+## Logout Hook
+```js
+import { useGoogleLogout } from './use-google-logout'
+
+const { signOut, loaded } = useGoogleLogout({
+    jsSrc,
+    onFailure,
+    clientId,
+    cookiePolicy,
+    loginHint,
+    hostedDomain,
+    fetchBasicProfile,
+    discoveryDocs,
+    uxMode,
+    redirectUri,
+    scope,
+    accessType,
+    onLogoutSuccess
+  })
+```
 ## onSuccess callback
 
 If responseType is not 'code', callback will return the GoogleAuth object.
