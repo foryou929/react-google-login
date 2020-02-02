@@ -55,7 +55,7 @@ ReactDOM.render(
 
 ## Login Hook
 ```js
-import { useGoogleLogin } from './use-google-login'
+import { useGoogleLogin } from 'react-google-login'
 
 const { signIn, loaded } = useGoogleLogin({
     onSuccess,
@@ -80,7 +80,7 @@ const { signIn, loaded } = useGoogleLogin({
 ```
 ## Logout Hook
 ```js
-import { useGoogleLogout } from './use-google-logout'
+import { useGoogleLogout } from 'react-google-login'
 
 const { signOut, loaded } = useGoogleLogout({
     jsSrc,
