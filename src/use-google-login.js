@@ -93,12 +93,15 @@ const useGoogleLogin = ({
             err => onFailure(err)
           )
         }
-        if (autoLoad) {
-          signIn()
-        }
       })
     })
   }, [])
+
+  useEffect(() => {
+    if (autoLoad) {
+      signIn()
+    }
+  }, [loaded])
 
   return { signIn, loaded }
 }
