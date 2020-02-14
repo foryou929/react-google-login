@@ -19,8 +19,7 @@
   },
   "pre-commit": [
     "test",
-    "lint",
-    "bundle"
+    "lint"
   ],
   "repository": {
     "type": "git",
