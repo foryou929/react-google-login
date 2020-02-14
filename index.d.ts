@@ -86,6 +86,7 @@ export interface GoogleLoginProps {
   readonly responseType?: string,
   readonly children?: ReactNode,
   readonly style?: CSSProperties,
+  readonly icon?: boolean,
   readonly theme?: "light" | "dark",
   readonly tag?: string,
   readonly disabled?: boolean;
