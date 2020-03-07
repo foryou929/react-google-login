@@ -53,6 +53,16 @@ ReactDOM.render(
 );
 ```
 
+## Stay Logged in
+`isSignedIn={true}` attribute will call `onSuccess` callback on load to keep the user signed in.
+```jsx
+<GoogleLogin
+  clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+  onSuccess={responseGoogle}
+  isSignedIn={true}
+/>
+```
+
 ## Login Hook
 ```js
 import { useGoogleLogin } from 'react-google-login'
