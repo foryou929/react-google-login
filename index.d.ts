@@ -123,4 +123,55 @@ export class GoogleLogout extends Component<GoogleLogoutProps, {}> {
   public signOut(): void;
 }
 
+export interface UseGoogleLogoutResponse { 
+  signOut: () => void;
+  loaded: boolean;
+}
+
+export interface UseGoogleLogoutProps { 
+  readonly clientId: string,
+  readonly onLogoutSuccess?: () => void;
+  readonly onFailure?: () => void;
+  readonly accessType?: string;
+  readonly fetchBasicProfile?: boolean;
+  readonly cookiePolicy?: string;
+  readonly loginHint?: string;
+  readonly hostedDomain?: string;
+  readonly redirectUri?: string,
+  readonly discoveryDocs?: any;
+  readonly scope?: string,
+  readonly uxMode?: string;
+  readonly jsSrc?: string;
+}
+
+export function useGoogleLogout(input: UseGoogleLogoutProps): UseGoogleLogoutResponse;
+
+export interface UseGoogleLoginResponse { 
+  signIn: () => void;
+  loaded: boolean;
+}
+
+export interface UseGoogleLoginProps { 
+  readonly onSuccess: (response: GoogleLoginResponse | GoogleLoginResponseOffline) => void,
+  readonly onFailure: (error: any) => void,
+  readonly clientId: string,
+  readonly jsSrc?: string,
+  readonly onRequest?: () => void,
+  readonly scope?: string,
+  readonly redirectUri?: string,
+  readonly cookiePolicy?: string,
+  readonly loginHint?: string,
+  readonly hostedDomain?: string,
+  readonly prompt?: string,
+  readonly responseType?: string,
+  readonly autoLoad?: boolean;
+  readonly uxMode?: string;
+  readonly fetchBasicProfile?: boolean;
+  readonly isSignedIn?: boolean;
+  readonly discoveryDocs?: any;
+  readonly accessType?: string;
+}
+
+export function useGoogleLogin(input: UseGoogleLoginProps): UseGoogleLoginResponse;
+
 export default GoogleLogin;
