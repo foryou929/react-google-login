@@ -82,16 +82,18 @@ const useGoogleLogin = ({
       }
 
       window.gapi.load('auth2', () => {
-        setLoaded(true)
         if (!window.gapi.auth2.getAuthInstance()) {
           window.gapi.auth2.init(params).then(
             res => {
+              setLoaded(true)
               if (isSignedIn && res.isSignedIn.get()) {
                 handleSigninSuccess(res.currentUser.get())
               }
             },
             err => onFailure(err)
           )
+        } else {
+          setLoaded(true)
         }
       })
     })
