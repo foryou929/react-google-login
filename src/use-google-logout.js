@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import loadScript from './load-script'
+import removeScript from './remove-script'
 
 const useGoogleLogout = ({
   jsSrc,
@@ -49,6 +50,10 @@ const useGoogleLogout = ({
         }
       })
     })
+
+    return () => {
+      removeScript(document, 'google-login')
+    }
   }, [])
 
   return { signOut, loaded }

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import loadScript from './load-script'
+import removeScript from './remove-script'
 
 const useGoogleLogin = ({
   onSuccess,
@@ -97,6 +98,10 @@ const useGoogleLogin = ({
         }
       })
     })
+
+    return () => {
+      removeScript(document, 'google-login')
+    }
   }, [])
 
   useEffect(() => {
