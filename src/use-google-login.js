@@ -18,7 +18,7 @@ const useGoogleLogin = ({
   scope,
   accessType,
   responseType,
-  jsSrc,
+  jsSrc = 'https://apis.google.com/js/api.js',
   onRequest,
   prompt
 }) => {

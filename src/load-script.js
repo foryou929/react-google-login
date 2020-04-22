@@ -4,7 +4,7 @@ export default (d, s, id, jsSrc, cb) => {
   let js = element
   js = d.createElement(s)
   js.id = id
-  js.src = jsSrc || 'https://apis.google.com/js/api.js'
+  js.src = jsSrc
   if (fjs && fjs.parentNode) {
     fjs.parentNode.insertBefore(js, fjs)
   } else {

@@ -3,7 +3,7 @@ import loadScript from './load-script'
 import removeScript from './remove-script'
 
 const useGoogleLogout = ({
-  jsSrc,
+  jsSrc = 'https://apis.google.com/js/api.js',
   onFailure,
   clientId,
   cookiePolicy,
