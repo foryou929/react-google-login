@@ -36,7 +36,11 @@ jobs:
         run: npm ci
       - name: Bundle
         run: npm run bundle --if-present
-      - name: Publish
+      - name: Token
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
         run: echo "//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN" > .npmrc
+      - name: Publish
+        run: npm run release
+      - name: Clean Up
+        run: rm .npmrc
