@@ -1,5 +1,15 @@
 {
   "github": {
-    "release": true
+    "release": true,
+    "releaseName": "react-google-login %s Released!"
+  },
+  "git": {
+    "requireUpstream": false,
+    "commitMessage": "release: v${version}",
+    "tagName": "v${version}",
+    "push": false
+  },
+  "npm": {
+    "ignoreVersion": true
   }
 }

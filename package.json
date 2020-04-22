@@ -16,7 +16,7 @@
     "storybook": "start-storybook -p 8080",
     "build-storybook": "npm run test:generate-output; build-storybook -c .storybook -o docs",
     "deploy-storybook": "storybook-to-ghpages --out=docs/",
-    "release": "release-it --ci --npm.ignoreVersion --no-git.requireCleanWorkingDir"
+    "release": "release-it --ci --no-git.requireCleanWorkingDir"
   },
   "pre-commit": [
     "test",
