@@ -15,7 +15,8 @@
     "fresh": "rm -rf node_modules dist docs; rm package-lock.json; npm i",
     "storybook": "start-storybook -p 8080",
     "build-storybook": "npm run test:generate-output; build-storybook -c .storybook -o docs",
-    "deploy-storybook": "storybook-to-ghpages --out=docs/"
+    "deploy-storybook": "storybook-to-ghpages --out=docs/",
+    "release": "release-it --ci --npm.ignoreVersion"
   },
   "pre-commit": [
     "test",
@@ -77,6 +78,7 @@
     "react-fontawesome": "^1.6.1",
     "react-hot-loader": "^4.8.2",
     "react-test-renderer": "^16.8.6",
+    "release-it": "^12.4.3",
     "uglifyjs-webpack-plugin": "^2.1.2",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.10",
