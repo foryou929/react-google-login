@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
           node-version: 12
@@ -27,7 +27,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
           node-version: 12
@@ -41,9 +41,9 @@ jobs:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
         run: echo "//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN" > .npmrc
       - name: Publish
-        env:
-          CI: true
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        # env:
+        #   CI: true
+        #   GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: npm run release
       - name: Clean Up
         run: rm .npmrc
