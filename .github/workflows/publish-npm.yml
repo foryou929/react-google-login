@@ -41,9 +41,9 @@ jobs:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
         run: echo "//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN" > .npmrc
       - name: Publish
-        # env:
-        #   CI: true
-        #   GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        env:
+          CI: true
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: npm run release
       - name: Clean Up
         run: rm .npmrc
