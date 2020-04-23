@@ -1,14 +1,10 @@
 name: Publish NPM
 
-# on:
-#   release:
-#     types: [created]
-#     tags:
-#       - v*
 on:
-  push:
-    branches:
-      - master
+  release:
+    types: [created]
+    tags:
+      - v*
 
 jobs:
   build:
