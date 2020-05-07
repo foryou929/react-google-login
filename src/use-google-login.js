@@ -103,7 +103,7 @@ const useGoogleLogin = ({
             err => onFailure(err)
           )
         } else if (isSignedIn && window.gapi.auth2.isSignedIn.get()) {
-          this.handleSigninSuccess(window.gapi.auth2.currentUser.get())
+          handleSigninSuccess(window.gapi.auth2.currentUser.get())
         } else if (!unmounted) {
           setLoaded(true)
         }
