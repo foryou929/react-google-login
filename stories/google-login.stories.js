@@ -32,6 +32,7 @@ story.add(
       theme={select('Theme', options)}
       clientId={clientId}
       disabled={boolean('Disabled', false)}
+      onAutoLoadFinished={action('autoLoadFinished')}
       onSuccess={action('clicked')}
       onFailure={action('clicked')}
     >

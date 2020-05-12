@@ -3,7 +3,10 @@ import loadScript from './load-script'
 import removeScript from './remove-script'
 
 const useGoogleLogin = ({
-  onSuccess,
+  onSuccess = () => {},
+  onAutoLoadFinished = () => {},
+  onFailure = () => {},
+  onRequest = () => {},
   clientId,
   cookiePolicy,
   loginHint,
@@ -13,13 +16,11 @@ const useGoogleLogin = ({
   fetchBasicProfile,
   redirectUri,
   discoveryDocs,
-  onFailure,
   uxMode,
   scope,
   accessType,
   responseType,
   jsSrc = 'https://apis.google.com/js/api.js',
-  onRequest,
   prompt
 }) => {
   const [loaded, setLoaded] = useState(false)
@@ -95,17 +96,25 @@ const useGoogleLogin = ({
             res => {
               if (!unmounted) {
                 setLoaded(true)
-                if (isSignedIn && res.isSignedIn.get()) {
+                const signedIn = isSignedIn && res.isSignedIn.get()
+                onAutoLoadFinished(signedIn)
+                if (signedIn) {
                   handleSigninSuccess(res.currentUser.get())
                 }
               }
             },
-            err => onFailure(err)
+            err => {
+              setLoaded(true)
+              onAutoLoadFinished(false)
+              onFailure(err)
+            }
           )
         } else if (isSignedIn && window.gapi.auth2.isSignedIn.get()) {
+          onAutoLoadFinished(true)
           handleSigninSuccess(window.gapi.auth2.currentUser.get())
         } else if (!unmounted) {
           setLoaded(true)
+          onAutoLoadFinished(false)
         }
       })
     })

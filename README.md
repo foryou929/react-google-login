@@ -69,6 +69,7 @@ import { useGoogleLogin } from 'react-google-login'
 
 const { signIn, loaded } = useGoogleLogin({
     onSuccess,
+    onAutoLoadFinished,
     clientId,
     cookiePolicy,
     loginHint,
@@ -146,6 +147,7 @@ Use GoogleLogout button to logout the user from google.
 |   onSuccess  | function |               REQUIRED               |                  |
 |   onFailure  | function |               REQUIRED               |                  |
 |   onRequest  | function |                   -                  |                  |
+|   onAutoLoadFinished  | function |                   -         |                  |
 |   buttonText |  string  |             Login with Google        |                  |
 |   className  |  string  |                   -                  |                  |
 |    style     |  object  |                   -                  |                  |

@@ -8,6 +8,10 @@ const GoogleLogin = props => {
   const [hovered, setHovered] = useState(false)
   const [active, setActive] = useState(false)
   const {
+    onSuccess,
+    onAutoLoadFinished,
+    onRequest,
+    onFailure,
     tag,
     type,
     className,
@@ -18,7 +22,6 @@ const GoogleLogin = props => {
     theme,
     icon,
     disabled: disabledProp,
-    onSuccess,
     clientId,
     cookiePolicy,
     loginHint,
@@ -28,18 +31,19 @@ const GoogleLogin = props => {
     fetchBasicProfile,
     redirectUri,
     discoveryDocs,
-    onFailure,
     uxMode,
     scope,
     accessType,
     responseType,
     jsSrc,
-    onRequest,
     prompt
   } = props
 
   const { signIn, loaded } = useGoogleLogin({
     onSuccess,
+    onAutoLoadFinished,
+    onRequest,
+    onFailure,
     clientId,
     cookiePolicy,
     loginHint,
@@ -49,13 +53,11 @@ const GoogleLogin = props => {
     fetchBasicProfile,
     redirectUri,
     discoveryDocs,
-    onFailure,
     uxMode,
     scope,
     accessType,
     responseType,
     jsSrc,
-    onRequest,
     prompt
   })
   const disabled = disabledProp || !loaded
