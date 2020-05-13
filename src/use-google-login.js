@@ -51,18 +51,18 @@ const useGoogleLogin = ({
       e.preventDefault() // to prevent submit if used within form
     }
     if (loaded) {
-      const auth2 = window.gapi.auth2.getAuthInstance()
+      const GoogleAuth = window.gapi.auth2.getAuthInstance()
       const options = {
         prompt
       }
       onRequest()
       if (responseType === 'code') {
-        auth2.grantOfflineAccess(options).then(
+        GoogleAuth.grantOfflineAccess(options).then(
           res => onSuccess(res),
           err => onFailure(err)
         )
       } else {
-        auth2.signIn(options).then(
+        GoogleAuth.signIn(options).then(
           res => handleSigninSuccess(res),
           err => onFailure(err)
         )
@@ -91,7 +91,8 @@ const useGoogleLogin = ({
       }
 
       window.gapi.load('auth2', () => {
-        if (!window.gapi.auth2.getAuthInstance()) {
+        const GoogleAuth = window.gapi.auth2.getAuthInstance()
+        if (!GoogleAuth) {
           window.gapi.auth2.init(params).then(
             res => {
               if (!unmounted) {
@@ -109,10 +110,10 @@ const useGoogleLogin = ({
               onFailure(err)
             }
           )
-        } else if (isSignedIn && window.gapi.auth2.isSignedIn.get()) {
+        } else if (isSignedIn && GoogleAuth.isSignedIn.get()) {
           setLoaded(true)
           onAutoLoadFinished(true)
-          handleSigninSuccess(window.gapi.auth2.currentUser.get())
+          handleSigninSuccess(GoogleAuth.currentUser.get())
         } else if (!unmounted) {
           setLoaded(true)
           onAutoLoadFinished(false)
