@@ -71,8 +71,8 @@ Use GoogleLogout button to logout the user from google.
 |    params    |   value  |             default value            |   description    |
 |:------------:|:--------:|:------------------------------------:|:----------------:|
 |    clientId  |  string  |               REQUIRED               | You can create a clientID by creating a [new project on Google developers website.](https://developers.google.com/identity/sign-in/web/sign-in) |
-|    jsSrc     |  string  |                   -                  |                  |
-| hostedDomain |  string  |                   -                  | URL of the Javascript file normally hosted by Google |
+|    jsSrc     |  string  | https://apis.google.com/js/api.js | URL of the Javascript file normally hosted by Google |
+| hostedDomain |  string  |                   -                  |  The G Suite domain to which users must belong to sign in |
 |     scope    |  string  |             profile email            |                  |
 | accessType   |  string  |              online                  | Can be either 'online' or 'offline'. Use offline with responseType 'code' to retrieve a refresh token |
 |   onLogoutSuccess  | function |               REQUIRED               |                  |

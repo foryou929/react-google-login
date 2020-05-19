@@ -57,8 +57,8 @@ If you use the hostedDomain param, make sure to validate the id_token (a JSON we
 |    params    |   value  |             default value            |   description    |
 |:------------:|:--------:|:------------------------------------:|:----------------:|
 |    clientId  |  string  |               REQUIRED               | You can create a clientID by creating a [new project on Google developers website.](https://developers.google.com/identity/sign-in/web/sign-in) |
-|    jsSrc     |  string  |                   -                  |                  |
-| hostedDomain |  string  |                   -                  | URL of the Javascript file normally hosted by Google |
+|    jsSrc     |  string  | https://apis.google.com/js/api.js |URL of the Javascript file normally hosted by Google|
+| hostedDomain |  string  |                   -                  | The G Suite domain to which users must belong to sign in|
 |     scope    |  string  |             profile email            |                  |
 | responseType |  string  |              permission              | Can be either space-delimited 'id_token', to retrieve an ID Token + 'permission' (or 'token'), to retrieve an Access Token, or 'code', to retrieve an Authorization Code.
 | accessType   |  string  |              online                  | Can be either 'online' or 'offline'. Use offline with responseType 'code' to retrieve a refresh token |
