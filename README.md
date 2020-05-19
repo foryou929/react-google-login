@@ -7,7 +7,7 @@
 [Demo Link](https://anthonyjgrove.github.io/react-google-login/)
 
 ## Install
-``` 
+```
 npm install react-google-login
 ```
 
@@ -113,7 +113,8 @@ const { signOut, loaded } = useGoogleLogout({
 
 If responseType is not 'code', callback will return the GoogleAuth object.
 
-If responseType is 'code', callback will return the offline token for use on your server.
+If responseType is 'code', callback will return the authorization code that can
+be used to retrieve a refresh token from the server.
 
 If you use the hostedDomain param, make sure to validate the id_token (a JSON web token) returned by Google on your backend server:
  1. In the `responseGoogle(response) {...}` callback function, you should get back a standard JWT located at `response.tokenId` or `res.getAuthResponse().id_token`
@@ -143,7 +144,7 @@ Use GoogleLogout button to logout the user from google.
 | hostedDomain |  string  |                   -                  | URL of the Javascript file normally hosted by Google |
 |     scope    |  string  |             profile email            |                  |
 | responseType |  string  |              permission              | Can be either space-delimited 'id_token', to retrieve an ID Token + 'permission' (or 'token'), to retrieve an Access Token, or 'code', to retrieve an Authorization Code.
-| accessType   |  string  |              online                  | Can be either 'online' or 'offline'. Use offline with responseType 'code' to retrieve a refresh token |
+| accessType   |  string  |              online                  | Can be either 'online' or 'offline'. Use offline with responseType 'code' to retrieve an authorization code for fetching a refresh token  |
 |   onSuccess  | function |               REQUIRED               |                  |
 |   onFailure  | function |               REQUIRED               |                  |
 |   onRequest  | function |                   -                  |                  |
@@ -176,7 +177,7 @@ Google Scopes List: [scopes](https://developers.google.com/identity/protocols/go
 |    jsSrc     |  string  |                   -                  |                  |
 | hostedDomain |  string  |                   -                  | URL of the Javascript file normally hosted by Google |
 |     scope    |  string  |             profile email            |                  |
-| accessType   |  string  |              online                  | Can be either 'online' or 'offline'. Use offline with responseType 'code' to retrieve a refresh token |
+| accessType   |  string  |              online                  | Can be either 'online' or 'offline'. Use offline with responseType 'code' to retrieve an authorization code for fetching a refresh token |
 |   onLogoutSuccess  | function |               REQUIRED               |                  |
 |   onFailure  | function |               REQUIRED               |                  |
 |   buttonText |  string  |             Login with Google        |                  |
