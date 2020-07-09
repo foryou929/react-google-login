@@ -72,9 +72,9 @@ export interface GoogleLoginResponseOffline {
 }
 
 export interface GoogleLoginProps {
-  readonly onSuccess: (response: GoogleLoginResponse | GoogleLoginResponseOffline) => void,
+  readonly onSuccess?: (response: GoogleLoginResponse | GoogleLoginResponseOffline) => void,
   readonly onAutoLoadFinished?: (successLogin: boolean) => void,
-  readonly onFailure: (error: any) => void,
+  readonly onFailure?: (error: any) => void,
   readonly onRequest?: () => void,
   readonly clientId: string,
   readonly jsSrc?: string,
@@ -155,8 +155,8 @@ export interface UseGoogleLoginResponse {
 }
 
 export interface UseGoogleLoginProps { 
-  readonly onSuccess: (response: GoogleLoginResponse | GoogleLoginResponseOffline) => void,
-  readonly onFailure: (error: any) => void,
+  readonly onSuccess?: (response: GoogleLoginResponse | GoogleLoginResponseOffline) => void,
+  readonly onFailure?: (error: any) => void,
   readonly onAutoLoadFinished?: (successLogin: boolean) => void,
   readonly clientId: string,
   readonly jsSrc?: string,
