@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 // Type definitions for react-google-login v2.5.4
 // Project: https://github.com/anthonyjgrove/react-google-login
 // Definitions by: Ruslan Ibragimov <https://github.com/IRus>
@@ -43,6 +44,7 @@ export interface GoogleLoginResponse {
   tokenObj: AuthResponse;
   tokenId: string;
   accessToken: string;
+  readonly code?: string;//does not exist but here to satisfy typescript compatibility
   profileObj: {
     googleId: string;
     imageUrl: string;
@@ -101,7 +103,7 @@ export interface GoogleLoginProps {
   readonly render?: (props: { onClick: () => void, disabled?: boolean }) => JSX.Element;
 }
 
-export class GoogleLogin extends Component<GoogleLoginProps, {}> {
+export class GoogleLogin extends Component<GoogleLoginProps, unknown> {
   public signIn(e?: Event): void;
 }
 
@@ -120,7 +122,7 @@ export interface GoogleLogoutProps {
   readonly render?: (props: { onClick: () => void, disabled?: boolean }) => JSX.Element;
 }
 
-export class GoogleLogout extends Component<GoogleLogoutProps, {}> {
+export class GoogleLogout extends Component<GoogleLogoutProps, unknown> {
   public signOut(): void;
 }
 
