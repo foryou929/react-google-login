@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import loadScript from './load-script'
 import removeScript from './remove-script'
 
@@ -19,7 +19,7 @@ const useGoogleLogout = ({
 }) => {
   const [loaded, setLoaded] = useState(false)
 
-  const signOut = () => {
+  const signOut = useCallback(() => {
     if (window.gapi) {
       const auth2 = window.gapi.auth2.getAuthInstance()
       if (auth2 != null) {
@@ -31,7 +31,7 @@ const useGoogleLogout = ({
         )
       }
     }
-  }
+  }, [onLogoutSuccess])
 
   useEffect(() => {
     loadScript(document, 'script', 'google-login', jsSrc, () => {
