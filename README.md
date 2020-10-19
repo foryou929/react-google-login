@@ -180,7 +180,7 @@ Google Scopes List: [scopes](https://developers.google.com/identity/protocols/go
 | accessType   |  string  |              online                  | Can be either 'online' or 'offline'. Use offline with responseType 'code' to retrieve an authorization code for fetching a refresh token |
 |   onLogoutSuccess  | function |               REQUIRED               |                  |
 |   onFailure  | function |               REQUIRED               |                  |
-|   buttonText |  string  |             Login with Google        |                  |
+|   buttonText |  string  |             Logout of Google        |                  |
 |   className  |  string  |                   -                  |                  |
 | disabledStyle|  object  |                   -                  |                  |
 |   loginHint  |  string  |                   -                  |                  |
