@@ -25,7 +25,10 @@ const useGoogleLogout = ({
       if (auth2 != null) {
         auth2.then(
           () => {
-            auth2.signOut().then(auth2.disconnect().then(onLogoutSuccess))
+            auth2.signOut().then(() => {
+              auth2.disconnect()
+              onLogoutSuccess()
+            })
           },
           err => onFailure(err)
         )
