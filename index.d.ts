@@ -116,6 +116,7 @@ export interface GoogleLogoutProps {
   readonly children?: ReactNode;
   readonly jsSrc?: string;
   readonly style?: CSSProperties;
+  readonly icon?: boolean,
   readonly disabled?: boolean;
   readonly disabledStyle?: CSSProperties;
   readonly tag?: string;
