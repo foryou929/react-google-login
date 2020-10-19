@@ -23,7 +23,12 @@ const useGoogleLogout = ({
     if (window.gapi) {
       const auth2 = window.gapi.auth2.getAuthInstance()
       if (auth2 != null) {
-        auth2.signOut().then(auth2.disconnect().then(onLogoutSuccess))
+        auth2.then(
+          () => {
+            auth2.signOut().then(auth2.disconnect().then(onLogoutSuccess))
+          },
+          err => onFailure(err)
+        )
       }
     }
   }

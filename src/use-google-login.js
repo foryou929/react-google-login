@@ -110,13 +110,25 @@ const useGoogleLogin = ({
               onFailure(err)
             }
           )
-        } else if (isSignedIn && GoogleAuth.isSignedIn.get()) {
-          setLoaded(true)
-          onAutoLoadFinished(true)
-          handleSigninSuccess(GoogleAuth.currentUser.get())
-        } else if (!unmounted) {
-          setLoaded(true)
-          onAutoLoadFinished(false)
+        } else {
+          GoogleAuth.then(
+            () => {
+              if (unmounted) {
+                return
+              }
+              if (isSignedIn && GoogleAuth.isSignedIn.get()) {
+                setLoaded(true)
+                onAutoLoadFinished(true)
+                handleSigninSuccess(GoogleAuth.currentUser.get())
+              } else {
+                setLoaded(true)
+                onAutoLoadFinished(false)
+              }
+            },
+            err => {
+              onFailure(err)
+            }
+          )
         }
       })
     })
