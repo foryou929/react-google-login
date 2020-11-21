@@ -30,7 +30,7 @@ const useGoogleLogin = ({
       offer renamed response keys to names that match use
     */
     const basicProfile = res.getBasicProfile()
-    const authResponse = res.getAuthResponse()
+    const authResponse = res.getAuthResponse(true)
     res.googleId = basicProfile.getId()
     res.tokenObj = authResponse
     res.tokenId = authResponse.id_token
