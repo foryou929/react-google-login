@@ -1,4 +1,4 @@
-export default (d, s, id, jsSrc, cb) => {
+export default (d, s, id, jsSrc, cb, onError) => {
   const element = d.getElementsByTagName(s)[0]
   const fjs = element
   let js = element
@@ -10,5 +10,6 @@ export default (d, s, id, jsSrc, cb) => {
   } else {
     d.head.appendChild(js)
   }
+  js.onerror = onError
   js.onload = cb
 }

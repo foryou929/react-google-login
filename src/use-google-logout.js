@@ -37,30 +37,39 @@ const useGoogleLogout = ({
   }, [onLogoutSuccess])
 
   useEffect(() => {
-    loadScript(document, 'script', 'google-login', jsSrc, () => {
-      const params = {
-        client_id: clientId,
-        cookie_policy: cookiePolicy,
-        login_hint: loginHint,
-        hosted_domain: hostedDomain,
-        fetch_basic_profile: fetchBasicProfile,
-        discoveryDocs,
-        ux_mode: uxMode,
-        redirect_uri: redirectUri,
-        scope,
-        access_type: accessType
-      }
-      window.gapi.load('auth2', () => {
-        if (!window.gapi.auth2.getAuthInstance()) {
-          window.gapi.auth2.init(params).then(
-            () => setLoaded(true),
-            err => onFailure(err)
-          )
-        } else {
-          setLoaded(true)
+    loadScript(
+      document,
+      'script',
+      'google-login',
+      jsSrc,
+      () => {
+        const params = {
+          client_id: clientId,
+          cookie_policy: cookiePolicy,
+          login_hint: loginHint,
+          hosted_domain: hostedDomain,
+          fetch_basic_profile: fetchBasicProfile,
+          discoveryDocs,
+          ux_mode: uxMode,
+          redirect_uri: redirectUri,
+          scope,
+          access_type: accessType
         }
-      })
-    })
+        window.gapi.load('auth2', () => {
+          if (!window.gapi.auth2.getAuthInstance()) {
+            window.gapi.auth2.init(params).then(
+              () => setLoaded(true),
+              err => onFailure(err)
+            )
+          } else {
+            setLoaded(true)
+          }
+        })
+      },
+      err => {
+        onFailure(err)
+      }
+    )
 
     return () => {
       removeScript(document, 'google-login')

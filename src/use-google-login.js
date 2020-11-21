@@ -72,66 +72,75 @@ const useGoogleLogin = ({
 
   useEffect(() => {
     let unmounted = false
-    loadScript(document, 'script', 'google-login', jsSrc, () => {
-      const params = {
-        client_id: clientId,
-        cookie_policy: cookiePolicy,
-        login_hint: loginHint,
-        hosted_domain: hostedDomain,
-        fetch_basic_profile: fetchBasicProfile,
-        discoveryDocs,
-        ux_mode: uxMode,
-        redirect_uri: redirectUri,
-        scope,
-        access_type: accessType
-      }
+    loadScript(
+      document,
+      'script',
+      'google-login',
+      jsSrc,
+      () => {
+        const params = {
+          client_id: clientId,
+          cookie_policy: cookiePolicy,
+          login_hint: loginHint,
+          hosted_domain: hostedDomain,
+          fetch_basic_profile: fetchBasicProfile,
+          discoveryDocs,
+          ux_mode: uxMode,
+          redirect_uri: redirectUri,
+          scope,
+          access_type: accessType
+        }
 
-      if (responseType === 'code') {
-        params.access_type = 'offline'
-      }
+        if (responseType === 'code') {
+          params.access_type = 'offline'
+        }
 
-      window.gapi.load('auth2', () => {
-        const GoogleAuth = window.gapi.auth2.getAuthInstance()
-        if (!GoogleAuth) {
-          window.gapi.auth2.init(params).then(
-            res => {
-              if (!unmounted) {
-                setLoaded(true)
-                const signedIn = isSignedIn && res.isSignedIn.get()
-                onAutoLoadFinished(signedIn)
-                if (signedIn) {
-                  handleSigninSuccess(res.currentUser.get())
+        window.gapi.load('auth2', () => {
+          const GoogleAuth = window.gapi.auth2.getAuthInstance()
+          if (!GoogleAuth) {
+            window.gapi.auth2.init(params).then(
+              res => {
+                if (!unmounted) {
+                  setLoaded(true)
+                  const signedIn = isSignedIn && res.isSignedIn.get()
+                  onAutoLoadFinished(signedIn)
+                  if (signedIn) {
+                    handleSigninSuccess(res.currentUser.get())
+                  }
                 }
-              }
-            },
-            err => {
-              setLoaded(true)
-              onAutoLoadFinished(false)
-              onFailure(err)
-            }
-          )
-        } else {
-          GoogleAuth.then(
-            () => {
-              if (unmounted) {
-                return
-              }
-              if (isSignedIn && GoogleAuth.isSignedIn.get()) {
-                setLoaded(true)
-                onAutoLoadFinished(true)
-                handleSigninSuccess(GoogleAuth.currentUser.get())
-              } else {
+              },
+              err => {
                 setLoaded(true)
                 onAutoLoadFinished(false)
+                onFailure(err)
               }
-            },
-            err => {
-              onFailure(err)
-            }
-          )
-        }
-      })
-    })
+            )
+          } else {
+            GoogleAuth.then(
+              () => {
+                if (unmounted) {
+                  return
+                }
+                if (isSignedIn && GoogleAuth.isSignedIn.get()) {
+                  setLoaded(true)
+                  onAutoLoadFinished(true)
+                  handleSigninSuccess(GoogleAuth.currentUser.get())
+                } else {
+                  setLoaded(true)
+                  onAutoLoadFinished(false)
+                }
+              },
+              err => {
+                onFailure(err)
+              }
+            )
+          }
+        })
+      },
+      err => {
+        onFailure(err)
+      }
+    )
 
     return () => {
       unmounted = true
