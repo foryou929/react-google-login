@@ -28,7 +28,7 @@ interface BasicProfile {
 // Based on https://developers.google.com/identity/sign-in/web/reference
 export interface GoogleLoginResponse {
   getBasicProfile(): BasicProfile;
-  getAuthResponse(): AuthResponse;
+  getAuthResponse(includeAuthorizationData?: boolean): AuthResponse;
   reloadAuthResponse(): Promise<AuthResponse>;
   getGrantedScopes(): string;
   getHostedDomain(): string;
