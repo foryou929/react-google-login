@@ -147,6 +147,7 @@ Use GoogleLogout button to logout the user from google.
 | accessType   |  string  |              online                  | Can be either 'online' or 'offline'. Use offline with responseType 'code' to retrieve an authorization code for fetching a refresh token  |
 |   onSuccess  | function |               REQUIRED               |                  |
 |   onFailure  | function |               REQUIRED               |                  |
+|   onScriptLoadFailure  | function |         -                  | If defined, will be called when loading the 'google-login' script fails (otherwise onFailure will be called) |
 |   onRequest  | function |                   -                  |                  |
 |   onAutoLoadFinished  | function |                   -         |                  |
 |   buttonText |  string  |             Login with Google        |                  |
@@ -180,6 +181,7 @@ Google Scopes List: [scopes](https://developers.google.com/identity/protocols/go
 | accessType   |  string  |              online                  | Can be either 'online' or 'offline'. Use offline with responseType 'code' to retrieve an authorization code for fetching a refresh token |
 |   onLogoutSuccess  | function |               REQUIRED               |                  |
 |   onFailure  | function |               REQUIRED               |                  |
+|   onScriptLoadFailure  | function |         -                  | If defined, will be called when loading the 'google-login' script fails (otherwise onFailure will be called) |
 |   buttonText |  string  |             Logout of Google        |                  |
 |   className  |  string  |                   -                  |                  |
 | disabledStyle|  object  |                   -                  |                  |

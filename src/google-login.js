@@ -12,6 +12,7 @@ const GoogleLogin = props => {
     onAutoLoadFinished,
     onRequest,
     onFailure,
+    onScriptLoadFailure,
     tag,
     type,
     className,
@@ -44,6 +45,7 @@ const GoogleLogin = props => {
     onAutoLoadFinished,
     onRequest,
     onFailure,
+    onScriptLoadFailure,
     clientId,
     cookiePolicy,
     loginHint,
@@ -141,6 +143,7 @@ const GoogleLogin = props => {
 GoogleLogin.propTypes = {
   onSuccess: PropTypes.func.isRequired,
   onFailure: PropTypes.func.isRequired,
+  onScriptLoadFailure: PropTypes.func,
   clientId: PropTypes.string.isRequired,
   jsSrc: PropTypes.string,
   onRequest: PropTypes.func,

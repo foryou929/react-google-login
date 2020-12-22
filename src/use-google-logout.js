@@ -5,6 +5,7 @@ import removeScript from './remove-script'
 const useGoogleLogout = ({
   jsSrc = 'https://apis.google.com/js/api.js',
   onFailure,
+  onScriptLoadFailure,
   clientId,
   cookiePolicy,
   loginHint,
@@ -37,6 +38,7 @@ const useGoogleLogout = ({
   }, [onLogoutSuccess])
 
   useEffect(() => {
+    const onLoadFailure = onScriptLoadFailure || onFailure
     loadScript(
       document,
       'script',
@@ -59,7 +61,7 @@ const useGoogleLogout = ({
           if (!window.gapi.auth2.getAuthInstance()) {
             window.gapi.auth2.init(params).then(
               () => setLoaded(true),
-              err => onFailure(err)
+              err => onLoadFailure(err)
             )
           } else {
             setLoaded(true)
@@ -67,7 +69,7 @@ const useGoogleLogout = ({
         })
       },
       err => {
-        onFailure(err)
+        onLoadFailure(err)
       }
     )
 

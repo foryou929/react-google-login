@@ -7,6 +7,7 @@ const useGoogleLogin = ({
   onAutoLoadFinished = () => {},
   onFailure = () => {},
   onRequest = () => {},
+  onScriptLoadFailure,
   clientId,
   cookiePolicy,
   loginHint,
@@ -72,6 +73,7 @@ const useGoogleLogin = ({
 
   useEffect(() => {
     let unmounted = false
+    const onLoadFailure = onScriptLoadFailure || onFailure
     loadScript(
       document,
       'script',
@@ -112,7 +114,7 @@ const useGoogleLogin = ({
               err => {
                 setLoaded(true)
                 onAutoLoadFinished(false)
-                onFailure(err)
+                onLoadFailure(err)
               }
             )
           } else {
@@ -138,7 +140,7 @@ const useGoogleLogin = ({
         })
       },
       err => {
-        onFailure(err)
+        onLoadFailure(err)
       }
     )
 

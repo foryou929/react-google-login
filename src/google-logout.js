@@ -27,6 +27,7 @@ const GoogleLogout = props => {
     redirectUri,
     discoveryDocs,
     onFailure,
+    onScriptLoadFailure,
     uxMode,
     scope,
     accessType,
@@ -36,6 +37,7 @@ const GoogleLogout = props => {
   const { signOut, loaded } = useGoogleLogout({
     jsSrc,
     onFailure,
+    onScriptLoadFailure,
     clientId,
     cookiePolicy,
     loginHint,
@@ -138,7 +140,9 @@ GoogleLogout.propTypes = {
   type: PropTypes.string,
   render: PropTypes.func,
   theme: PropTypes.string,
-  icon: PropTypes.bool
+  icon: PropTypes.bool,
+  onFailure: PropTypes.func,
+  onScriptLoadFailure: PropTypes.func
 }
 
 GoogleLogout.defaultProps = {
