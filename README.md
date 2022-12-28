@@ -1,3 +1,7 @@
+```diff
+- This package is no longer maintained.
+```
+
 # React Google Login
 
 > A Google oAUth Sign-in / Log-in Component for React
